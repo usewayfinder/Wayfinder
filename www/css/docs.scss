@@ -1,0 +1,214 @@
+$titleColor: seagreen;
+$primaryColor: mediumseagreen;
+
+$base: 8px;
+
+$timing: .2s;
+
+html {
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    line-height: $base*3;
+    margin: 0;
+    padding: $base*2;
+}
+
+main {
+    margin: 0 auto;
+    max-width: $base*120; //960px
+}
+
+a {
+    color: #222;
+    transition: color $timing;
+    &:hover {
+        color: $primaryColor;
+    }
+    &[target="_blank"]:after {
+        content: ' ↗︎';
+    }
+}
+
+nav {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: $base;
+    display: block;
+    padding: $base*2;
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        li {
+            width: calc(100%/3);
+            &:first-child a {
+                color: $titleColor;
+            }
+            &.active a {
+                text-decoration: underline;
+            }
+        }
+    }
+    a {
+        display: inline-block;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+li,
+blockquote {
+    max-width: 60ch;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    display: flex;
+    a {
+        color: #358;
+        margin: 0 $base 0 0;
+        opacity: 0.5;
+        text-decoration: none;
+        transition: opacity $timing;
+        &:hover {
+            color: #358;
+            opacity: 1;
+        }
+    }
+}
+
+h1 {
+    color: $titleColor;
+    font-weight: 500;
+}
+
+h2,
+h3,
+h4 {
+    color: $primaryColor;
+    font-weight: 400;
+}
+
+section > code {
+    border-radius: $base;
+    display: block;
+    letter-spacing: 1px;
+    margin: $base 0;
+    padding: $base*2;
+}
+
+code {
+    background-color: rgba(0,0,0, 0.05);
+    border-radius: 5px;
+    color: #333;
+    padding: $base/2 $base;
+    span {
+        color: #358;
+        position: relative;
+    }
+    pre {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+aside {
+    align-items: center;
+    background-color: #FDD;
+    border-radius: $base;
+    color: #800;
+    display: flex;
+    padding: 0 $base*2;
+    &:before {
+        content: '!';
+        font-size: $base*5;
+        font-weight: 600;
+        opacity: 0.8;
+        padding: 0 $base*2 0 0;
+    }
+    p {
+        flex: 1;
+        margin: 0;
+        padding: $base*2 0;
+    }
+}
+
+header {
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    margin: 0 0 $base*4;
+    padding: 0 0 $base*2;
+}
+
+footer {
+    border-top: 1px solid rgba(0,0,0,0.05);
+    margin: $base*4 0 0;
+    padding: $base*2 0 0;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    border: 1px solid rgba(0,0,0,0.05);
+    padding: $base;
+    &:last-child {
+        width: 20%;
+    }
+}
+
+.ctas {
+    display: flex;
+    a {
+        background-color: $primaryColor;
+        border-radius: 5px;
+        color: white;
+        display: inline-block;
+        padding: $base $base*2;
+        text-decoration: none;
+        transition: background-color .2s;
+        &:not(:last-child) {
+            margin-right: $base;
+        }
+        &:hover {
+            background-color: $titleColor;
+        }
+    }
+}
+
+@media screen and (min-width: 600px) {
+    nav ul {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        li {
+            width: auto;
+            &:first-child {
+                flex: 1;
+                max-width: none;
+            }
+            &:not(:last-child) {
+                margin-right: $base*4;
+            }
+        }
+    }
+}
