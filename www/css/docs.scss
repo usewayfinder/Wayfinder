@@ -191,6 +191,10 @@ table {
     }
 }
 
+.table {
+    overflow-x: auto;
+}
+
 th,
 td {
     border: 1px solid rgba(0,0,0,0.05);

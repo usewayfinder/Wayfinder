@@ -1,6 +1,8 @@
 <?php
+
 // cache busting
-$v = 4;
+$v = 5;
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
