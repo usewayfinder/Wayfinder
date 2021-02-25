@@ -11,7 +11,7 @@ $v = 5;
     <meta name="keywords" content="" />
     <meta name="author" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="" />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png?cache=<?php echo $v; ?>" />
     <link rel="stylesheet" type="text/css" href="/css/docs.css?cache=<?php echo $v; ?>" />
     <title><?php echo $title; ?></title>
     <meta name="apple-mobile-web-app-title" content="Wayfinder">
