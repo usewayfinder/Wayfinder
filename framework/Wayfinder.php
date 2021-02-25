@@ -1,6 +1,12 @@
 <?php
 
-//require_once('../app/controllers/Error.php');
+/*----------------------------------------
+ * Wayfinder
+ *----------------------------------------
+ *
+ * Version v0.1
+ *
+ */
 
 class Wayfinder {
 
