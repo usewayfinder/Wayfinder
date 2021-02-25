@@ -39,7 +39,7 @@ class Docs extends Wayfinder {
 
     public function changelog() {
         $data = [
-            'title' => 'Changelong'
+            'title' => 'Changelog'
         ];
 
         $this->load('views', 'docs/global/header', $data);
