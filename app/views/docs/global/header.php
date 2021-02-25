@@ -14,6 +14,20 @@ $v = 5;
     <link rel="icon" type="image/x-icon" href="" />
     <link rel="stylesheet" type="text/css" href="/css/docs.css?cache=<?php echo $v; ?>" />
     <title><?php echo $title; ?></title>
+    <meta name="apple-mobile-web-app-title" content="Wayfinder">
+    <meta name="application-name" content="Wayfinder">
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="<?php echo $title; ?>"/>
+    <?php if(isset($subtitle)) { ?>
+    <meta name="twitter:description" content="<?php echo $subtitle; ?>"/>
+    <?php } ?>
+    <meta property="og:site_name" content="Wayfinder"/>
+    <meta property="og:url" content="https://www.usewayfinder.com"/>
+    <meta property="og:title" content="<?php echo $title; ?>"/>
+    <?php if(isset($subtitle)) { ?>
+    <meta property="og:description" content="<?php echo $subtitle; ?>"/>
+    <?php } ?>
+    <meta property="og:type" content="article"/>
 </head>
 <body>
 
