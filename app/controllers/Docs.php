@@ -7,8 +7,7 @@ class Docs extends Wayfinder {
 
     public function index() {
         $data = [
-            'title' => 'Wayfinder',
-            'subtitle' => 'The simple routing framework writtern in PHP'
+            'title' => 'Wayfinder'
         ];
 
         $this->load('views', 'docs/global/header', $data);
@@ -38,14 +37,13 @@ class Docs extends Wayfinder {
         $this->load('views', 'docs/global/footer', $data);
     }
 
-    public function roadmap() {
+    public function changelog() {
         $data = [
-            'title' => 'Roadmap',
-            'subtitle' => 'What\'s next for Wayfinder?'
+            'title' => 'Changelong'
         ];
 
         $this->load('views', 'docs/global/header', $data);
-        $this->load('views', 'docs/roadmap', $data);
+        $this->load('views', 'docs/changelog', $data);
         $this->load('views', 'docs/global/footer', $data);
     }
 

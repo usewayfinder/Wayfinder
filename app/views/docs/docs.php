@@ -1,6 +1,10 @@
 
 <section id="docs">
 
+    <aside class="info">
+        <p>If you want to understand how routing works in Wayfinder, take a look at some <a href="/examples">examples</a> first.</p>
+    </aside>
+
     <h2 id="what"><a href="#what" aria-label="Link to what Wayfinder is useful for">¶</a> What is Wayfinder useful for?</h2>
 
     <p>Wayfinder started as a routing system, but it's also perfect for rapid prototyping for websites, web apps and APIs. Your code is neatly organised and with basic MVC principles in mind, you can keep your data models, views and logic all separated.</p>
@@ -188,9 +192,9 @@ $w->index();<br />
 
     <p>Methods prefixed with an underscore are considered to be private and available only to the Class they're defined in.</p>
 
-    <h3>Wayfinder is here to help</h3>
+    <h3>Why Wayfinder?</h3>
 
-    <p><strong>Wayfinder is here for simple routing and rapid prototyping.</strong></p>
+    <p><strong>Wayfinder is a tool to help you quickly build projects that require simple routing or for rapid prototyping.</strong></p>
 
     <p>Wayfinder does what it can to find a matching route. Once a matching route is found that provides a Class and a method, any additional characters are treated as parameters.</p>
 
@@ -211,5 +215,15 @@ $w->index();<br />
     <h3>Error messages</h3>
 
     <p>If a matching Class, method or route can't be found, a 404 page will be returned. These pages use the default layout and styling as the docs pages but you can change this in the <code>_displayError</code> method found in the <code>app/controllers/Error.php</code> file.</p>
+
+</section>
+
+<section>
+
+    <h2 id="help"><a href="#help" aria-label="Link to help section">¶</a> Need help understand the documentation?</h2>
+
+    <aside class="info">
+        <p>If you need help understand how Wayfinder works, get in touch on <a href="https://twitter.com/cchana">Twitter</a>.</p>
+    </aside>
 
 </section>

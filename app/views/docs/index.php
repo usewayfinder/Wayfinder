@@ -1,7 +1,9 @@
 
 <section>
 
-    <p>Wayfinder, inspired by MVC frameworks, is a simple routing system for your PHP website, web app or API.</p>
+    <h2>A simple routing framework for PHP</h2>
+
+    <p>Wayfinder is perfect for simple projects and rapid prototyping. Inspired by MVC frameworks, it's small and easy to extend.</p>
 
     <div class="ctas">
         <a href="/docs">Read the docs</a>

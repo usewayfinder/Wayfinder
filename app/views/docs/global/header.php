@@ -1,5 +1,6 @@
 <?php
-$v = 3;
+// cache busting
+$v = 4;
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,14 +23,16 @@ $v = 3;
             <ul>
                 <li <?php if($_SERVER['REQUEST_URI'] == '/') {echo 'class="active"';} ?>><a href="/">Wayfinder</a></li>
                 <li <?php if($_SERVER['REQUEST_URI'] == '/docs') {echo 'class="active"';} ?>><a href="/docs">Docs</a></li>
-                <li <?php if($_SERVER['REQUEST_URI'] == '/roadmap') {echo 'class="active"';} ?>><a href="/roadmap">Roadmap</a></li>
                 <li <?php if($_SERVER['REQUEST_URI'] == '/examples') {echo 'class="active"';} ?>><a href="/examples">Examples</a></li>
+                <li <?php if($_SERVER['REQUEST_URI'] == '/roadmap') {echo 'class="active"';} ?>><a href="/roadmap">Roadmap</a></li>
                 <li><a href="https://github.com/cchana/Wayfinder" target="_blank">GitHub</a></li>
             </ul>
         </nav>
 
         <h1><?php echo $title; ?></h1>
+        <?php if(isset($subtitle)) { ?>
         <h2><?php echo $subtitle; ?></h2>
+        <?php } ?>
 
     </header>
 

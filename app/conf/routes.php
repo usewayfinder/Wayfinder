@@ -12,8 +12,8 @@ $_routes = [
         'controller' => 'Docs',
         'function' => 'examples'
     ],
-    '/roadmap' => [
+    '/changelog' => [
         'controller' => 'Docs',
-        'function' => 'roadmap'
+        'function' => 'changelog'
     ]
 ];
