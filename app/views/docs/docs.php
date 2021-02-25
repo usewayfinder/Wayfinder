@@ -220,10 +220,10 @@ $w->index();<br />
 
 <section>
 
-    <h2 id="help"><a href="#help" aria-label="Link to help section">¶</a> Need help understand the documentation?</h2>
+    <h2 id="help"><a href="#help" aria-label="Link to help section">¶</a> Need help??</h2>
 
     <aside class="info">
-        <p>If you need help understand how Wayfinder works, get in touch on <a href="https://twitter.com/cchana">Twitter</a>.</p>
+        <p>If you need help with Wayfinder, get in touch on <a href="https://twitter.com/cchana">Twitter</a>.</p>
     </aside>
 
 </section>
