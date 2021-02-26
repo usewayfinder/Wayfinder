@@ -1,3 +1,4 @@
+<?php require_once('global/nav-docs.php'); ?>
 
 <section id="docs">
 

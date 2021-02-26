@@ -1,7 +1,7 @@
 <?php
 
 // cache busting
-$v = 5;
+$v = 6;
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -13,20 +13,23 @@ $v = 5;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="/images/favicon.png?cache=<?php echo $v; ?>" />
     <link rel="stylesheet" type="text/css" href="/css/docs.css?cache=<?php echo $v; ?>" />
-    <title><?php echo $title; ?></title>
+    <title><?php echo strip_tags($title); ?></title>
     <meta name="apple-mobile-web-app-title" content="Wayfinder">
     <meta name="application-name" content="Wayfinder">
     <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:title" content="<?php echo $title; ?>"/>
-    <?php if(isset($subtitle)) { ?>
+    <meta name="twitter:creator" content="@cchana" />
+    <meta name="twitter:title" content="<?php echo strip_tags($title); ?>"/>
+<?php if(isset($subtitle)) { ?>
     <meta name="twitter:description" content="<?php echo $subtitle; ?>"/>
-    <?php } ?>
+<?php } ?>
+    <meta name="twitter:image" content="https://www.usewayfinder.com/images/social-square.png?cache=<?php echo $v; ?>"/>
     <meta property="og:site_name" content="Wayfinder"/>
-    <meta property="og:url" content="https://www.usewayfinder.com"/>
-    <meta property="og:title" content="<?php echo $title; ?>"/>
-    <?php if(isset($subtitle)) { ?>
+    <meta property="og:url" content="https://www.usewayfinder.com<?php echo $_SERVER['REQUEST_URI']; ?>"/>
+    <meta property="og:title" content="<?php echo strip_tags($title); ?>"/>
+<?php if(isset($subtitle)) { ?>
     <meta property="og:description" content="<?php echo $subtitle; ?>"/>
-    <?php } ?>
+<?php } ?>
+    <meta property="og:image" content="https://www.usewayfinder.com/images/social-square.png?cache=<?php echo $v; ?>" />
     <meta property="og:type" content="article"/>
 </head>
 <body>
@@ -38,9 +41,9 @@ $v = 5;
         <nav>
             <ul>
                 <li <?php if($_SERVER['REQUEST_URI'] == '/') {echo 'class="active"';} ?>><a href="/">Wayfinder</a></li>
-                <li <?php if($_SERVER['REQUEST_URI'] == '/docs') {echo 'class="active"';} ?>><a href="/docs">Docs</a></li>
+                <li <?php if($_SERVER['REQUEST_URI'] == '/documentation') {echo 'class="active"';} ?>><a href="/documentation">Documentation</a></li>
                 <li <?php if($_SERVER['REQUEST_URI'] == '/examples') {echo 'class="active"';} ?>><a href="/examples">Examples</a></li>
-                <li <?php if($_SERVER['REQUEST_URI'] == '/changelog') {echo 'class="active"';} ?>><a href="/changelog">Changelog</a></li>
+                <li <?php if($_SERVER['REQUEST_URI'] == '/changelog') {echo 'class="active"';} ?>><a href="/changelog">Change log</a></li>
                 <li><a href="https://github.com/cchana/Wayfinder" target="_blank">GitHub</a></li>
             </ul>
         </nav>

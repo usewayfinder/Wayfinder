@@ -12,10 +12,25 @@ html {
 }
 
 body {
+    background-color: #FFF;
+    color: #000;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
     line-height: $base*3;
     margin: 0;
     padding: $base*2;
+    position: relative;
+    &:after {
+        background: url('/images/favicon.png') no-repeat;
+        background-size: cover;
+        bottom: -$base*6;
+        content: '';
+        height: 256px;
+        left: -$base*6;
+        opacity: 0.025;
+        position: fixed;
+        width: 256px;
+        z-index: -1;
+    }
 }
 
 main {
@@ -34,7 +49,20 @@ a {
     }
 }
 
-nav {
+nav li {
+    a {
+        display: inline-block;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    &.active a {
+        text-decoration: underline;
+    }
+}
+
+header nav {
     background-color: rgba(0,0,0,0.05);
     border-radius: $base;
     display: block;
@@ -54,17 +82,10 @@ nav {
                     color: $titleColor;
                 }
             }
-            &.active a {
-                text-decoration: underline;
-            }
         }
     }
     a {
         display: inline-block;
-        text-decoration: none;
-        &:hover {
-            text-decoration: underline;
-        }
     }
 }
 
@@ -76,14 +97,19 @@ h5,
 h6,
 p,
 li,
-blockquote {
+blockquote,
+aside,
+article nav {
+    box-sizing: border-box;
     max-width: 60ch;
 }
 
 h1 {
     color: $titleColor;
+    font-size: $base*5;
     font-weight: 500;
     letter-spacing: -0.5px;
+    line-height: $base*4;
 }
 
 h2[id],
@@ -92,8 +118,9 @@ h4[id] {
     display: flex;
     a {
         color: #358;
+        font-size: $base*2;
         margin: 0 $base 0 0;
-        opacity: 0.5;
+        opacity: 0.25;
         text-decoration: none;
         transition: opacity $timing;
         &:hover {
@@ -117,6 +144,23 @@ h3 small {
 
 article {
     min-height: 30vh;
+    nav {
+        background-color: rgba(0,0,0,0.05);
+        border-radius: $base;
+        margin: 0 0 $base*2;
+        padding: $base;
+        ul {
+            list-style-type: none;
+            padding: 0 0 0 $base;
+            a {
+                padding: $base/4 $base;
+            }
+            .active a {
+                background-color: #FFF;
+                border-radius: $base;
+            }
+        }
+    }
 }
 
 section > code {
@@ -124,6 +168,7 @@ section > code {
     display: block;
     letter-spacing: 1px;
     margin: $base 0;
+    max-width: 70ch;
     padding: $base*2;
 }
 
@@ -186,8 +231,13 @@ table {
     th {
         background-color: rgba(0,0,0,0.025);
     }
-    tr:nth-child(even) td {
-        background-color: rgba(0,0,0,0.01);
+    tr {
+        &:nth-child(even) td {
+            background-color: rgba(0,0,0,0.01);
+        }
+        &:hover td {
+            background-color: rgba($primaryColor,0.05);
+        }
     }
 }
 
@@ -232,7 +282,13 @@ td {
 }
 
 @media screen and (min-width: 600px) {
-    nav ul {
+    body:after {
+        bottom: -$base*12;
+        height: 512px;
+        left: -$base*12;
+        width: 512px;
+    }
+    header nav ul {
         flex-wrap: nowrap;
         justify-content: space-between;
         li {
@@ -248,3 +304,11 @@ td {
         }
     }
 }
+
+/*@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #000;
+        color: #EEE;
+    }
+}
+*/

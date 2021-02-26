@@ -5,6 +5,13 @@
 
     <?php $format = 'jS M Y'; ?>
 
+    <h3>v0.2 <small><?php echo date($format, strtotime('26th February 2021')); ?></small></h4>
+
+    <ul>
+        <li>Introducing <a href="/documentation/libraries">libraries</a></li>
+        <li>Added a default <a href="/documentation/database">database</a> library for MySQL</li>
+    </ul>
+
     <h3>v0.1 <small><?php echo date($format, strtotime('24th February 2021')); ?></small></h4>
 
     <ul>
@@ -18,10 +25,10 @@
     <h2>Roadmap</h2>
 
     <ul>
-        <li>Example of a Wayfinder model</li>
-        <li>Database connectivity</li>
+        <li><del>Example of a Wayfinder model</del></li>
+        <li><del>Database connectivity</del></li>
         <li>File-based caching</li>
-        <li>Documenting how you can extend Wayfinder</li>
+        <li><del>Documenting how you can extend Wayfinder</del></li>
         <li>Sitemap generator</li>
     </ul>
 

@@ -1,4 +1,14 @@
-<p>In Wayfinder, custom routes take priority over default routes. You can even overwrite default routes with custom routes, although this can become confusing.</p>
+<section>
+
+    <p>In Wayfinder, custom routes take priority over default routes. You can even overwrite default routes with custom routes, although this can become confusing.</p>
+
+    <aside class="info">
+        <p>The order of your routes is impotant, you can influence the priority of a route by ordering them accordingly.</p>
+    </aside>
+
+    <p>The shorter your custom route is, the higher it should come. For example, if <code>/foo</code> came before <code>/foo/var</code>, and the URL used was <code>example.com/foo/bar</code>, you will never reach the <code>/foo/bar</code> route. You can overcome this by swapping the order in the <code>app/conf/routes.php</code> file.</p>
+
+</section>
 
 <section>
 
@@ -29,6 +39,13 @@
                 <td>Defined in <code>app/conf/routes.php</code></td>
                 <td>Optionally defined in <code>app/conf/routes.php</code>. Defaults to <code>index()</code></td>
                 <td>None passed, optionally defined in <code>app/conf/routes.php</code></td>
+            </tr>
+            <tr>
+                <td><code>/foo/bar</code></td>
+                <td><code>/foo</code></td>
+                <td>Defined in <code>app/conf/routes.php</code></td>
+                <td>Optionally defined in <code>app/conf/routes.php</code>. Defaults to <code>index()</code></td>
+                <td>Parameters optionally defined in <code>app/conf/routes.php</code> passed first, followed by <code>bar</code></td>
             </tr>
             <tr>
                 <td><code>/foo/bar</code></td>
@@ -114,7 +131,7 @@
 
     <h2>More details on parameters</h2>
 
-    <p>There are some things to be <a href="/docs#aware">aware</a> of when constructing URLs in your project.</p>
+    <p>There are some things to be <a href="/documentation#aware">aware</a> of when constructing URLs in your project.</p>
 
     <aside class="info">
         <p><strong>TL;DR</strong><br />Query strings are ignored and once a route has been matched, parameters can cause duplicate content.</p>
