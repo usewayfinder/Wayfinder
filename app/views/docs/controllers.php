@@ -1,22 +1,26 @@
-<?php require_once('global/nav-docs.php'); ?>
+<div class="has-nav">
 
-<section>
+    <?php require_once('global/nav-docs.php'); ?>
 
-    <p>Controllers should contain the logic for your website, app or API. Controllers bringing the data from your models together and then pass them on to your views.</p>
+    <div>
 
-    <h2>Anatomy of a controller</h2>
+        <section>
 
-    <p>A controller should extend the Wayfinder Class so that you have access to all of it's public methods, like so:</p>
+            <p>Controllers should contain the logic for your website, app or API. Controllers bringing the data from your models together and then pass them on to your views.</p>
 
-    <code><pre>class MyClass extends Wayfiner {
+            <h2>Anatomy of a controller</h2>
+
+            <p>A controller should extend the Wayfinder Class so that you have access to all of it's public methods, like so:</p>
+
+            <code><pre>class MyClass extends Wayfiner {
 
 }</pre></code>
 
-    <h3>__construct()</h3>
+            <h3>__construct()</h3>
 
-    <p>Within your class, you can optionally use the <code>__construct()</code> method to automatically run some tasks when the Class is first initiated.</p>
+            <p>Within your class, you can optionally use the <code>__construct()</code> method to automatically run some tasks when the Class is first initiated.</p>
 
-    <code><pre>class MyController extends Wayfiner {
+            <code><pre>class MyController extends Wayfiner {
 
     function __construct() {
         // do stuff here
@@ -24,11 +28,11 @@
 
 }</pre></code>
 
-    <h3>Creating an end point</h3>
+            <h3>Creating an end point</h3>
 
-    <p>To create an end point in Wayfinder, just declare a public function. If no function is specified in the URL or in your custom route, then Wayfinder will look for <code>index()</code> by default.</p>
+            <p>To create an end point in Wayfinder, just declare a public function. If no function is specified in the URL or in your custom route, then Wayfinder will look for <code>index()</code> by default.</p>
 
-    <code><pre>class MyController extends Wayfiner {
+            <code><pre>class MyController extends Wayfiner {
 
     public function index() {
         // default page
@@ -40,18 +44,22 @@
 
 }</pre></code>
 
-    <p>The definition above would give you three end point:</p>
+            <p>The definition above would give you three end point:</p>
 
-    <ol>
-        <li><code>/mycontroller</code></li>
-        <li><code>/mycontroller/index</code> (same as above)</li>
-        <li><code>/mycontroller/myendpoint</code></li>
-    </ol>
+            <ol>
+                <li><code>/mycontroller</code></li>
+                <li><code>/mycontroller/index</code> (same as above)</li>
+                <li><code>/mycontroller/myendpoint</code></li>
+            </ol>
 
-    <h3>Public and private methods</h3>
+            <h3>Public and private methods</h3>
 
-    <p>Public methods expose end points, where as private methods can be used to hide functionality and are great at helping you to organise your code.</p>
+            <p>Public methods expose end points, where as private methods can be used to hide functionality and are great at helping you to organise your code.</p>
 
-    <?php require_once('global/public-private.php'); ?>
+            <?php require_once('global/public-private.php'); ?>
 
-</section>
+        </section>
+
+    </div>
+
+</div>
