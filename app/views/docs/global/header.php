@@ -1,7 +1,7 @@
 <?php
 
 // cache busting
-$v = 6;
+$v = 7;
 
 ?><!DOCTYPE html>
 <html lang="en">
