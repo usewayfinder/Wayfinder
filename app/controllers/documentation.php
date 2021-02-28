@@ -48,6 +48,17 @@ class Documentation extends Wayfinder {
         $this->load('views', 'docs/global/footer', $data);
     }
 
+    public function routes() {
+        $data = [
+            'title' => 'Routes in Wayfinder'
+        ];
+
+        $this->load('views', 'docs/global/header', $data);
+        $this->load('views', 'docs/routes', $data);
+        $this->load('views', 'docs/global/footer', $data);
+
+    }
+
     public function controllers() {
         $data = [
             'title' => 'Controllers in Wayfinder'

@@ -148,7 +148,7 @@ article {
         background-color: rgba(0,0,0,0.05);
         border-radius: $base;
         margin: 0 0 $base*2;
-        padding: $base;
+        padding: 0 $base;
         ul {
             list-style-type: none;
             padding: 0 $base;
@@ -172,13 +172,18 @@ article {
     }
 }
 
-section > code {
-    border-radius: $base;
-    display: block;
-    letter-spacing: 1px;
-    margin: $base 0;
-    max-width: 70ch;
-    padding: $base*2;
+section {
+    p:first-child {
+        margin-top: 0;
+    }
+    > code {
+        border-radius: $base;
+        display: block;
+        letter-spacing: 1px;
+        margin: $base 0;
+        max-width: 70ch;
+        padding: $base*2;
+    }
 }
 
 code {
