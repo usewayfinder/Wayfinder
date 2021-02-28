@@ -153,6 +153,7 @@ article {
             list-style-type: none;
             padding: 0 $base;
             a {
+                display: block;
                 padding: $base/4 $base;
             }
             .active a {
@@ -324,9 +325,6 @@ td {
             position: sticky;
             top: $base*2;
             width: 25%;
-            a {
-                display: block;
-            }
         }
     }
 }
