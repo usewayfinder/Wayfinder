@@ -151,10 +151,11 @@ article {
         padding: 0 $base;
         ul {
             list-style-type: none;
-            padding: 0 $base;
+            margin: 0;
+            padding: $base 0;
             a {
                 display: block;
-                padding: $base/4 $base;
+                padding: $base/2 $base;
             }
             .active a {
                 background-color: #FFF;
