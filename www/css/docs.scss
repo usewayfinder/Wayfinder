@@ -158,6 +158,14 @@ article {
             .active a {
                 background-color: #FFF;
                 border-radius: $base;
+                color: $titleColor;
+                position: relative;
+                text-decoration: none;
+                &:after {
+                    content: '⟵';
+                    position: absolute;
+                    right: $base;
+                }
             }
         }
     }
