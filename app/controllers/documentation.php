@@ -18,8 +18,7 @@ class Documentation extends Wayfinder {
 
     public function index() {
         $data = [
-            'title' => 'Wayfinder documentation',
-            'subtitle' => 'The simple routing framework for PHP'
+            'title' => 'Wayfinder documentation'
         ];
 
         $this->load('views', 'docs/global/header', $data);
@@ -101,8 +100,7 @@ class Documentation extends Wayfinder {
 
     public function libraries() {
         $data = [
-            'title' => 'Libraries in Wayfinder',
-            'subtitle' => 'Extend Wayfinder by bringing your own libraries'
+            'title' => 'Libraries in Wayfinder'
         ];
 
         $this->load('views', 'docs/global/header', $data);
