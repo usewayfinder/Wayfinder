@@ -41,7 +41,7 @@ $v = 9;
         <nav>
             <ul>
                 <li <?php if($_SERVER['REQUEST_URI'] == '/') {echo 'class="active"';} ?>><a href="/">Wayfinder</a></li>
-                <li <?php if($_SERVER['REQUEST_URI'] == '/documentation') {echo 'class="active"';} ?>><a href="/documentation">Docs</a></li>
+                <li <?php if(strpos($_SERVER['REQUEST_URI'], '/documentation') === 0) {echo 'class="active"';} ?>><a href="/documentation">Docs</a></li>
                 <li <?php if($_SERVER['REQUEST_URI'] == '/examples') {echo 'class="active"';} ?>><a href="/examples">Examples</a></li>
                 <li <?php if($_SERVER['REQUEST_URI'] == '/changelog') {echo 'class="active"';} ?>><a href="/changelog">Change log</a></li>
                 <li><a href="https://github.com/cchana/Wayfinder" target="_blank">GitHub</a></li>
