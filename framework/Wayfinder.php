@@ -16,11 +16,14 @@ class Wayfinder {
             $_params = [],
             $_routes = [],
             $_error;
+    var $mode;
 
     // __constructor, begins the routing instantly
     function __construct() {
-        // ignore query strings
-        $this->_uri = explode('?', $_SERVER['REQUEST_URI'])[0];
+
+        $this->mode = php_sapi_name();
+
+        $this->_setURI();
 
         require_once('Errors.php');
         $this->_error = new Errors();
@@ -70,39 +73,20 @@ class Wayfinder {
     }
 
     public function error($error) {
-        $data = [
-            'error' => $error
-        ];
-        switch ($error) {
-            case 400:
-                $data['title'] = '400 Bad Request';
-                $data['content'] = 'Invalid request message framing, or deceptive request routing';
-                break;
-            case 401:
-                $data['title'] = '401 Unauthorized';
-                $data['content'] = 'Sorry, but you are not authorized to see this part of the site :(';
-                break;
-            case 403:
-                $data['title'] = '403 Forbidden';
-                $data['content'] = 'The request made was forbidden :/';
-                break;
-            case 501:
-                $data['title'] = '501 Not Implemented';
-                $data['content'] = 'There was an internal server error >.<';
-                break;
-            case 503:
-                $data['title'] = '503 Service Unavailable';
-                $data['content'] = 'The service is currently unavailable :|';
-                break;
-            default:
-                $data['title'] = '404 Not Found';
-                $data['error'] = '0 Things Found Here :(';
-                $data['content'] = 'The page you requested could not be found. Maybe try again or head back to the <a href="/">homepage</a>.';
-                break;
-        }
-        header('HTTP/1.0 '.$data['title'], true, $error);
+        return $this->_error->error($error);
+    }
 
-        return $data;
+    private function _setURI() {
+        if($this->mode != 'cli') {
+            // ignore query strings
+            $this->_uri = explode('?', $_SERVER['REQUEST_URI'])[0];
+        } else {
+            if(isset($_SERVER['argv'][1])) {
+                $this->_uri = $_SERVER['argv'][1];
+            } else {
+                $this->_uri = '/';
+            }
+        }
     }
 
     // calculate what how the routing should be handled

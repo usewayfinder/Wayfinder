@@ -6,60 +6,76 @@
 
         <section id="docs">
 
+            <h2>Requirements</h2>
+
+            <p>Wayfinder works with PHP versions 7.2+</p>
+
+            <h2 id="what"><a href="#what" aria-label="Why Wayfinder?">¶</a> Why Wayfinder?</h2>
+
             <aside class="info">
-                <p>If you want to understand how routing works in Wayfinder, take a look at some <a href="/examples">examples</a> first.</p>
+                <p>If you want to understand how <a href="/documentation/routes">routing</a> works in Wayfinder, it can help to look at some <a href="/examples">examples</a> first.</p>
             </aside>
 
-            <h2 id="what"><a href="#what" aria-label="Link to what Wayfinder is useful for">¶</a> What is Wayfinder useful for?</h2>
+            <p>Wayfinder is primarily a routing system that is also <strong>perfect for rapidly prototyping websites, web apps and APIs</strong>. Your code is neatly organised and with basic MVC principles in mind, you can keep your data models, views and logic all separated.</p>
 
-            <p>Wayfinder started as a routing system, but it's also perfect for rapid prototyping for websites, web apps and APIs. Your code is neatly organised and with basic MVC principles in mind, you can keep your data models, views and logic all separated.</p>
+            <h2 id="start"><a href="#start" aria-label="Link to how to get started">¶</a> Getting started</h2>
 
-            <h2 id="start"><a href="#start" aria-label="Link to how to get started">¶</a> Getting started with Wayfinder</h2>
+            <p>Grab the code from <a href="https://github.com/cchana/Wayfinder">GitHub</a>. Point your host to the <code>www</code> folder and all of your logic lives in the <code>app</code> folder. You'll know it was successful because you'll see this documentation at <code>yourhost.com/documentation</code>.</p>
 
-            <p>To get started, take a look at the <code>app/conf/routes.php</code> file and the <code>app/controllers</code> folder. When you first install Wayfinder you should see the documentation which is a simple example of how <a href="#customroutes">custom routes</a> work. If you want to see how to work without custom routes, then you can access this page by going to <code>yourdomain.com/docs/documentation</code>.</p>
+            <p>The best place to start exploring the code base is the <code>app/conf/routes.php</code> file or the <code>app/controllers</code> folder. When you first install Wayfinder you should see the documentation which is a simple example of how <a href="#customroutes">custom routes</a> work.</p>
 
-            <p>Read more about <a href="/documentation/routes">routes in Wayfinder</a>.</p>
-            
-        </section>
-
-        <section>
-
-            <h2 id="aware"><a href="#aware" aria-label="Link to things to be aware of">¶</a> Things to be aware of</h2>
-
-            <p>Methods prefixed with an underscore are considered to be private and available only to the Class they're defined in.</p>
-
-            <h3>Why Wayfinder?</h3>
-
-            <p><strong>Wayfinder is a tool to help you quickly build projects that require simple routing or for rapid prototyping.</strong></p>
-
-            <p>Wayfinder does what it can to find a matching route. Once a matching route is found that provides a Class and a method, any additional characters are treated as parameters.</p>
-
-            <aside>
-                <p>This can cause situations where you think a route should return a 404 but it doesn't. As describe above, this is Wayfinder intentially treating the additional characters as parameters.</p>
-            </aside>
-
-            <h3>Duplicate content</h3>
-
-            <p>Adding more parameters to a URL can create duplicate content if not handled correctly.</p>
-
-            <p>Either this can be dealt with in the controller's logic or your markup can use the <code>rel="canonical"</code> attribute to help search engines find the right content.</p>
-
-            <h3>Query strings</h3>
-
-            <p>Query strings can be used for things like cache breaking if required (for things like CDNs), but they are ignored by Wayfinder's internal routing.</p>
-
-            <h3>Error messages</h3>
-
-            <p>If a matching Class, method or route can't be found, a 404 page will be returned. These pages use the default layout and styling as the docs pages but you can change this in the <code>_displayError</code> method found in the <code>app/controllers/Error.php</code> file.</p>
+            <p>To start adding your own end points to your website, app or API, read more about <a href="/documentation/routes">routes in Wayfinder</a>.</p>
 
         </section>
 
         <section>
 
-            <h2 id="help"><a href="#help" aria-label="Link to help section">¶</a> Need help?</h2>
+            <h2 id="helpers"><a href="#helpers" aria-label="Helpers">¶</a> Helper methods in Wayfinder</h2>
+
+            <p>Wayfinder comes with some methods available instantly in your <a href="/documentation/models">models</a> and <a href="/documentation/controllers">controllers</a>.</p>
+
+            <h3>load($type <em>(models, views, controller, libraries)</em>, $file, $data = [])</h3>
+
+            <p>Use the <code>load()</code> method to load other parts of your application. You can use it to load models and/or views into your controller for example. </p>
+
+            <code>$this->load('views', 'docs');</code>
+
+            <p>Just pass the type of file you're including and the file path + name (without the extension), to automatically include it.</p>
+
+            <details>
+                <summary>Show pseudo-code</summary>
+
+                <code><pre>include($type.'/'.$file)</pre></code>
+            </details>
+
+            <h3>Passing data to your views</h3>
+
+            <p>When loading a view file, you can pass your data as a third parameter. This should be in an array format which is re-interpreted to expose some variables for use within your templates.</p>
+
+            <code><pre>$data = [
+    'title' => 'My Page Title',
+    'items' => [
+        'first',
+        'second',
+        'third'
+    ]
+];
+
+$this->load('views', 'myView', $data);</pre></code>
+
+            <p>This example passes a title and a list of items to the view. The view then has access to the following two variables:</p>
+
+            <code><pre>&lt;?php
+echo $title; // My Page Title
+var_dump($items); // ['first', 'second', 'third']</pre></code>
+        </section>
+
+        <section>
+
+            <h2 id="help"><a href="#help" aria-label="Link to help section">¶</a> Need more help?</h2>
 
             <aside class="info">
-                <p>If you need help with Wayfinder, get in touch on <a href="https://twitter.com/cchana">Twitter</a>.</p>
+                <p>If you need more help with Wayfinder, reach out on <a href="https://twitter.com/usewayfinder">Twitter</a>.</p>
             </aside>
 
         </section>

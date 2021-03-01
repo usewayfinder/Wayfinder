@@ -25,8 +25,6 @@
 
             <h2>query()</h2>
 
-            <h4>Introduced in v0.2</h4>
-
             <p>The <code>query()</code> method is a wrapper for running any type of query.</p>
 
             <h2>lastInsertId()</h2>

@@ -49,10 +49,11 @@ $v = 10;
         </nav>
 
         <h1><?php echo $title; ?></h1>
-        <?php if(isset($subtitle)) { ?>
-        <h2><?php echo $subtitle; ?></h2>
-        <?php } ?>
 
     </header>
 
     <article>
+        
+        <?php if(isset($subtitle)) { ?>
+        <h2><?php echo $subtitle; ?></h2>
+        <?php } ?>

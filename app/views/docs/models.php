@@ -12,7 +12,7 @@
 
             <p>A model should extend the Wayfinder Class so that you have access to all of it's public methods, like so:</p>
 
-            <code><pre>class MyModel extends Wayfiner {
+            <code><pre>class MyModel extends Wayfinder {
 
 }</pre></code>
 
@@ -20,7 +20,7 @@
 
             <p>Within your class, you can optionally use the <code>__construct()</code> method to automatically run some tasks when the Class is first initiated.</p>
 
-            <code><pre>class MyModel extends Wayfiner {
+            <code><pre>class MyModel extends Wayfidner {
 
     function __construct() {
         // do stuff here

@@ -5,6 +5,15 @@ $base: 8px;
 
 $timing: .2s;
 
+$arrow: '↗︎';
+
+::root {
+    --white: #FFF;
+    --black: #222;
+    --trueBlack: #000;
+    --grey: #555;
+}
+
 html {
     scroll-behavior: smooth;
     margin: 0;
@@ -12,8 +21,8 @@ html {
 }
 
 body {
-    background-color: #FFF;
-    color: #000;
+    background-color: var(--white);
+    color: var(--black);
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
     line-height: $base*3;
     margin: 0;
@@ -39,14 +48,19 @@ main {
 }
 
 a {
-    color: #222;
+    color: var(--black);
     transition: color $timing;
     &:hover {
         color: $primaryColor;
     }
     &[target="_blank"]:after {
-        content: ' ↗︎';
+        content: ' #{$arrow}';
     }
+}
+
+p strong {
+    color: var(--trueBlack);
+    font-weight: 500;
 }
 
 nav li {
@@ -57,7 +71,7 @@ nav li {
             text-decoration: underline;
         }
     }
-    &.active a {
+    &.active > a {
         text-decoration: underline;
     }
 }
@@ -80,6 +94,7 @@ header nav {
                 margin-bottom: $base;
                 a {
                     color: $titleColor;
+                    font-weight: 500;
                 }
             }
         }
@@ -106,10 +121,13 @@ article nav {
 
 h1 {
     color: $titleColor;
-    font-size: $base*5;
+    font-size: $base*4;
     font-weight: 500;
     letter-spacing: -0.5px;
     line-height: $base*4;
+    abbr {
+        text-decoration: none;
+    }
 }
 
 h2[id],
@@ -135,6 +153,17 @@ h3,
 h4 {
     color: $primaryColor;
     font-weight: 400;
+    small {
+        color: var(--grey);
+        display: block;
+        font-family: monospace;
+        font-size: $base*1.5;
+    }
+}
+
+h2 {
+    color: $titleColor;
+    font-size: $base*3;
 }
 
 h3 small {
@@ -149,24 +178,38 @@ article {
         border-radius: $base;
         margin: 0 0 $base*2;
         padding: 0 $base;
+        h3 {
+            border-bottom: 1px solid rgba(0,0,0,0.2);
+            margin: 0;
+            padding: $base;
+        }
         ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
             list-style-type: none;
             margin: 0;
             padding: $base 0;
+            li {
+                width: calc(50% - #{$base});
+            }
             a {
                 display: block;
                 padding: $base/2 $base;
             }
-            .active a {
-                background-color: #FFF;
-                border-radius: $base;
-                color: $titleColor;
-                position: relative;
-                text-decoration: none;
-                &:after {
-                    content: '⟵';
-                    position: absolute;
-                    right: $base;
+            .active {
+                > a {
+                    background-color: #FFF;
+                    border-radius: $base;
+                    color: $titleColor;
+                    position: relative;
+                    text-decoration: none;
+                }
+                li {
+                    margin-left: $base*2;
+                    a {
+                        color: $primaryColor;
+                    }
                 }
             }
         }
@@ -183,7 +226,7 @@ section {
         letter-spacing: 1px;
         margin: $base 0;
         max-width: 70ch;
-        padding: $base*2;
+        padding: $base*2 $base*3;
     }
 }
 
@@ -199,6 +242,7 @@ code {
     pre {
         margin: 0;
         padding: 0;
+        white-space: pre-wrap;
     }
 }
 
@@ -208,6 +252,7 @@ aside {
     border-radius: $base;
     color: #800;
     display: flex;
+    margin: $base 0 0;
     padding: 0 $base*2;
     &:before {
         content: '!';
@@ -221,6 +266,9 @@ aside {
         margin: 0;
         padding: $base*2 0;
     }
+    strong {
+        color: inherit;
+    }
     &.info {
         background-color: rgba($primaryColor, 0.2);
         color: $titleColor;
@@ -229,14 +277,18 @@ aside {
 
 header {
     border-bottom: 1px solid rgba(0,0,0,0.05);
-    margin: 0 0 $base*4;
-    padding: 0 0 $base*2;
+    margin: 0 0 $base*3;
+    padding: 0 0 $base;
 }
 
 footer {
+    align-items: center;
     border-top: 1px solid rgba(0,0,0,0.05);
     margin: $base*4 0 0;
-    padding: $base*2 0 0;
+    padding: $base 0 0;
+    img {
+        display: none;
+    }
 }
 
 table {
@@ -253,6 +305,36 @@ table {
         &:hover td {
             background-color: rgba($primaryColor,0.05);
         }
+    }
+}
+
+details {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: $base;
+    summary {
+        cursor: pointer;
+        padding: $base;
+        outline: 0;
+        transition: color $timing;
+    }
+    &[open] {
+        padding: 0 0 $base;
+        summary {
+            color: $primaryColor;
+        }
+    }
+    code {
+        display: block;
+        margin: 0 $base;
+    }
+}
+
+li.new {
+    &:before {
+        color: $titleColor;
+        content: 'New: ';
+        font-family: monospace;
+        text-transform: uppercase;
     }
 }
 
@@ -296,6 +378,10 @@ td {
     }
 }
 
+.inset {
+    border-left: $base solid rgba($primaryColor, 0.2);
+}
+
 @media screen and (min-width: 600px) {
     body:after {
         bottom: -$base*12;
@@ -319,6 +405,22 @@ td {
         }
     }
 
+    footer {
+        display: flex;
+        justify-content: space-between;
+        img {
+            display: block;
+            height: 32px;
+            opacity: 0.5;
+            transition: opacity $timing, transform $timing;
+            width: 32px;
+            &:hover {
+                opacity: 1;
+                transform: rotate(-45deg);
+            }
+        }
+    }
+
     .has-nav {
         align-items: flex-start;
         display: flex;
@@ -333,12 +435,29 @@ td {
             width: 25%;
         }
     }
+
+    article nav ul {
+        display: block;
+        li {
+            display: block;
+            width: auto;
+            &.active a:after {
+                content: '⟵';
+                position: absolute;
+                right: $base;
+            }
+        }
+    }
+
+    .table {
+        width: 100%;
+    }
 }
 
 /*@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #000;
-        color: #EEE;
+    ::root {
+        --white: #222;
+        --black: #EEE;
     }
 }
 */

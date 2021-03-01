@@ -8,23 +8,28 @@
 
             <h2 id="how"><a href="#how" aria-label="Link to how Wayfinder works">¶</a> How Wayfinder interprets URLs</h2>
 
+            <p>Wayfinder takes the URL and routes it to interpret your code. While <a href="#customroutes">custom routes</a> take priority if defined, it will assume that this is the format is being used: <code>yourhost.com/Controller/method/parameters</code>.</p>
+
             <h3 id="defaultroute"><a href="#defaultroute" aria-label="Link to the default route">¶</a> The default route</h3>
 
-            <p>This is the root of your project, you <em>have</em> to specify what it should point to in the <code>/app/config/routes.php</code> file.</p>
+            <p>There is one exception, which is the root of your domain or project at <code>/</code>. You <em>have</em> to specify what it should point to in the <code>/app/config/routes.php</code> file. Here's the default configuration.</p>
 
-            <code>
-            /
-            </code>
+            <code><pre>$_routes = [
+    '/' => [
+        'controller' => 'documentation',
+        'function' => 'home'
+    ]
+}</pre></code>
 
-            <p>This URL is a <a href="#customroutes">custom route</a>. Out of the box, it points to the documentation. If no method is specified, it is assumed you want to use the <code>index()</code> method in your Class.</p>
+            <details>
+                <summary>Show pseudo-code</summary>
 
-            <p>This pseudo-code describes what's happening:</p>
+                <code><pre>&lt;?php
+$wf = new Documentation;
+$wf->home();</pre></code>
+            </details>
 
-            <code>
-        &lt;php<br />
-        $w = new Docs;<br />
-        $w->index();<br />
-            </code>
+            <p>This URL is a <a href="#customroutes">custom route</a>. Out of the box, it points to the <code>Documentation</code> Class and calls the <code>home()</code> method. If no method is specified, Wayfinder assumes you want to use the <code>index()</code> method in your Class.</p>
 
             <h3 id="classonly"><a href="#classonly" aria-label="Link to how to work with classes">¶</a> Class only</h3>
 
@@ -34,17 +39,33 @@
             /<span title="class">user</span>
             </code>
 
+            <details>
+                <summary>Show pseudo-code</summary>
+
+                <code><pre>&lt;?php
+    $wf = new User;
+    $wf->index();</pre></code>
+            </details>
+
             <aside>
-                <p>It is possible to set a <a href="#customroutes">custom route</a> which has the same path as a Class, in this case the custom route will have priority.</p>
+                <p>It is possible to set a <a href="#customroutes">custom route</a> which has the same path as a Class, but not recommended. The custom route will take priority and in some cases <strong>it can make your methods innaccessible</strong>.</p>
             </aside>
 
             <h3 id="classmethod"><a href="#classmethod" aria-label="Link to how classes and methods work">¶</a> Class and method</h3>
 
-            <p>If you want to call a specific method, just append that to the URL:</p>
+            <p>If you want to call a specific method, just append that to the URL.</p>
 
             <code>
                 /<span title="class">user</span>/<span title="method">profile</span>
             </code>
+
+            <details>
+                <summary>Show pseudo-code</summary>
+
+                <code><pre>&lt;?php
+    $wf = new User;
+    $wf->profile();</pre></code>
+            </details>
 
             <h3 id="classmethodparam"><a href="#classmethodparam" aria-label="Link to how to work with classes, methods and parameters">¶</a> Class, method and parameters</h3>
 
@@ -54,11 +75,27 @@
             /<span title="class">user</span>/<span title="method">profile</span>/<span title="parameters">cafu</span>
             </code>
 
+            <details>
+                <summary>Show pseudo-code</summary>
+
+                <code><pre>&lt;?php
+    $wf = new User;
+    $wf->profile('cafu');</pre></code>
+            </details>
+
             <p><code>cafu</code> would be the paramater passed to your method. In the following example, you would get two variables, one with the value <code>cafu</code> and another with the value <code>achievements</code>:</p>
 
             <code>
             /<span title="class">user</span>/<span title="method">profile</span>/<span title="parameters">cafu/achievements</span>
             </code>
+
+            <details>
+                <summary>Show pseudo-code</summary>
+
+                <code><pre>&lt;?php
+    $wf = new User;
+    $wf->profile('cafu', 'achievements');</pre></code>
+            </details>
 
         </section>
 
@@ -82,6 +119,14 @@
     ]
 ];</pre></code>
 
+            <details>
+                <summary>Show pseudo-code</summary>
+
+                <code><pre>&lt;?php
+    $wf = new Bar;
+    $wf->index();</pre></code>
+            </details>
+
             <h3 id="classmethodroutes"><a href="#classmethodroutes" aria-label="Link to how class-method routes work">¶</a> Class and method routes</h3>
 
             <p>This can be routed directly to a specific Class <em>and</em> function. In this case, it will call <code>$bar->myFunc()</code>.</p>
@@ -93,13 +138,21 @@
     ]
 ];</pre></code>
 
+            <details>
+                <summary>Show pseudo-code</summary>
+
+                <code><pre>&lt;?php
+    $wf = new Bar;
+    $wf->myFunc();</pre></code>
+            </details>
+
             <h3 id="complexroutes"><a href="#complexroutes" aria-label="Link to working with more complex routes">¶</a> More complex route</h3>
 
             <code>
             <span title="route">/foo/bar/bar/foo</span>
             </code>
 
-            <p>You can take a route that appears to be more complex, and use it to call something simpler. In some ways this is almost the exact opposite of what Wayfinder is here for, but it is possible.</p>
+            <p>You can either use routing in Wayfinder to take complex URLs and simplify the logic or you can use it to take a simple URL and call something more complex behind the scenes. Let's look at what this 'complex' URL could be doing behind the scenes.</p>
 
             <code><pre>$_route = [
     '/foo/bar/bar/foo' => [
@@ -108,11 +161,21 @@
     ]
 ];</pre></code>
 
+            <details>
+                <summary>Show pseudo-code</summary>
+
+                <code><pre>&lt;?php
+    $wf = new Bar;
+    $wf->myFunc();</pre></code>
+            </details>
+
         </section>
 
         <section>
 
             <h2 id="advancedroutes"><a href="#advancedroutes" aria-label="Link to advanced custom routes">¶</a> Advanced custom routes</h2>
+
+            <p>All of the different types of routes can do more than just call the right Class and method. You can predefine parameters or pass them in through the URL. In fact, you can do both at the same time.</p>
 
             <h3 id="passingparams"><a href="#passingparams" aria-label="Link to how to pass parameters">¶</a> Passing parameters to custom routes</h3>
 
@@ -128,6 +191,14 @@
         'function' => 'myFunc'
     ]
 ];</pre></code>
+
+            <details>
+                <summary>Show pseudo-code</summary>
+
+                <code><pre>&lt;?php
+    $wf = new Bar;
+    $wf->myFunc('myparam');</pre></code>
+            </details>
 
             <p>In the example above, the route would call the <code>myFunc()</code> method from the <code>Bar</code> Class while passing <code>myparam</code> as a parameter.</p>
 
@@ -152,6 +223,14 @@
     ]
 ];</pre></code>
 
+            <details>
+                <summary>Show pseudo-code</summary>
+
+                <code><pre>&lt;?php
+    $wf = new Bar;
+    $wf->myFunc('parameter 1', 'parameter 2');</pre></code>
+            </details>
+
             <h3 id="combiningparams"><a href="#combiningparams" aria-label="Link to combining parameters">¶</a> Combining parameters</h3>
 
             <p>Taking the two previous examples, you can bring them together so that you can pass predefined parameters <em>and</em> accept parameters passed through the URL.</p>
@@ -173,6 +252,14 @@
     string(13) "mysecondparam"
 }</pre></code>
 
+            <details>
+                <summary>Show pseudo-code</summary>
+
+                <code><pre>&lt;?php
+    $wf = new Bar;
+    $wf->myFunc('parameter 1', 'parameter 2', 'myfirstparam', 'mysecondparam');</pre></code>
+            </details>
+
             <aside>
                 <p>This can become confusing from a code management point of view, but it is possible and supported.</p>
             </aside>
@@ -183,16 +270,12 @@
 
             <h2 id="aware"><a href="#aware" aria-label="Link to things to be aware of">¶</a> Things to be aware of</h2>
 
-            <p>Methods prefixed with an underscore are considered to be private and available only to the Class they're defined in.</p>
-
-            <h3>Why Wayfinder?</h3>
-
-            <p><strong>Wayfinder is a tool to help you quickly build projects that require simple routing or for rapid prototyping.</strong></p>
+            <p>In Wayfinder, prefixing a method with an underscore indicates that it is <code>private</code> and available only to the Class they are defined in.</p>
 
             <p>Wayfinder does what it can to find a matching route. Once a matching route is found that provides a Class and a method, any additional characters are treated as parameters.</p>
 
             <aside>
-                <p>This can cause situations where you think a route should return a 404 but it doesn't. As describe above, this is Wayfinder intentially treating the additional characters as parameters.</p>
+                <p>This can cause situations where you think a route should return a 404 but it doesn't. As describe above, this is Wayfinder intentionally treating the additional characters as parameters.</p>
             </aside>
 
             <h3>Duplicate content</h3>
@@ -208,16 +291,6 @@
             <h3>Error messages</h3>
 
             <p>If a matching Class, method or route can't be found, a 404 page will be returned. These pages use the default layout and styling as the docs pages but you can change this in the <code>_displayError</code> method found in the <code>app/controllers/Error.php</code> file.</p>
-
-        </section>
-
-        <section>
-
-            <h2 id="help"><a href="#help" aria-label="Link to help section">¶</a> Need help?</h2>
-
-            <aside class="info">
-                <p>If you need help with Wayfinder, get in touch on <a href="https://twitter.com/cchana">Twitter</a>.</p>
-            </aside>
 
         </section>
 

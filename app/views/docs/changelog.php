@@ -1,39 +1,59 @@
 
 <section>
 
-    <h2>Releases</h2>
+    <h2 id="releases">Releases</h2>
 
     <?php $format = 'jS M Y'; ?>
 
+    <h3>v0.3 <small><?php echo date($format, strtotime('1st March 2021')); ?></small></h4>
+
+    <div class="inset">
+        <ul>
+            <li class="new">Introducing <a href="/documentation/cli">CLI access</a> to Wayfinder</li>
+            <li>Updated Wayfinder's <a href="/documentation/errors">error handling</a> logic</li>
+            <li>Improved <a href="/documentation">documentation</a></li>
+        </ul>
+    </div>
+
     <h3>v0.2 <small><?php echo date($format, strtotime('26th February 2021')); ?></small></h4>
 
-    <ul>
-        <li>Introducing <a href="/documentation/libraries">libraries</a></li>
-        <li>Added a default <a href="/documentation/database">database</a> library for MySQL</li>
-    </ul>
+    <div class="inset">
+        <ul>
+            <li class="new">Introducing <a href="/documentation/libraries">libraries</a></li>
+            <li class="new">Added a default <a href="/documentation/database">database</a> library for MySQL</li>
+        </ul>
+    </div>
 
     <h3>v0.1 <small><?php echo date($format, strtotime('24th February 2021')); ?></small></h4>
 
-    <ul>
-        <li>Initial release</li>
-    </ul>
+    <div class="inset">
+        <ul>
+            <li>Initial release</li>
+        </ul>
+
+    </div>
 
 </section>
 
 <section>
 
-    <h2>Roadmap</h2>
+    <h2 id="roadmap">Roadmap</h2>
 
-    <ul>
-        <li><del>Example of a Wayfinder model</del></li>
-        <li><del>Database connectivity</del></li>
-        <li>File-based caching</li>
-        <li><del>Documenting how you can extend Wayfinder</del></li>
-        <li>Sitemap generator</li>
-    </ul>
+    <div class="inset">
 
-    <h2></h2>
+        <ul>
+            <li>File-based caching</li>
+            <li>Sitemap generator</li>
+        </ul>
 
-    <p>Don't see the feature you need? You can submit a <a href="https://github.com/cchana/Wayfinder">pull-request</a> or submit your suggestions on <a href="https://twitter.com/cchana">Twitter</a>.</p>
+    </div>
+
+</section>
+
+<section>
+
+    <h2 id="contribute">Contribute to Wayfinder</h2>
+
+    <p>Don't see the feature you need? You can submit a <a href="https://github.com/cchana/Wayfinder">pull-request</a> or submit your suggestions on <a href="https://twitter.com/wayfinder">Twitter</a>.</p>
 
 </section>

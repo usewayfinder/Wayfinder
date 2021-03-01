@@ -90,7 +90,7 @@ class Documentation extends Wayfinder {
 
     public function database() {
         $data = [
-            'title' => 'Working with a MySQL database with Wayfinder'
+            'title' => 'Databases in Wayfinder'
         ];
 
         $this->load('views', 'docs/global/header', $data);
@@ -105,6 +105,26 @@ class Documentation extends Wayfinder {
 
         $this->load('views', 'docs/global/header', $data);
         $this->load('views', 'docs/libraries', $data);
+        $this->load('views', 'docs/global/footer', $data);
+    }
+
+    public function cli() {
+        $data = [
+            'title' => 'The Wayfinder <abbr title="Command Line Interface">CLI</abbr>'
+        ];
+
+        $this->load('views', 'docs/global/header', $data);
+        $this->load('views', 'docs/cli', $data);
+        $this->load('views', 'docs/global/footer', $data);
+    }
+
+    public function errors() {
+        $data = [
+            'title' => 'Errors in Wayfinder'
+        ];
+
+        $this->load('views', 'docs/global/header', $data);
+        $this->load('views', 'docs/errors', $data);
         $this->load('views', 'docs/global/footer', $data);
     }
 
