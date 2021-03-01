@@ -10,7 +10,7 @@
 
             <code>php Wayfinder</code>
 
-            <p>Just like the borwser, the CLI will default to using the <code>/</code> or you can specify your own by passing a URI as aan argument:</p>
+            <p>Just like the borwser, the CLI will default to using the <code>/</code> route or you can specify your own by passing a URI as an argument:</p>
 
             <code>php Wayfinder /user/profile/cafu</code>
 
