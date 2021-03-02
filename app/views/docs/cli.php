@@ -10,9 +10,15 @@
 
             <code>php Wayfinder</code>
 
-            <p>Just like the borwser, the CLI will default to using the <code>/</code> route or you can specify your own by passing a URI as an argument:</p>
+            <aside>
+                <p>If symlinks are not available on your OS, then head to the same directory and use <code>php index.php</code> instead.</p>
+            </aside>
+
+            <p>Just like the browser, the CLI will default to using the <code>/</code> route or you can specify your own by passing a URI as an argument:</p>
 
             <code>php Wayfinder /user/profile/cafu</code>
+
+            <p><a href="/documentation/routes">Routes</a> are Wayfinder is handled the same way by both browsers and the CLI.</p> 
 
         </section>
 
