@@ -8,8 +8,6 @@
 
             <h2>Requirements</h2>
 
-            <p>Wayfinder works with PHP versions 7.2+</p>
-
             <h2 id="what"><a href="#what" aria-label="Why Wayfinder?">¶</a> Why Wayfinder?</h2>
 
             <aside class="info">
