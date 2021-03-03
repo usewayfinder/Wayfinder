@@ -37,6 +37,7 @@ class DB {
                 $content[] = $row;
             }
         }
+        return $content;
     }
 
     public function select($sql) {
