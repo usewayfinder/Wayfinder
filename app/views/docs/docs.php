@@ -73,7 +73,7 @@ var_dump($items); // ['first', 'second', 'third']</pre></code>
             <h2 id="help"><a href="#help" aria-label="Link to help section">¶</a> Need more help?</h2>
 
             <aside class="info">
-                <p>If you need more help with Wayfinder, reach out on <a href="https://twitter.com/usewayfinder">Twitter</a>.</p>
+                <p>If you need more help with Wayfinder, reach out on <a href="https://twitter.com/usewayfinder" target="_blank">Twitter</a>.</p>
             </aside>
 
         </section>

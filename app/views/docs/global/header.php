@@ -1,7 +1,7 @@
 <?php
 
 // cache busting
-$v = 10;
+$v = 11;
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -53,7 +53,7 @@ $v = 10;
     </header>
 
     <article>
-        
+
         <?php if(isset($subtitle)) { ?>
         <h2><?php echo $subtitle; ?></h2>
         <?php } ?>

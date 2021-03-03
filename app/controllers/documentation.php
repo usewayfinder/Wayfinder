@@ -11,9 +11,7 @@ class Documentation extends Wayfinder {
             'subtitle' => 'A simple routing framework for PHP'
         ];
 
-        $this->load('views', 'docs/global/header', $data);
-        $this->load('views', 'docs/index', $data);
-        $this->load('views', 'docs/global/footer', $data);
+        $this->_loadPage('index', $data);
     }
 
     public function index() {
@@ -21,9 +19,7 @@ class Documentation extends Wayfinder {
             'title' => 'Wayfinder documentation'
         ];
 
-        $this->load('views', 'docs/global/header', $data);
-        $this->load('views', 'docs/docs', $data);
-        $this->load('views', 'docs/global/footer', $data);
+        $this->_loadPage('docs', $data);
     }
 
     public function examples() {
@@ -32,9 +28,7 @@ class Documentation extends Wayfinder {
             'subtitle' => 'How routing works in Wayfinder'
         ];
 
-        $this->load('views', 'docs/global/header', $data);
-        $this->load('views', 'docs/examples', $data);
-        $this->load('views', 'docs/global/footer', $data);
+        $this->_loadPage('examples', $data);
     }
 
     public function changelog() {
@@ -42,9 +36,7 @@ class Documentation extends Wayfinder {
             'title' => 'Change log'
         ];
 
-        $this->load('views', 'docs/global/header', $data);
-        $this->load('views', 'docs/changelog', $data);
-        $this->load('views', 'docs/global/footer', $data);
+        $this->_loadPage('changelog', $data);
     }
 
     public function routes() {
@@ -52,10 +44,7 @@ class Documentation extends Wayfinder {
             'title' => 'Routes in Wayfinder'
         ];
 
-        $this->load('views', 'docs/global/header', $data);
-        $this->load('views', 'docs/routes', $data);
-        $this->load('views', 'docs/global/footer', $data);
-
+        $this->_loadPage('routes', $data);
     }
 
     public function controllers() {
@@ -63,9 +52,7 @@ class Documentation extends Wayfinder {
             'title' => 'Controllers in Wayfinder'
         ];
 
-        $this->load('views', 'docs/global/header', $data);
-        $this->load('views', 'docs/controllers', $data);
-        $this->load('views', 'docs/global/footer', $data);
+        $this->_loadPage('controllers', $data);
     }
 
     public function models() {
@@ -73,9 +60,7 @@ class Documentation extends Wayfinder {
             'title' => 'Models in Wayfinder'
         ];
 
-        $this->load('views', 'docs/global/header', $data);
-        $this->load('views', 'docs/models', $data);
-        $this->load('views', 'docs/global/footer', $data);
+        $this->_loadPage('models', $data);
     }
 
     public function views() {
@@ -83,9 +68,7 @@ class Documentation extends Wayfinder {
             'title' => 'Views in Wayfinder'
         ];
 
-        $this->load('views', 'docs/global/header', $data);
-        $this->load('views', 'docs/views', $data);
-        $this->load('views', 'docs/global/footer', $data);
+        $this->_loadPage('views', $data);
     }
 
     public function database() {
@@ -93,9 +76,7 @@ class Documentation extends Wayfinder {
             'title' => 'Databases in Wayfinder'
         ];
 
-        $this->load('views', 'docs/global/header', $data);
-        $this->load('views', 'docs/database', $data);
-        $this->load('views', 'docs/global/footer', $data);
+        $this->_loadPage('database', $data);
     }
 
     public function libraries() {
@@ -103,9 +84,7 @@ class Documentation extends Wayfinder {
             'title' => 'Libraries in Wayfinder'
         ];
 
-        $this->load('views', 'docs/global/header', $data);
-        $this->load('views', 'docs/libraries', $data);
-        $this->load('views', 'docs/global/footer', $data);
+        $this->_loadPage('libraries', $data);
     }
 
     public function cli() {
@@ -113,9 +92,7 @@ class Documentation extends Wayfinder {
             'title' => 'The Wayfinder <abbr title="Command Line Interface">CLI</abbr>'
         ];
 
-        $this->load('views', 'docs/global/header', $data);
-        $this->load('views', 'docs/cli', $data);
-        $this->load('views', 'docs/global/footer', $data);
+        $this->_loadPage('cli', $data);
     }
 
     public function errors() {
@@ -123,8 +100,12 @@ class Documentation extends Wayfinder {
             'title' => 'Errors in Wayfinder'
         ];
 
+        $this->_loadPage('errors', $data);
+    }
+
+    private function _loadPage($page, $data) {
         $this->load('views', 'docs/global/header', $data);
-        $this->load('views', 'docs/errors', $data);
+        $this->load('views', 'docs/'.$page, $data);
         $this->load('views', 'docs/global/footer', $data);
     }
 

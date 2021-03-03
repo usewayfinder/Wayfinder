@@ -56,8 +56,9 @@ class Errors extends Wayfinder {
                 $data['content'] = 'The page you requested could not be found. Maybe try again or head back to the <a href="/">homepage</a>.';
                 break;
         }
-        header('HTTP/1.0 '.$data['title'], true, $error);
-
+        if($this->mode != 'cli' || strpos($_SERVER['argv'][0], 'phpunit') !== FALSE) {
+            header('HTTP/1.0 '.$data['title'], true, $error);
+        }
         return $data;
     }
 

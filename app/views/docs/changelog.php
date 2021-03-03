@@ -5,6 +5,16 @@
 
     <?php $format = 'jS M Y'; ?>
 
+    <h3>v0.4 <small><?php echo date($format, strtotime('3rd March 2021')); ?></small></h4>
+
+    <div class="inset">
+        <ul>
+            <li class="new">Dark mode introduced for the <a href="/documentation">documentation</a></li>
+            <li>Improved reliability when using PHP's <code>include</code> and <code>require</code> functonality in the Wayfinder framework</li>
+            <li>First round of tests included with the project</li>
+        </ul>
+    </div>
+
     <h3>v0.3 <small><?php echo date($format, strtotime('1st March 2021')); ?></small></h4>
 
     <div class="inset">

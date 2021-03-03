@@ -25,11 +25,11 @@ class Wayfinder {
 
         $this->_setURI();
 
-        require_once('Errors.php');
+        require_once($this->realFilePath().'Errors.php');
         $this->_error = new Errors();
 
         // fetch routes
-        require_once('../app/conf/routes.php');
+        require_once($this->realFilePath().'../app/conf/routes.php');
         $this->_routes = $_routes;
         // if this is the homepage
         if($this->_uri === '/') {
@@ -66,8 +66,8 @@ class Wayfinder {
             }
         }
         // if the file cannot be found
-        if(!@include('../app/'.$type.'/'.$filename.'.php')) {
-            $this->_error->index(404);
+        if(!@include($this->realFilePath().'../app/'.$type.'/'.$filename.'.php')) {
+            $this->_error->index(500);
             exit;
         }
     }
@@ -76,11 +76,21 @@ class Wayfinder {
         return $this->_error->error($error);
     }
 
+    public function realFilePath($file = false) {
+        if(!$file) {
+            $file = __FILE__;
+        }
+        return realpath(dirname($file)).'/';
+    }
+
     private function _setURI() {
-        if($this->mode != 'cli') {
+        // check this isn't the command line or if this is PHPUNIT
+        if($this->mode != 'cli' || strpos($_SERVER['argv'][0], 'phpunit') !== FALSE) {
             // ignore query strings
             $this->_uri = explode('?', $_SERVER['REQUEST_URI'])[0];
         } else {
+            var_dump($_SERVER['argv']);
+            exit;
             if(isset($_SERVER['argv'][1])) {
                 $this->_uri = $_SERVER['argv'][1];
             } else {
