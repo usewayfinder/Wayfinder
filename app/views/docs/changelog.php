@@ -53,6 +53,7 @@
     <div class="inset">
 
         <ul>
+            <li>Example model</li>
             <li>File-based caching</li>
             <li>Sitemap generator</li>
         </ul>
