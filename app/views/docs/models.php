@@ -28,6 +28,12 @@
 
 }</pre></code>
 
+            <h3 id="demo">Demo model</h3>
+
+            <p>As part of the documentation, an example model is included with the project. You can see the output at <code><a href="/documentation/models/demo-users">/documentation/models/demo-users</a></code>.</p>
+
+            <p>The model is a simplified example of how you can load and manipulate data to pass back to your controller. Look for the <code>models()</code> method in the Documentation controller to see how the model is loaded and used.</p>
+
             <h3>Public and private methods</h3>
 
             <p>Public methods in a model are used to expose functionality to <a href="/documentation/controllers">controllers</a> in Wayfinder. Private methods are more like helpers, and can help you to better organise your code.</p>

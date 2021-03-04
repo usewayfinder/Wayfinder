@@ -56,12 +56,34 @@ class Documentation extends Wayfinder {
         $this->_loadPage('controllers', $data);
     }
 
-    public function models() {
-        $data = [
-            'title' => 'Models in Wayfinder'
-        ];
+    public function models($subSection = false) {
+        if(!$subSection) {
+            $data = [
+                'title' => 'Models in Wayfinder'
+            ];
 
-        $this->_loadPage('models', $data);
+            $this->_loadPage('models', $data);
+        } else {
+            if($subSection[0] == 'demo-users') {
+                $this->load('models', 'Users');
+                $page = 'demo-users';
+                $users = new Users;
+                $data = [
+                    'title' => 'User model demo',
+                    'users' => $users->getUsers()
+                ];
+            } else if($subSection[0] == 'demo-user') {
+                $this->load('models', 'Users');
+                $page = 'demo-user';
+                $users = new Users;
+                $data = [
+                    'noIndex' => true,
+                    'user' => $users->getUser($subSection[1])
+                ];
+                $data['title'] = 'User model demo: '.$data['user']['name']['first'].' '.$data['user']['name']['last'];
+            }
+            $this->_loadPage($page, $data);
+        }
     }
 
     public function views() {

@@ -30,7 +30,10 @@ $v = 2021.12;
     <meta property="og:description" content="<?php echo $subtitle; ?>"/>
 <?php } ?>
     <meta property="og:image" content="https://www.usewayfinder.com/images/social-square.png?cache=<?php echo $v; ?>" />
-    <meta property="og:type" content="article"/>
+    <meta property="og:type" content="article" />
+<?php if(isset($noIndex) && $noIndex) { ?>
+    <meta name="robots" content="noindex" />
+<?php } ?>
 </head>
 <body<?php
 
