@@ -15,7 +15,6 @@ final class DocumentationTest extends TestCase
 
     public function testDocumentationHomepageIsCreated(): void
     {
-        $_SERVER['REQUEST_URI'] = '/';
         ob_start();
         $this->w->home();
 		$output = ob_get_clean();
@@ -24,7 +23,6 @@ final class DocumentationTest extends TestCase
 
     public function testDocumentationOverviewIsCreated(): void
     {
-        $_SERVER['REQUEST_URI'] = '/';
         ob_start();
         $this->w->index();
 		$output = ob_get_clean();
@@ -33,7 +31,6 @@ final class DocumentationTest extends TestCase
 
     public function testRoutesDocumentationIsCreated(): void
     {
-        $_SERVER['REQUEST_URI'] = '/';
         ob_start();
         $this->w->routes();
 		$output = ob_get_clean();
@@ -42,7 +39,6 @@ final class DocumentationTest extends TestCase
 
     public function testModelsDocumentationIsCreated(): void
     {
-        $_SERVER['REQUEST_URI'] = '/';
         ob_start();
         $this->w->models();
 		$output = ob_get_clean();
@@ -51,7 +47,6 @@ final class DocumentationTest extends TestCase
 
     public function testViewsDocumentationIsCreated(): void
     {
-        $_SERVER['REQUEST_URI'] = '/';
         ob_start();
         $this->w->views();
 		$output = ob_get_clean();
@@ -60,7 +55,6 @@ final class DocumentationTest extends TestCase
 
     public function testControllersDocumentationIsCreated(): void
     {
-        $_SERVER['REQUEST_URI'] = '/';
         ob_start();
         $this->w->controllers();
 		$output = ob_get_clean();
@@ -69,7 +63,6 @@ final class DocumentationTest extends TestCase
 
     public function testDatabaseDocumentationIsCreated(): void
     {
-        $_SERVER['REQUEST_URI'] = '/';
         ob_start();
         $this->w->database();
 		$output = ob_get_clean();
@@ -78,7 +71,6 @@ final class DocumentationTest extends TestCase
 
     public function testLibrariesDocumentationIsCreated(): void
     {
-        $_SERVER['REQUEST_URI'] = '/';
         ob_start();
         $this->w->libraries();
 		$output = ob_get_clean();
@@ -87,7 +79,6 @@ final class DocumentationTest extends TestCase
 
     public function testCLIDocumentationIsCreated(): void
     {
-        $_SERVER['REQUEST_URI'] = '/';
         ob_start();
         $this->w->cli();
 		$output = ob_get_clean();
@@ -96,7 +87,18 @@ final class DocumentationTest extends TestCase
 
     public function testErrorsDocumentationIsCreated(): void
     {
-        $_SERVER['REQUEST_URI'] = '/';
+        ob_start();
+        $this->w->errors();
+		$output = ob_get_clean();
+        $this->assertStringContainsString('<h1>Errors in Wayfinder</h1>', $output);
+    }
+
+    public function testPageLoaded(): void
+    {
+        ob_start();
+        $this->w->home();
+		$output = ob_get_clean();
+        $this->assertStringContainsString('<h1>Wayfinder</h1>', $output);
         ob_start();
         $this->w->errors();
 		$output = ob_get_clean();

@@ -104,7 +104,7 @@ class Documentation extends Wayfinder {
         $this->_loadPage('errors', $data);
     }
 
-    private function _loadPage($page, $data) {
+    private function _loadPage($page, $data = []) {
         $this->load('views', 'docs/global/header', $data);
         $this->load('views', 'docs/'.$page, $data);
         $this->load('views', 'docs/global/footer', $data);
