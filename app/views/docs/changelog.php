@@ -65,6 +65,6 @@
 
     <h2 id="contribute">Contribute to Wayfinder</h2>
 
-    <p>Don't see the feature you need? You can submit a <a href="https://github.com/cchana/Wayfinder">pull-request</a> or submit your suggestions on <a href="https://twitter.com/wayfinder">Twitter</a>.</p>
+    <p>Don't see the feature you need? You can submit a <a href="https://github.com/usewayfinder/Wayfinder">pull-request</a> or submit your suggestions on <a href="https://twitter.com/wayfinder">Twitter</a>.</p>
 
 </section>

@@ -1,6 +1,6 @@
 <?php
 
-require_once('../app/conf/db.php');
+require_once(realpath(dirname(__FILE__)).'/../conf/db.php');
 
 class DB {
 

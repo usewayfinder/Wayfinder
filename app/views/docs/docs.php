@@ -18,7 +18,7 @@
 
             <h2 id="start"><a href="#start" aria-label="Link to how to get started">¶</a> Getting started</h2>
 
-            <p>Grab the code from <a href="https://github.com/cchana/Wayfinder">GitHub</a>. Point your host to the <code>www</code> folder and all of your logic lives in the <code>app</code> folder. You'll know it was successful because you'll see this documentation at <code>yourhost.com/documentation</code>.</p>
+            <p>Grab the code from <a href="https://github.com/usewayfinder/Wayfinder">GitHub</a>. Point your host to the <code>www</code> folder and all of your logic lives in the <code>app</code> folder. You'll know it was successful because you'll see this documentation at <code>yourhost.com/documentation</code>.</p>
 
             <p>The best place to start exploring the code base is the <code>app/conf/routes.php</code> file or the <code>app/controllers</code> folder. When you first install Wayfinder you should see the documentation which is a simple example of how <a href="#customroutes">custom routes</a> work.</p>
 
