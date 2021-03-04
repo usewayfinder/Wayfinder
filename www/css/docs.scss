@@ -48,6 +48,17 @@ body {
         width: 256px;
         z-index: -1;
     }
+    &#home article > h2 {
+        font-size: $base*4;
+        font-weight: 500;
+        letter-spacing: -1px;
+        line-height: normal;
+        max-width: 25ch;
+        strong {
+            color: $primaryColor;
+            font-weight: 600;
+        }
+    }
 }
 
 main {

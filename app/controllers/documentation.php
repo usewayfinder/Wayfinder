@@ -7,8 +7,9 @@ class Documentation extends Wayfinder {
 
     public function home() {
         $data = [
+            'pageId' => 'home',
             'title' => 'Wayfinder',
-            'subtitle' => 'A simple routing framework for PHP'
+            'subtitle' => 'The framework for <strong>custom routing</strong> and <strong>rapid protoyping</strong> in PHP'
         ];
 
         $this->_loadPage('index', $data);
