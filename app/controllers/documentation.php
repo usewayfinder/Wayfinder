@@ -6,17 +6,23 @@ class Documentation extends Wayfinder {
     }
 
     public function home() {
+        $text = 'A framework for <strong>custom routing</strong> and <strong>rapid protoyping</strong> in PHP';
         $data = [
+            'metaDescription' => $text,
             'pageId' => 'home',
-            'title' => 'Wayfinder',
-            'subtitle' => 'The framework for <strong>custom routing</strong> and <strong>rapid protoyping</strong> in PHP'
+            'subtitle' => $text
         ];
 
         $this->_loadPage('index', $data);
     }
 
+    public function readdocs() {
+        $this->redirect('/documentation');
+    }
+
     public function index() {
         $data = [
+            'metaDescription' => 'Documentation for Wayfinder, a simple routing framework for PHP',
             'title' => 'Wayfinder documentation'
         ];
 
@@ -25,6 +31,7 @@ class Documentation extends Wayfinder {
 
     public function examples() {
         $data = [
+            'metaDescription' => 'Examples of how to use Wayfinder for simple routing and rapid prototyping',
             'title' => 'Wayfinder examples',
             'subtitle' => 'How routing works in Wayfinder'
         ];
@@ -34,6 +41,7 @@ class Documentation extends Wayfinder {
 
     public function changelog() {
         $data = [
+            'metaDescription' => 'Change log and release notes for Wayfinder',
             'title' => 'Change log'
         ];
 
@@ -42,6 +50,7 @@ class Documentation extends Wayfinder {
 
     public function routes() {
         $data = [
+            'metaDescription' => 'Documentation on how routing works in Wayfinder, allowing you to protoype rapidly',
             'title' => 'Routes in Wayfinder'
         ];
 
@@ -50,6 +59,7 @@ class Documentation extends Wayfinder {
 
     public function controllers() {
         $data = [
+            'metaDescription' => 'Documentation on how controllers works in Wayfinder, allowing you to protoype rapidly',
             'title' => 'Controllers in Wayfinder'
         ];
 
@@ -59,6 +69,7 @@ class Documentation extends Wayfinder {
     public function models($subSection = false) {
         if(!$subSection) {
             $data = [
+                'metaDescription' => 'Documentation on how models works in Wayfinder, allowing you to manage your data and protoype rapidly',
                 'title' => 'Models in Wayfinder'
             ];
 
@@ -69,6 +80,7 @@ class Documentation extends Wayfinder {
                 $page = 'demo-users';
                 $users = new Users;
                 $data = [
+                    'metaDescription' => 'A demo of how models work in Wayfinder, allowing you manage your data',
                     'title' => 'User model demo',
                     'users' => $users->getUsers()
                 ];
@@ -88,6 +100,7 @@ class Documentation extends Wayfinder {
 
     public function views() {
         $data = [
+            'metaDescription' => 'Documentation on how views works in Wayfinder, allowing you to protoype rapidly',
             'title' => 'Views in Wayfinder'
         ];
 
@@ -96,6 +109,7 @@ class Documentation extends Wayfinder {
 
     public function database() {
         $data = [
+            'metaDescription' => 'Documentation on how to connect to a MySQL database in Wayfinder',
             'title' => 'Databases in Wayfinder'
         ];
 
@@ -104,6 +118,7 @@ class Documentation extends Wayfinder {
 
     public function libraries() {
         $data = [
+            'metaDescription' => 'Documentation on how libraries works in Wayfinder, allowing you to bring your own code and plug it directly into your project',
             'title' => 'Libraries in Wayfinder'
         ];
 
@@ -112,6 +127,7 @@ class Documentation extends Wayfinder {
 
     public function cli() {
         $data = [
+            'metaDescription' => 'Documentation on how to use Wayfinder on the command line',
             'title' => 'The Wayfinder <abbr title="Command Line Interface">CLI</abbr>'
         ];
 
@@ -120,6 +136,7 @@ class Documentation extends Wayfinder {
 
     public function errors() {
         $data = [
+            'metaDescription' => 'Documentation on how error handling works in Wayfinder',
             'title' => 'Errors in Wayfinder'
         ];
 

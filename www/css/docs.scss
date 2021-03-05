@@ -48,15 +48,17 @@ body {
         width: 256px;
         z-index: -1;
     }
-    &#home article > h2 {
-        font-size: $base*4;
-        font-weight: 500;
-        letter-spacing: -1px;
-        line-height: normal;
-        max-width: 25ch;
-        strong {
-            color: $primaryColor;
-            font-weight: 600;
+    &#home article {
+        > h2 {
+            font-size: $base*4;
+            font-weight: 500;
+            letter-spacing: -1px;
+            line-height: normal;
+            max-width: 25ch;
+            strong {
+                color: $primaryColor;
+                font-weight: 600;
+            }
         }
     }
 }
@@ -191,7 +193,6 @@ h3 small {
 }
 
 article {
-    min-height: 30vh;
     nav {
         background-color: var(--black005);
         border-radius: $base;
@@ -253,6 +254,7 @@ code {
     background-color: var(--black005);
     border-radius: 5px;
     color: var(--code);
+    overflow-x: auto;
     padding: $base/2 $base;
     span {
         color: var(--codeSpans);
@@ -261,7 +263,6 @@ code {
     pre {
         margin: 0;
         padding: 0;
-        white-space: pre-wrap;
     }
 }
 
@@ -365,7 +366,7 @@ th,
 td {
     border: 1px solid var(--black005);
     padding: $base;
-    &:last-child {
+    &.cell-20 {
         width: 20%;
     }
 }
@@ -399,6 +400,40 @@ td {
 
 .inset {
     border-left: $base solid rgba($primaryColor, 0.2);
+}
+
+#highlights {
+    border-top: 1px solid var(--black005);
+    margin: $base*5 0 0;
+    padding: $base*5 0 0;
+    h2 {
+        margin: 0;
+    }
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        li {
+            background: rgba($titleColor, 0.075);
+            border-radius: $base;
+            margin: $base*2 0 0;
+            padding: $base*2;
+            img {
+                display: none;
+            }
+            strong {
+                color: $primaryColor;
+                display: block;
+                font-size: $base*3;
+                font-weight: 400;
+                margin: 0 0 $base;
+                &:before {
+                    content: '#{$arrow} ';
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
 }
 
 @media screen and (min-width: 600px) {
@@ -470,6 +505,17 @@ td {
 
     .table {
         width: 100%;
+    }
+
+    #highlights ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        li {
+            margin: $base*2 0 0;
+            padding: $base*2;
+            width: calc(50% - #{$base});
+        }
     }
 }
 

@@ -1,19 +1,21 @@
 <?php
 
 // cache busting
-$v = 2021.12;
+$v = 2021.14;
 
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="author" content="" />
+<?php if(isset($metaDescription)) { ?>
+    <meta name="description" content="<?php echo strip_tags($metaDescription); ?>" />
+<?php } ?>
+    <meta name="keywords" content="routing, route, custom routes, routing framework, framework for routing, php, php mvc, mvc php, phpmvc, mvcphp, mvc framework, rapid prototyping, prototyping, rapidly prototype" />
+    <meta name="author" content="Charanjit Chana" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="/images/favicon.png?cache=<?php echo $v; ?>" />
     <link rel="stylesheet" type="text/css" href="/css/docs.css?cache=<?php echo $v; ?>" />
-    <title><?php echo strip_tags($title); ?></title>
+    <title><?php if(isset($title)) { echo strip_tags($title).' — '; } ?>Wayfinder ↗︎</title>
     <meta name="apple-mobile-web-app-title" content="Wayfinder">
     <meta name="application-name" content="Wayfinder">
     <meta name="twitter:card" content="summary"/>

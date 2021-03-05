@@ -14,7 +14,7 @@
                 <p>If you want to understand how <a href="/documentation/routes">routing</a> works in Wayfinder, it can help to look at some <a href="/examples">examples</a> first.</p>
             </aside>
 
-            <p>Wayfinder is primarily a routing system that is also <strong>perfect for rapidly prototyping websites, web apps and APIs</strong>. Your code is neatly organised and with basic MVC principles in mind, you can keep your data models, views and logic all separated.</p>
+            <p>Wayfinder is primarily a routing system that just happens to be <strong>perfect for rapidly prototyping websites, web apps and APIs</strong>. Your code is neatly organised and with basic MVC principles in mind, you can keep your data models, views and logic all separated.</p>
 
             <h2 id="start"><a href="#start" aria-label="Link to how to get started">¶</a> Getting started</h2>
 
@@ -66,6 +66,21 @@ $this->load('views', 'myView', $data);</pre></code>
             <code><pre>&lt;?php
 echo $title; // My Page Title
 var_dump($items); // ['first', 'second', 'third']</pre></code>
+
+            <h3>redirect($location, $code = 301)</h3>
+
+            <p>If you need to redirect to a new location, use the <code>redirect()</code> method to take the user there and pass the apprioraite error. Any code after calling <code>redirect()</code> will not be executed. Passing a <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">HTTP status code</a> is optional, Wayfinder assumes you are performing a permanent redirect.</p>
+
+            <code>$this->redirect('/', 301);</code>
+
+            <details>
+                <summary>Show pseudo-code</summary>
+
+                <code><pre>header('Location: '.$location, true, $code)</pre></code>
+            </details>
+
+            <p>You can see the <code>redirect()</code> method in action by going to <code><a href="/readdocs">/readdocs</a></code> which will bring you straight back here.</p>
+
         </section>
 
         <section>

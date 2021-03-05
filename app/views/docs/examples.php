@@ -23,7 +23,7 @@
                     <th>Route</th>
                     <th>Class</th>
                     <th>Method</th>
-                    <th>Params</th>
+                    <th class="cell-20">Params</th>
                 </tr>
             </thead>
             <tr>

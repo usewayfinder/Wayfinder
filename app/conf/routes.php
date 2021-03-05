@@ -12,5 +12,9 @@ $_routes = [
     '/changelog' => [
         'controller' => 'documentation',
         'function' => 'changelog'
+    ],
+    '/readdocs' => [
+        'controller' => 'documentation',
+        'function' => 'readdocs'
     ]
 ];

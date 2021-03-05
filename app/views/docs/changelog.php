@@ -3,7 +3,19 @@
 
     <h2 id="releases">Releases</h2>
 
+    <aside class="info">
+        <p>Wayfinder is under active and continious development and every effort is made to avoid introducing breaking changes.</p>
+    </aside>
+
     <?php $format = 'jS M Y'; ?>
+
+    <h3>v0.6 <small><?php echo date($format, strtotime('5th March 2021')); ?></small></h4>
+
+    <div class="inset">
+        <ul>
+            <li class="new">Create redirects with the <code>redirect()</code> method in Wayfinder</li>
+        </ul>
+    </div>
 
     <h3>v0.5 <small><?php echo date($format, strtotime('4th March 2021')); ?></small></h4>
 

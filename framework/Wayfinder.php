@@ -65,11 +65,17 @@ class Wayfinder {
                 }
             }
         }
+
         // if the file cannot be found
         if(!@include($this->realFilePath().'../app/'.$type.'/'.$filename.'.php')) {
-            $this->_error->index(500);
+            $this->_error->index(400);
             exit;
         }
+    }
+
+    public function redirect($location, $code = 301) {
+        header('Location: '.$location, true, $code);
+        exit;
     }
 
     public function error($error) {
@@ -81,6 +87,14 @@ class Wayfinder {
             $file = __FILE__;
         }
         return realpath(dirname($file)).'/';
+    }
+
+    public function b64d($input, $salt = false) {
+        return base64_decode($input);
+    }
+
+    public function b64e($input, $salt = false) {
+        return base64_encode($input);
     }
 
     private function _setURI() {
