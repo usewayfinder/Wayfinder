@@ -9,10 +9,7 @@
 
     <div class="inset">
         <ul>
-            <li class="new">Introducing a demo <a href="/documentation/models#demo">model</a></li>
-            <li>Fixed issue whith the Database library not being able to return data from <code>SELECT</code> queries</li>
-            <li>Improved reliability when using PHP's <code>include</code> and <code>require</code> functonality in the Wayfinder framework</li>
-            <li>First round of tests included with the project</li>
+            <li class="new">Introducing a demo <a href="/documentation/models#demo">model</a> and <a href="/documentation/models/demo-users">example documentation</a></li>
         </ul>
     </div>
 
