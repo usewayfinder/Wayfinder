@@ -9,7 +9,7 @@
 
     <?php $format = 'jS M Y'; ?>
 
-    <h3>v0.6 <small><?php echo date($format, strtotime('5th March 2021')); ?></small></h4>
+    <h3><a href="https://github.com/usewayfinder/Wayfinder/releases/tag/0.6">v0.6</a> <small><?php echo date($format, strtotime('5th March 2021')); ?></small></h4>
 
     <div class="inset">
         <ul>
