@@ -6,7 +6,7 @@ $v = 2021.15;
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
 <?php if(isset($metaDescription)) { ?>
     <meta name="description" content="<?php echo strip_tags($metaDescription); ?>" />
 <?php } ?>
@@ -16,20 +16,20 @@ $v = 2021.15;
     <link rel="icon" type="image/x-icon" href="/images/favicon.png?cache=<?php echo $v; ?>" />
     <link rel="stylesheet" type="text/css" href="/css/docs.css?cache=<?php echo $v; ?>" />
     <title><?php if(isset($title)) { echo strip_tags($title).' — '; } ?>Wayfinder ↗︎</title>
-    <meta name="apple-mobile-web-app-title" content="Wayfinder">
-    <meta name="application-name" content="Wayfinder">
-    <meta name="twitter:card" content="summary"/>
+    <meta name="apple-mobile-web-app-title" content="Wayfinder" />
+    <meta name="application-name" content="Wayfinder" />
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:creator" content="@cchana" />
-    <meta name="twitter:title" content="<?php echo strip_tags($title); ?>"/>
+    <meta name="twitter:title" content="<?php echo strip_tags($title); ?>" />
 <?php if(isset($subtitle)) { ?>
-    <meta name="twitter:description" content="<?php echo $subtitle; ?>"/>
+    <meta name="twitter:description" content="<?php echo $subtitle; ?>" />
 <?php } ?>
-    <meta name="twitter:image" content="https://www.usewayfinder.com/images/social-square.png?cache=<?php echo $v; ?>"/>
+    <meta name="twitter:image" content="https://www.usewayfinder.com/images/social-square.png?cache=<?php echo $v; ?>" />
     <meta property="og:site_name" content="Wayfinder"/>
-    <meta property="og:url" content="https://www.usewayfinder.com<?php echo $_SERVER['REQUEST_URI']; ?>"/>
-    <meta property="og:title" content="<?php echo strip_tags($title); ?>"/>
+    <meta property="og:url" content="https://www.usewayfinder.com<?php echo $_SERVER['REQUEST_URI']; ?>" />
+    <meta property="og:title" content="<?php echo strip_tags($title); ?>" />
 <?php if(isset($subtitle)) { ?>
-    <meta property="og:description" content="<?php echo $subtitle; ?>"/>
+    <meta property="og:description" content="<?php echo $subtitle; ?>" />
 <?php } ?>
     <meta property="og:image" content="https://www.usewayfinder.com/images/social-square.png?cache=<?php echo $v; ?>" />
     <meta property="og:type" content="article" />
