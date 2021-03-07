@@ -103,8 +103,6 @@ class Wayfinder {
             // ignore query strings
             $this->_uri = explode('?', $_SERVER['REQUEST_URI'])[0];
         } else {
-            var_dump($_SERVER['argv']);
-            exit;
             if(isset($_SERVER['argv'][1])) {
                 $this->_uri = $_SERVER['argv'][1];
             } else {
@@ -115,14 +113,14 @@ class Wayfinder {
 
     // calculate what how the routing should be handled
     private function _calculateRoute() {
-        // break apart the URL
-        $parts = explode('/', $this->_uri);
-        $parts = $this->_tidyParams($parts);
         // now check if routing is required
         $this->_checkIfRoutingRequired();
 
         // if the class is empty after checking the routes
         if(!$this->_class) {
+            // break apart the URL
+            $parts = explode('/', $this->_uri);
+            $parts = $this->_tidyParams($parts);
             $this->_class = $parts[0];
             if(isset($parts[1])) {
                 $this->_function = $parts[1];
@@ -212,5 +210,29 @@ class Wayfinder {
         return false;
     }
 
+    private function _setMimeType($filename) {
+        $filenameParts = explode('.', end($filename));
+        switch(end($filenameParts)) {
+            case 'rss':
+                $this->type = 'rss';
+                header('Content-Type: application/xml; charset=utf-8');
+                break;
+            case 'xml':
+                $this->type = 'xml';
+                header('Content-Type: application/xml; charset=utf-8');
+                break;
+            case 'json':
+                $this->type = 'json';
+                header('Content-Type: application/json');
+                break;
+            case 'txt':
+                $this->type = 'txt';
+                header('Content-Type:text/plain');
+                break;
+            default:
+                $this->type = 'html';
+                header('Content-Type:text/html');
+        }
+    }
 
 }
