@@ -9,6 +9,23 @@
 
     <?php $format = 'jS M Y'; ?>
 
+    <h3><a href="https://github.com/usewayfinder/Wayfinder/releases/tag/0.7">v0.7</a> <small><?php echo date($format, strtotime('7th March 2021')); ?></small></h4>
+
+    <div class="inset">
+        <ul>
+            <li class="new">You can specify the <a href="/documentation#mimetype">MIME type</a> of a page by suffixing one of the supported file extensions to your URL
+                <ul>
+                    <li><code>.html</code> <small>(default)</small></li>
+                    <li><code>.txt</code></li>
+                    <li><code>.xml</code></li>
+                    <li><code>.rss</code></li>
+                    <li><code>.atom</code></li>
+                    <li><code>.json</code></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
     <h3><a href="https://github.com/usewayfinder/Wayfinder/releases/tag/0.6">v0.6</a> <small><?php echo date($format, strtotime('5th March 2021')); ?></small></h4>
 
     <div class="inset">

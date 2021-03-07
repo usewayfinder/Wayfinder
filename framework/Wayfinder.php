@@ -15,7 +15,8 @@ class Wayfinder {
             $_function = 'index',
             $_params = [],
             $_routes = [],
-            $_error;
+            $_error,
+            $_mimeType;
     var $mode;
 
     // __constructor, begins the routing instantly
@@ -68,7 +69,7 @@ class Wayfinder {
 
         // if the file cannot be found
         if(!@include($this->realFilePath().'../app/'.$type.'/'.$filename.'.php')) {
-            $this->_error->index(400);
+            $this->_error->index(404);
             exit;
         }
     }
@@ -97,11 +98,19 @@ class Wayfinder {
         return base64_encode($input);
     }
 
+    public function getMimeType() {
+        $cleanUrl = $this->_cleanUrl();
+        $this->_setMimeType($cleanUrl);
+        return $this->_mimeType;
+    }
+
     private function _setURI() {
         // check this isn't the command line or if this is PHPUNIT
         if($this->mode != 'cli' || strpos($_SERVER['argv'][0], 'phpunit') !== FALSE) {
             // ignore query strings
-            $this->_uri = explode('?', $_SERVER['REQUEST_URI'])[0];
+            $cleanUrl = $this->_cleanUrl();
+            $cleanerUrl = $this->_setMimeType($cleanUrl);
+            $this->_uri = $cleanerUrl;
         } else {
             if(isset($_SERVER['argv'][1])) {
                 $this->_uri = $_SERVER['argv'][1];
@@ -111,8 +120,13 @@ class Wayfinder {
         }
     }
 
+    private function _cleanUrl() {
+        return explode('?', $_SERVER['REQUEST_URI'])[0];
+    }
+
     // calculate what how the routing should be handled
     private function _calculateRoute() {
+
         // now check if routing is required
         $this->_checkIfRoutingRequired();
 
@@ -210,29 +224,48 @@ class Wayfinder {
         return false;
     }
 
-    private function _setMimeType($filename) {
-        $filenameParts = explode('.', end($filename));
-        switch(end($filenameParts)) {
-            case 'rss':
-                $this->type = 'rss';
-                header('Content-Type: application/xml; charset=utf-8');
-                break;
-            case 'xml':
-                $this->type = 'xml';
-                header('Content-Type: application/xml; charset=utf-8');
-                break;
-            case 'json':
-                $this->type = 'json';
-                header('Content-Type: application/json');
-                break;
-            case 'txt':
-                $this->type = 'txt';
-                header('Content-Type:text/plain');
-                break;
-            default:
-                $this->type = 'html';
-                header('Content-Type:text/html');
+    private function _setMimeType($url) {
+        $parts = explode('/', $url);
+        $filenameParts = explode('.', end($parts));
+        $validExtensions = [
+            'rss',
+            'xml',
+            'json',
+            'txt',
+            'html'
+        ];
+        if(in_array(end($filenameParts), $validExtensions)) {
+            switch(end($filenameParts)) {
+                case 'rss':
+                    $this->_mimeType = 'rss';
+                    header('Content-Type: application/xml; charset=utf-8');
+                    break;
+                case 'atom':
+                    $this->_mimeType = 'atom';
+                    header('Content-Type: application/xml; charset=utf-8');
+                    break;
+                case 'xml':
+                    $this->_mimeType = 'xml';
+                    header('Content-Type: application/xml; charset=utf-8');
+                    break;
+                case 'json':
+                    $this->_mimeType = 'json';
+                    header('Content-Type: application/json');
+                    break;
+                case 'txt':
+                    $this->_mimeType = 'txt';
+                    header('Content-Type:text/plain');
+                    break;
+                default:
+                    $this->_mimeType = 'html';
+                    header('Content-Type:text/html');
+            }
+            array_pop($filenameParts);
         }
+        $reconstructedFilename = join('.', $filenameParts);
+        array_pop($parts);
+        array_push($parts, $reconstructedFilename);
+        return join('/', $parts);
     }
 
 }

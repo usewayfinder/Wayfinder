@@ -144,9 +144,17 @@ class Documentation extends Wayfinder {
     }
 
     private function _loadPage($page, $data = []) {
-        $this->load('views', 'docs/global/header', $data);
-        $this->load('views', 'docs/'.$page, $data);
-        $this->load('views', 'docs/global/footer', $data);
+        if($this->getMimeType() !== 'txt') {
+            $this->load('views', 'docs/global/header', $data);
+            $this->load('views', 'docs/'.$page, $data);
+            $this->load('views', 'docs/global/footer', $data);
+        } else {
+            ob_start();
+            $this->load('views', 'docs/'.$page, $data);
+    		$output = strip_tags(ob_get_clean());
+            $output = str_replace("\n\n", "", $output);
+            echo $output;
+        }
     }
 
 }

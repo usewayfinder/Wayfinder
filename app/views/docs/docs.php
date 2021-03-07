@@ -81,6 +81,29 @@ var_dump($items); // ['first', 'second', 'third']</pre></code>
 
             <p>You can see the <code>redirect()</code> method in action by going to <code><a href="/readdocs">/readdocs</a></code> which will bring you straight back here.</p>
 
+            <h3 id="mimetype">MIME Type</h3>
+
+            <p>By adding a file extension to your URL, you can automatically determine the right format for the page. As an example, this page can be requested with the <a href="/documentation.txt">.txt extension</a>.</p>
+
+            <p>By using the <code>$this->getMimeType()</code> method, you can create logic to help you make the right choice.</p>
+
+            <code><pre>if($this->getMimeType() !== 'txt') {
+    // your regular display logic
+} else {
+    // return a plain text file
+}</pre></code>
+
+            <p>If no file extension is specified, then every page is treated as HTML but you can explicitly choose from the following list of supported file extensions:</p>
+
+            <ul>
+                <li><code>.html</code> <small>(default)</small></li>
+                <li><code>.txt</code></li>
+                <li><code>.xml</code></li>
+                <li><code>.rss</code></li>
+                <li><code>.atom</code></li>
+                <li><code>.json</code></li>
+            </ul>
+
         </section>
 
         <section>

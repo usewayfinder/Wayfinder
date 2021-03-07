@@ -6,7 +6,7 @@
 
         <section>
 
-            <p>Most errors in Wayfinder are treated as though something is missing (404) or as a bad request (400). You can always throw your own errors with more appropriate error codes if required.</p>
+            <p>Most errors in Wayfinder are treated as if the page requested does not exist (404). You can always throw your own errors with more appropriate error codes if required.</p>
 
             <code><pre>$this->_error = new Errors();
 $this->_error->index(410);</pre></code>
