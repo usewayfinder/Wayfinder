@@ -30,7 +30,7 @@
 
             <h3>Creating an end point</h3>
 
-            <p>To create an end point in Wayfinder, just declare a public function. If no function is specified in the URL or in your custom route, then Wayfinder will look for <code>index()</code> by default.</p>
+            <p>To create an end point in Wayfinder, just declare a public method. If no method is specified in the URL or in your custom route, then Wayfinder will look for <code>index()</code> by default.</p>
 
             <code><pre>class MyController extends Wayfiner {
 

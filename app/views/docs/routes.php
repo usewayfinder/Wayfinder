@@ -17,7 +17,7 @@
             <code><pre>$_routes = [
     '/' => [
         'controller' => 'documentation',
-        'function' => 'home'
+        'method' => 'home'
     ]
 }</pre></code>
 
@@ -129,12 +129,12 @@ $wf->home();</pre></code>
 
             <h3 id="classmethodroutes"><a href="#classmethodroutes" aria-label="Link to how class-method routes work">¶</a> Class and method routes</h3>
 
-            <p>This can be routed directly to a specific Class <em>and</em> function. In this case, it will call <code>$bar->myFunc()</code>.</p>
+            <p>This can be routed directly to a specific Class <em>and</em> method. In this case, it will call <code>$bar->myFunc()</code>.</p>
 
             <code><pre>$_route = [
     '/foo' => [
         'controller' => 'Bar',
-        'function' => 'myFunc'
+        'method' => 'myFunc'
     ]
 ];</pre></code>
 
@@ -157,7 +157,7 @@ $wf->home();</pre></code>
             <code><pre>$_route = [
     '/foo/bar/bar/foo' => [
         'controller' => 'Bar',
-        'function' => 'myFunc'
+        'method' => 'myFunc'
     ]
 ];</pre></code>
 
@@ -188,7 +188,7 @@ $wf->home();</pre></code>
             <code><pre>$_route = [
     '/mycustomroute' => [
         'controller' => 'Bar',
-        'function' => 'myFunc'
+        'method' => 'myFunc'
     ]
 ];</pre></code>
 
@@ -215,7 +215,7 @@ $wf->home();</pre></code>
             <code><pre>$_route = [
     '/mycustomroute' => [
         'controller' => 'Bar',
-        'function' => 'myFunc',
+        'method' => 'myFunc',
         'params' => [
             'parameter 1',
             'parameter 2'
@@ -263,6 +263,25 @@ $wf->home();</pre></code>
             <aside>
                 <p>This can become confusing from a code management point of view, but it is possible and supported.</p>
             </aside>
+
+            <h3 id="numberedmethodsinroutes"><a href="#numberedmethodsinroutes" aria-label="Link to numbered methods in routes">¶</a> Numbered methods in routes</h3>
+
+            <p>While the controller has to be defined when matching route is found, you can optionally set the method param to reference the position in the URL to use instead.</p>
+
+            <code><pre>$_route = [
+    '/mycustomroute' => [
+        'controller' => 'Bar',
+        'method' => 3
+    ]
+];</pre></code>
+
+            <p>The above configuration would pick the third item in the URL that follows the matching route. The URL below would call a Class called <code>Bar</code> and a method called <code>thirdparam</code>. The method name is dropped from the URL and everything else is treated as a parameter.</p>
+
+            <code>
+                <span title="route">/mycustomroute</span>/<span title="parameters">firstparam/secondparam</span>/<span title="method">thirdparam</span>
+            </code>
+
+            <p>This is an extreme example of how you can make routes work for your app, but it becomes useful when you want a route to map to a Class and want to call it's methods without having to define a route for each of them.</p>
 
         </section>
 

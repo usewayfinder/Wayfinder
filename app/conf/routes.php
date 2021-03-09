@@ -3,18 +3,22 @@
 $_routes = [
     '/' => [
         'controller' => 'documentation',
-        'function' => 'home'
+        'method' => 'home'
     ],
     '/examples' => [
         'controller' => 'documentation',
-        'function' => 'examples'
+        'method' => 'examples'
     ],
     '/changelog' => [
         'controller' => 'documentation',
-        'function' => 'changelog'
+        'method' => 'changelog'
     ],
     '/readdocs' => [
         'controller' => 'documentation',
-        'function' => 'readdocs'
+        'method' => 'readdocs'
+    ],
+    '/foo' => [
+        'controller' => 'test',
+        'method' => 3
     ]
 ];

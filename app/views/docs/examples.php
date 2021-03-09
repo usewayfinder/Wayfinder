@@ -68,6 +68,13 @@
                 <td>Optionally defined in <code>app/conf/routes.php</code>. Defaults to <code>index()</code></td>
                 <td>Parameters optionally defined in <code>app/conf/routes.php</code> passed first, followed by <code>foobar</code> and then <code>barfoo</code></td>
             </tr>
+            <tr>
+                <td><code>/foo/bar/foobar/barfoo</code></td>
+                <td><code>/foo/bar</code></td>
+                <td>Defined in <code>app/conf/routes.php</code></td>
+                <td>Optionally defined as a numeric value in <code>app/conf/routes.php</code>. For this example, the value is <code>2</code>, but defaults to <code>index()</code> when not set</td>
+                <td>Parameters optionally defined in <code>app/conf/routes.php</code> passed first, followed by <code>foobar</code> but <code>barfoo</code> treated as the method name</td>
+            </tr>
         </table>
 
     </div>

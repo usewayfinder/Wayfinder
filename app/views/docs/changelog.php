@@ -9,6 +9,14 @@
 
     <?php $format = 'jS M Y'; ?>
 
+    <h3><a href="https://github.com/usewayfinder/Wayfinder/releases/tag/0.8">v0.8</a> <small><?php echo date($format, strtotime('9th March 2021')); ?></small></h4>
+
+    <div class="inset">
+        <ul>
+            <li class="new">Ability to specify <a href="/documentation/routes#numberedmethodsinroutes">the numerical position of the method name in your custom routes</a></li>
+        </ul>
+    </div>
+
     <h3><a href="https://github.com/usewayfinder/Wayfinder/releases/tag/0.7">v0.7</a> <small><?php echo date($format, strtotime('7th March 2021')); ?></small></h4>
 
     <div class="inset">

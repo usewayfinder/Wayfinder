@@ -21,7 +21,7 @@
 
 }</pre></code>
 
-            <p>Once your database connection has been established, you can start working with the helper functions supplied.</p>
+            <p>Once your database connection has been established, you can start working with the helper methods supplied.</p>
 
             <h2>query()</h2>
 

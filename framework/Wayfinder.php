@@ -39,8 +39,8 @@ class Wayfinder {
                 throw new \Exception("No default route specified", '001');
             } else {
                 // check if a function has been set
-                if(isset($this->_routes[$this->_uri]['function'])) {
-                    $this->_function = $this->_routes[$this->_uri]['function'];
+                if(isset($this->_routes[$this->_uri]['method'])) {
+                    $this->_function = $this->_routes[$this->_uri]['method'];
                 }
                 $this->_class = $this->_routes[$this->_uri]['controller'];
                 if(isset($this->_routes[$this->_uri]['params'])) {
@@ -147,21 +147,44 @@ class Wayfinder {
 
     // check if a specific route that overrides the expected /controller/function input
     private function _checkIfRoutingRequired() {
+        // loop through the defined routes
         foreach($this->_routes as $route => $parts) {
+            // as long as this isn't the root route
             if($route != '/') {
+                // check the route is valid
                 if($this->_validRoute($route)) {
+                    // set the controller
                     $this->_class = $parts['controller'];
-                    if(isset($parts['function'])) {
-                        $this->_function = $parts['function'];
-                    }
-                    if(isset($parts['params'])) {
-                        $this->_params = $parts['params'];
-                    }
+                    // break the route apart
                     $pathParams = explode($route, $this->_uri);
-                    $parts = explode('/', $pathParams[1]);
-                    $parts = $this->_tidyParams($parts);
-                    if(!!$parts) {
-                        $this->_params = array_merge($this->_params, $parts);
+                    // break the path into parts
+                    $pathParts = explode('/', $pathParams[1]);
+                    // tidy up the params
+                    $pathParts = $this->_tidyParams($pathParts);
+                    // if the function param is defined
+                    if(isset($parts['method'])) {
+                        // check that it's not numeric
+                        if(!is_numeric($parts['method'])) {
+                            // then assign it
+                            $this->_function = $parts['method'];
+                        // if it is numeric
+                        } else {
+                            // figure out what the resulting index is
+                            $index = $parts['method']-2;
+                            // check that the URL part exists
+                            if(isset($pathParts[$index])) {
+                                // set the function accordingly
+                                $this->_function = $pathParts[$index];
+                                // then remove the item so that it isn't reused as a param
+                                unset($pathParts[$index]);
+                            }
+                        }
+                    }
+                    if(isset($pathParts['params'])) {
+                        $this->_params = $pathParts['params'];
+                    }
+                    if(!!$pathParts) {
+                        $this->_params = array_merge($this->_params, $pathParts);
                     }
                     return true;
                 }
