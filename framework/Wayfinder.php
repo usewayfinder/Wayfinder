@@ -22,6 +22,13 @@ class Wayfinder {
     // __constructor, begins the routing instantly
     function __construct() {
 
+        // only take care of routing if this is Wayfinder being called directly
+        if(get_called_class() == 'Wayfinder') {
+            $this->_init();
+        }
+    }
+
+    private function _init() {
         $this->mode = php_sapi_name();
 
         $this->_setURI();
@@ -31,6 +38,7 @@ class Wayfinder {
 
         // fetch routes
         require_once($this->realFilePath().'../app/conf/routes.php');
+
         $this->_routes = $_routes;
         // if this is the homepage
         if($this->_uri === '/') {

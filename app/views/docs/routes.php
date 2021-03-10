@@ -297,17 +297,17 @@ $wf->home();</pre></code>
                 <p>This can cause situations where you think a route should return a 404 but it doesn't. As describe above, this is Wayfinder intentionally treating the additional characters as parameters.</p>
             </aside>
 
-            <h3>Duplicate content</h3>
+            <h3><a href="#duplicates" aria-label="Duplicate content">¶</a> Duplicate content</h3>
 
             <p>Adding more parameters to a URL can create duplicate content if not handled correctly.</p>
 
             <p>Either this can be dealt with in the controller's logic or your markup can use the <code>rel="canonical"</code> attribute to help search engines find the right content.</p>
 
-            <h3>Query strings</h3>
+            <h3><a href="#querystrings" aria-label="Query Strings">¶</a> Query strings</h3>
 
             <p>Query strings can be used for things like cache breaking if required (for things like CDNs), but they are ignored by Wayfinder's internal routing.</p>
 
-            <h3>Error messages</h3>
+            <h3><a href="#errors" aria-label="Error messages">¶</a> Error messages</h3>
 
             <p>If a matching Class, method or route can't be found, a 404 page will be returned. These pages use the default layout and styling as the docs pages but you can change this in the <code>_displayError</code> method found in the <code>app/controllers/Error.php</code> file.</p>
 

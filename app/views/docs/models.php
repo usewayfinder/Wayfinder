@@ -8,7 +8,7 @@
 
             <p>Use models to manage your data, <a href="/documentation/controllers">controllers</a> can pass the right data to them so that your model can create, read, update or delete items.</p>
 
-            <h2>Anatomy of a model</h2>
+            <h2 id="anatomy"><a href="#anatomy" aria-label="Link to anatomy of a model">¶</a> Anatomy of a model</h2>
 
             <p>A model should extend the Wayfinder Class so that you have access to all of it's public methods, like so:</p>
 
@@ -16,7 +16,7 @@
 
 }</pre></code>
 
-            <h3>__construct()</h3>
+            <h3 id="construct"><a href="#construct" aria-label="Link to the __construct method">¶</a> __construct()</h3>
 
             <p>Within your class, you can optionally use the <code>__construct()</code> method to automatically run some tasks when the Class is first initiated.</p>
 
@@ -28,7 +28,7 @@
 
 }</pre></code>
 
-            <h3 id="demo">Demo model</h3>
+            <h3 id="demo"><a href="#demo" aria-label="Demo model">¶</a> Demo model</h3>
 
             <p>As part of the documentation, an example model is included with the project. You can see the output at <code><a href="/documentation/models/demo-users">/documentation/models/demo-users</a></code>.</p>
 

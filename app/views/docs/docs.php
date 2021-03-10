@@ -20,7 +20,7 @@
 
             <p>Grab the code from <a href="https://github.com/usewayfinder/Wayfinder">GitHub</a>. Point your host to the <code>www</code> folder and all of your logic lives in the <code>app</code> folder. You'll know it was successful because you'll see this documentation at <code>yourhost.com/documentation</code>.</p>
 
-            <p>The best place to start exploring the code base is the <code>app/conf/routes.php</code> file or the <code>app/controllers</code> folder. When you first install Wayfinder you should see the documentation which is a simple example of how <a href="#customroutes">custom routes</a> work.</p>
+            <p>The best place to start exploring the code base is the <code>app/conf/routes.php</code> file or the <code>app/controllers</code> folder. When you first install Wayfinder you should see the documentation which is a simple example of how <a href="/documentation/routes#customroutes">custom routes</a> work.</p>
 
             <p>To start adding your own end points to your website, app or API, read more about <a href="/documentation/routes">routes in Wayfinder</a>.</p>
 
@@ -67,7 +67,7 @@ $this->load('views', 'myView', $data);</pre></code>
 echo $title; // My Page Title
 var_dump($items); // ['first', 'second', 'third']</pre></code>
 
-            <h3>redirect($location, $code = 301)</h3>
+            <h3 id="redirect"><a href="#redirect" aria-label="redirect">¶</a> redirect($location, $code = 301)</h3>
 
             <p>If you need to redirect to a new location, use the <code>redirect()</code> method to take the user there and pass the apprioraite error. Any code after calling <code>redirect()</code> will not be executed. Passing a <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">HTTP status code</a> is optional, Wayfinder assumes you are performing a permanent redirect.</p>
 
@@ -81,7 +81,7 @@ var_dump($items); // ['first', 'second', 'third']</pre></code>
 
             <p>You can see the <code>redirect()</code> method in action by going to <code><a href="/readdocs">/readdocs</a></code> which will bring you straight back here.</p>
 
-            <h3 id="mimetype">MIME Type</h3>
+            <h3 id="mimetype"><a href="#mimetype" aria-label="MIME Type">¶</a> MIME Type</h3>
 
             <p>By adding a file extension to your URL, you can automatically determine the right format for the page. As an example, this page can be requested with the <a href="/documentation.txt">.txt extension</a>.</p>
 
