@@ -422,9 +422,18 @@ td {
     border-left: $base solid rgba($primaryColor, 0.2);
 }
 
+#hero {
+    background: linear-gradient(to left, #FFF, rgba(#FFF, 0) 50%),
+                radial-gradient(rgba($primaryColor, 0.2), rgba($titleColor, 0) 75%) no-repeat;
+    background-position: top right, left 20vh bottom -40vh;
+    background-size: cover, 100% 80vh;
+    min-height: 40vh;
+    padding: 0 0 $base*5;
+}
+
 #highlights {
-    border-top: 1px solid var(--black005);
-    margin: $base*5 0 0;
+    border-top: 1px solid rgba($primaryColor, 0.05);
+    margin: 0;
     padding: $base*5 0 0;
     h2 {
         margin: 0;
@@ -525,6 +534,11 @@ td {
 
     .table {
         width: 100%;
+    }
+
+    #hero {
+        background-position: right top, left 40vh bottom -40vh;
+        background-size: cover, 100% 80vh;
     }
 
     #highlights ul {

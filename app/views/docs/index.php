@@ -1,5 +1,5 @@
 
-<section>
+<section id="hero">
 
     <p>Wayfinder is a simple routing framework for PHP. Inspired by the MVC design pattern, it's the perfect tool for creating simple projects and rapid prototyping.</p>
 
