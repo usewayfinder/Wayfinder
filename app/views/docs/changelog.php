@@ -9,6 +9,15 @@
 
     <?php $format = 'jS M Y'; ?>
 
+    <h3><a href="https://github.com/usewayfinder/Wayfinder/releases/tag/0.9">v0.9</a> <small><?php echo date($format, strtotime('12th March 2021')); ?></small></h4>
+
+    <div class="inset">
+        <ul>
+            <li class="new">Paramaters specified as part of a route were not passed always passed to the controller</li>
+            <li>Routes now reference <code>method</code> instead of <code>function</code></li>
+        </ul>
+    </div>
+
     <h3><a href="https://github.com/usewayfinder/Wayfinder/releases/tag/0.8">v0.8</a> <small><?php echo date($format, strtotime('9th March 2021')); ?></small></h4>
 
     <div class="inset">
