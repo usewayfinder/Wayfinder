@@ -426,8 +426,8 @@ td {
     background: linear-gradient(to left, #FFF, rgba(#FFF, 0) 50%),
                 radial-gradient(rgba($primaryColor, 0.2), rgba($titleColor, 0) 75%) no-repeat;
     background-position: top right, left 20vh bottom -40vh;
-    background-size: cover, 100% 80vh;
-    min-height: 40vh;
+    background-size: cover, 100% 50vh;
+    min-height: 25vh;
     padding: 0 0 $base*5;
 }
 
@@ -538,7 +538,7 @@ td {
 
     #hero {
         background-position: right top, left 40vh bottom -40vh;
-        background-size: cover, 100% 80vh;
+        background-size: cover, 100% 50vh;
     }
 
     #highlights ul {

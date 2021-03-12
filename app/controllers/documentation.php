@@ -10,7 +10,8 @@ class Documentation extends Wayfinder {
         $data = [
             'metaDescription' => $text,
             'pageId' => 'home',
-            'subtitle' => $text
+            'subtitle' => $text,
+            'title' => 'Wayfinder'
         ];
 
         $this->_loadPage('index', $data);
