@@ -9,6 +9,16 @@
 
     <?php $format = 'jS M Y'; ?>
 
+    <h3><a href="https://github.com/usewayfinder/Wayfinder/releases/tag/0.10">v0.10</a> <small><?php echo date($format, strtotime('15th March 2021')); ?></small></h4>
+
+    <div class="inset">
+        <ul>
+            <li>Wayfinder has been rewritten and now handles scenarios more gracefully</li>
+            <li>Wayfinder no longer requires the logic to be triggered by the <code>__construct()</code> method, is now specifically called by the <code>init()</code> method</li>
+            <li>Introducing more detailed unit tests for the Wayfinder framework</li>
+        </ul>
+    </div>
+
     <h3><a href="https://github.com/usewayfinder/Wayfinder/releases/tag/0.9">v0.9</a> <small><?php echo date($format, strtotime('12th March 2021')); ?></small></h4>
 
     <div class="inset">

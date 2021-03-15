@@ -4,298 +4,460 @@
  * Wayfinder
  *----------------------------------------
  *
- * Version v0.1
+ * Version v0.10
  *
  */
 
+# Load required files
+$realPath = realpath(dirname(__FILE__));
+require($realPath.'/Errors.php');
+require($realPath.'/../app/conf/routes.php');
+
 class Wayfinder {
 
-    private $_uri,
-            $_class = false,
-            $_function = 'index',
-            $_params = [],
+    private $_url,
             $_routes = [],
+            $_controller,
+            $_method = 'index',
+            $_params = [],
             $_error,
-            $_mimeType;
-    var $mode;
+            $_mimeType,
+            $_mode;
 
-    // __constructor, begins the routing instantly
+    # __construct()
     function __construct() {
-
-        // only take care of routing if this is Wayfinder being called directly
-        if(get_called_class() == 'Wayfinder') {
-            $this->_init();
-        }
-    }
-
-    private function _init() {
-        $this->mode = php_sapi_name();
-
-        $this->_setURI();
-
-        require_once($this->realFilePath().'Errors.php');
-        $this->_error = new Errors();
-
-        // fetch routes
-        require_once($this->realFilePath().'../app/conf/routes.php');
-
-        $this->_routes = $_routes;
-        // if this is the homepage
-        if($this->_uri === '/') {
-            // check that a default route has been set
-            if(!isset($this->_routes[$this->_uri])) {
-                throw new \Exception("No default route specified", '001');
-            } else {
-                // check if a function has been set
-                if(isset($this->_routes[$this->_uri]['method'])) {
-                    $this->_function = $this->_routes[$this->_uri]['method'];
-                }
-                $this->_class = $this->_routes[$this->_uri]['controller'];
-                if(isset($this->_routes[$this->_uri]['params'])) {
-                    $this->_params = $this->_routes[$this->_uri]['params'];
+        # get the current mode (cli/browser?)
+        $this->_mode = php_sapi_name();
+        # Command line?
+        if($this->_mode == 'cli') {
+            # Secondary check to ignore if phpunit
+            if(strpos($_SERVER['argv'][0], 'phpunit') === FALSE) {
+                // IF the path was passed
+                if(isset($_SERVER['argv'][1])) {
+                    $_SERVER['REQUEST_URI'] = $_SERVER['argv'][1];
+                // ELSE resort to the default route
+                } else {
+                    $_SERVER['REQUEST_URI'] = '/';
                 }
             }
-        } else {
-            // go off and calcualte the route from the URI
-            $this->_calculateRoute();
         }
-        // load the controller
-        $this->_loadController();
     }
 
-    // a public function that can be used to load a file from within the app folder
+    # init()
+    public function init($processUrl = true) {
+
+        # Remove any query strings and make it lower case
+        $url = strtolower(explode('?', $_SERVER['REQUEST_URI'])[0]);
+
+        # Set the MIME type and return the URL
+        $this->_url = $this->_setMimeType($url);
+
+        # IF processing the URL
+        if($processUrl) {
+
+            # IF Error class not yet loaded
+            if(is_null($this->_error)) {
+                // Assign Error class
+                $this->_error = new Errors();
+            }
+
+            # IF ROUTES not yet stored
+            if(is_null($this->_routes) || empty($this->_routes)) {
+                // Store routes
+                $this->_routes = ROUTES;
+            }
+
+            # Direct Wayfinder to the right place
+            $this->_direct();
+
+            # Finally, load the controller
+            $this->_loadController();
+
+        }
+    }
+
+    # realFilePath()
+    public function realFilePath($file = false) {
+        # IF no file specified, use the current file
+        if(!$file) {
+            $file = __FILE__;
+        }
+        # return the real path for the file specified
+        return realpath(dirname($file)).'/';
+    }
+
+    # load()
     public function load($type, $filename, $data = []) {
+        # IF the type of file is a view
         if($type == 'views') {
-            // convert data to variables which is useful for templates
+            # check $data is not null
             if(!is_null($data)) {
+                # FOREACH key in $data, turn it into a variable for use in templates
                 foreach($data as $key => $val) {
-                    // variable variable
                     ${$key} = $val;
                 }
             }
-        }
-
-        // if the file cannot be found
-        if(!@include($this->realFilePath().'../app/'.$type.'/'.$filename.'.php')) {
-            $this->_error->index(404);
-            exit;
+            # SILENTLY load the view
+            !@include($this->realFilePath().'../app/'.$type.'/'.$filename.'.php');
+        # ELSE only load the file once
+        } else {
+            # IF the file cannot be found
+            if(!@include_once($this->realFilePath().'../app/'.$type.'/'.$filename.'.php')) {
+                # 404
+                $this->_error->index(404);
+                exit;
+            }
         }
     }
 
+    # redirect()
     public function redirect($location, $code = 301) {
+        # Take the location and redirect (301/permanent redirect by default)
         header('Location: '.$location, true, $code);
         exit;
     }
 
+    # error()
     public function error($error) {
+        # Return the appropriate error
         return $this->_error->error($error);
     }
 
-    public function realFilePath($file = false) {
-        if(!$file) {
-            $file = __FILE__;
-        }
-        return realpath(dirname($file)).'/';
-    }
-
-    public function b64d($input, $salt = false) {
-        return base64_decode($input);
-    }
-
-    public function b64e($input, $salt = false) {
-        return base64_encode($input);
-    }
-
+    # getMimeType()
     public function getMimeType() {
-        $cleanUrl = $this->_cleanUrl();
-        $this->_setMimeType($cleanUrl);
+        # IF the URL is not set correctly
+        if(is_null($this->_url)) {
+            # Set the URL but do not reprocess Wayfinder routing
+            $this->init(false);
+        }
+        # Set the MiME type based on the URL
+        $this->_setMimeType($this->_url);
+        # Return MIME type
         return $this->_mimeType;
     }
 
-    private function _setURI() {
-        // check this isn't the command line or if this is PHPUNIT
-        if($this->mode != 'cli' || strpos($_SERVER['argv'][0], 'phpunit') !== FALSE) {
-            // ignore query strings
-            $cleanUrl = $this->_cleanUrl();
-            $cleanerUrl = $this->_setMimeType($cleanUrl);
-            $this->_uri = $cleanerUrl;
+    # _direct()
+    private function _direct() {
+        # IF this isn't the default route
+        if($this->_url != '/') {
+            # Calculate which controller to use
+            $this->_calculateController();
         } else {
-            if(isset($_SERVER['argv'][1])) {
-                $this->_uri = $_SERVER['argv'][1];
-            } else {
-                $this->_uri = '/';
-            }
+            # Take the default route's controller and use it
+            $this->_controller = $this->_routes['/']['controller'];
+            # Take the URL parts and calculate the correct method to use
+            $urlParts = $this->_calculateMethodWithRoute($this->_routes['/'], 0, 0, []);
         }
     }
 
-    private function _cleanUrl() {
-        return explode('?', $_SERVER['REQUEST_URI'])[0];
-    }
-
-    // calculate what how the routing should be handled
-    private function _calculateRoute() {
-
-        // now check if routing is required
-        $this->_checkIfRoutingRequired();
-
-        // if the class is empty after checking the routes
-        if(!$this->_class) {
-            // break apart the URL
-            $parts = explode('/', $this->_uri);
-            $parts = $this->_tidyParams($parts);
-            $this->_class = $parts[0];
-            if(isset($parts[1])) {
-                $this->_function = $parts[1];
-            }
-            if(isset($parts[2])) {
-                array_push($this->_params, array_slice($parts, 2));
-            }
+    # _calculateController()
+    private function _calculateController() {
+        # IF this is not a valid route
+        if(!$this->_checkRoutes()) {
+            # Take the URL and convert it to call the most apprioriate controller
+            $this->_urlToController();
         }
     }
 
-    // check if a specific route that overrides the expected /controller/function input
-    private function _checkIfRoutingRequired() {
-        // loop through the defined routes
-        foreach($this->_routes as $route => $parts) {
-            // as long as this isn't the root route
+    # _checkRoutes()
+    private function _checkRoutes() {
+        # Assume route is not valud
+        $validRoute = false;
+
+        #FOREACH route, break it into it's route and the associated config
+        foreach($this->_routes as $route => $config) {
+
+            # Ignore the default route
             if($route != '/') {
-                // check the route is valid
-                if($this->_validRoute($route)) {
-                    // set the controller
-                    $this->_class = $parts['controller'];
-                    // break the route apart
-                    $pathParams = explode($route, $this->_uri);
-                    // break the path into parts
-                    $pathParts = explode('/', $pathParams[1]);
-                    // tidy up the params
-                    $pathParts = $this->_tidyParams($pathParts);
-                    // if the function param is defined
-                    if(isset($parts['method'])) {
-                        // check that it's not numeric
-                        if(!is_numeric($parts['method'])) {
-                            // then assign it
-                            $this->_function = $parts['method'];
-                        // if it is numeric
+
+                # IF the route was found
+                if($this->_routeFound($route)) {
+
+                    # Explode the route into parts
+                    # Tidy the parts to remove empty elements at the beginning and end
+                    $routeParts = explode('/', $route);
+                    $routeParts = $this->_tidyPathArray($routeParts);
+
+                    # Explode the URL into parts
+                    # Tidy the parts to remove empty elements at the beginning and end
+                    $urlParts = explode('/', $this->_url);
+                    $urlParts = $this->_tidyPathArray($urlParts);
+
+                    # Iterator for calculating when a route stops and params begin
+                    $i = 0;
+
+                    # FOREACH part of the route
+                    foreach($routeParts as $part) {
+                        # IF this part of the route matches the URL
+                        if(isset($urlParts[$i]) && $urlParts[$i] == $part) {
+                            # Increment the iterator
+                            $i++;
                         } else {
-                            // figure out what the resulting index is
-                            $index = $parts['method']-2;
-                            // check that the URL part exists
-                            if(isset($pathParts[$index])) {
-                                // set the function accordingly
-                                $this->_function = $pathParts[$index];
-                                // then remove the item so that it isn't reused as a param
-                                unset($pathParts[$index]);
-                            }
+                            # We're at the end of the route
+                            # Break out of the foreach loop
+                            break;
                         }
                     }
-                    if(isset($pathParts['params'])) {
-                        $this->_params = $pathParts['params'];
+
+                    # Store the matched route
+                    # Assign the controller
+                    $matchedRoute = $this->_routes[$route];
+                    $this->_controller = $matchedRoute['controller'];
+
+                    # IF the matched route has a method
+                    if(isset($matchedRoute['method'])) {
+                        # IF the method is named
+                        if(!is_numeric($matchedRoute['method'])) {
+                            # Assign the method name
+                            $this->_method = $matchedRoute['method'];
+                            # Remove the controller and method from the parts of the URL
+                            $urlParts = array_slice($urlParts, $i);
+                            # Calculate what the params should be based on the route config and the URL
+                            $this->_calculateParams($matchedRoute, $urlParts);
+                        # ELSE
+                        } else {
+                            # Calculate the Index of the method in the URL
+                            $methodIndex = $matchedRoute['method'] + $i - 1;
+                            # Calcualte what the params should be based on the route config and the URL
+                            $urlParts = $this->_calculateMethodWithRoute($matchedRoute, $methodIndex, $i, $urlParts);
+                        }
                     }
-                    if(!!$pathParts) {
-                        $this->_params = array_merge($this->_params, $pathParts);
-                    }
-                    return true;
+
+                    # The route has been validated
+                    $validRoute = true;
+
+                    # No more checks required
+                    # Break out of the foreach loop
+                    break;
+
+                }
+            }
+
+        }
+
+        # return the valid route
+        return $validRoute;
+    }
+
+    # _calculateMethodWithRoute()
+    private function _calculateMethodWithRoute($routeConfig, $methodIndex, $controllerCount, $urlParts) {
+        # IF the route has a method
+        if(isset($routeConfig['method'])) {
+            # IF the method is named
+            if(!is_numeric($routeConfig['method'])) {
+                # Store the method name
+                $this->_method = $routeConfig['method'];
+            # ELSE
+            } else {
+                # IF the URL has enough parts
+                if(isset($urlParts[$methodIndex])) {
+                    # Store the method name
+                    $this->_method = $urlParts[$methodIndex];
+                    # Remove method from the URL parts
+                    unset($urlParts[$methodIndex]);
+
+                    # Break the URL apart to help identify the params
+                    $urlParams = array_slice($urlParts, $controllerCount);
+
+                    # Calcualte the params that should be passed
+                    $this->_calculateParams($routeConfig, $urlParams);
+                # ELSE
+                } else {
+                    # Method was expectd, but is not available
+                    $this->_method = false;
                 }
             }
         }
-        return false;
+        # return the remaining parts of the URL
+        return $urlParts;
     }
 
-    // the logic for deciding if the route is valid
-    private function _validRoute($route) {
-        // keep this for later
-        $uriLength = strlen($this->_uri);
-        // if the route matches exactly
-        if($this->_uri == $route) {
-            return true;
+    # _calculateParams()
+    private function _calculateParams($routeConfig, $additionalParams) {
+        # IF params are set in the route config
+        if(isset($routeConfig['params'])) {
+            # Store the predefined params
+            $this->_params = $routeConfig['params'];
         }
-        // if the route matches exactly (but has a trailing slash)
-        if(substr($this->_uri, -1) == '/' && substr($this->_uri, 0, $uriLength-1) == $route) {
-            return true;
-        }
-        // this is the route + a trailing slash + more content
-        if(strpos($this->_uri, $route.'/') === 0) {
-            return true;
-        }
-        return false;
-    }
-
-    // when it's all said and done, load the controller and run the correct function
-    private function _loadController() {
-        $this->load('controllers', $this->_class);
-        if(class_exists($this->_class)) {
-            $c = new $this->_class;
-            $function = $this->_function;
-            // call the function and pass the params indivudally instead of as an array
-            if(method_exists($c, $function)) {
-                $c->$function(...$this->_params);
+        # IF there are additional params
+        if(!empty($additionalParams)) {
+            # IF there are existing params stored
+            if(!is_null($this->_params)) {
+                # Merge the exisitng and additional params
+                $this->_params = array_merge($this->_params, $additionalParams);
             } else {
+                # Store the params
+                $this_params = $additionalParams;
+            }
+        }
+    }
+
+    # _urlToController()
+    private function _urlToController() {
+        # Break apart the URL
+        # Tidy the params
+        $urlParts = explode('/', $this->_url);
+        $urlParts = $this->_tidyPathArray($urlParts);
+
+        # The first part of the URL is the controller
+        $this->_controller = $urlParts[0];
+        # IF there's a second part
+        if(isset($urlParts[1])) {
+            # Use that as the method
+            $this->_method = $urlParts[1];
+        }
+        # The params are anything else that's left
+        $this->_params = array_splice($urlParts, 2);
+    }
+
+    # _routeFound()
+    private function _routeFound($route) {
+        # IF there is a trailing slash
+        if(substr($route, -1) == '/') {
+            # Remove the trailing slash
+            $route = substr($route, 0, -1);
+        }
+
+        # Get the length of the URL
+        $uriLength = strlen($this->_url);
+        # IF the route matches the URL
+        if($route === $this->_url) {
+            # route found!
+            return true;
+        }
+
+        # IF the URL starts ends with a slash AND it matches a route
+        if(substr($this->_url, -1) == '/' && substr($this->url, 0, $uriLength-1) == $route) {
+            # route found!
+            return true;
+        }
+        # IF this is the route + a trailing slash + more content
+        if(strpos($this->_url, $route.'/') === 0) {
+            # route found!
+            return true;
+        }
+        # no route found :(
+        return false;
+    }
+
+    # _tidyPathArray()
+    private function _tidyPathArray($pathArray) {
+        # first item is empty? drop it
+        if($pathArray[0] == '') {
+            array_shift($pathArray);
+        }
+        # last item is empty? drop it
+        if(end($pathArray) == '') {
+            array_pop($pathArray);
+        }
+        # If the array is not empty now
+        if(count($pathArray) > 0) {
+            # return the array
+            return $pathArray;
+        }
+        return false;
+    }
+
+    # _loadController
+    private function _loadController() {
+        # Load the specified controller
+        $this->load('controllers', $this->_controller);
+        # IF the class exists (matching controller name)
+        if(class_exists($this->_controller)) {
+            # Invoke the controller
+            $c = new $this->_controller;
+            # Store the method
+            $method = $this->_method;
+            # IF the method exists in the class
+            if(method_exists($c, $method)) {
+                # Call the method along with it's params
+                $c->$method(...$this->_params);
+            # ELSE
+            } else {
+                # 404
                 $this->_error->index(404);
                 exit;
             }
+        # ELSE
         } else {
+            # 404
             $this->_error->index(404);
             exit;
         }
     }
 
-    // tidy up parameters by chopping off empty starting and ending elements
-    private function _tidyParams($params) {
-        // first item is empty? drop it
-        if($params[0] == '') {
-            array_shift($params);
-        }
-        // last item is empty? drop it
-        if(end($params) == '') {
-            array_pop($params);
-        }
-        if(count($params) > 0) {
-            return $params;
-        }
-        return false;
-    }
-
+    # _setMimeType()
     private function _setMimeType($url) {
+        # Break apart the URL
         $parts = explode('/', $url);
+        # Break the last part of the URL to check for file extensions
         $filenameParts = explode('.', end($parts));
         $validExtensions = [
             'rss',
+            'atom',
             'xml',
             'json',
             'txt',
             'html'
         ];
-        if(in_array(end($filenameParts), $validExtensions)) {
-            switch(end($filenameParts)) {
+        # The header shouldn't need to be header suppressed
+        $suppressHeader = false;
+        # IF this is phpunit though, suppress away
+        if(isset($_SERVER['argv'][0]) && strpos($_SERVER['argv'][0], 'phpunit') !== FALSE) {
+            $suppressHeader = true;
+        }
+        # Store the extensions
+        $extension = end($filenameParts);
+        # IF the last part is a valid extension that Wayfinder can deal with
+        if(in_array($extension, $validExtensions)) {
+            # Switch based on the extension
+            switch($extension) {
                 case 'rss':
                     $this->_mimeType = 'rss';
-                    header('Content-Type: application/xml; charset=utf-8');
+                    if(!$suppressHeader) {
+                        header('Content-Type: application/xml; charset=utf-8');
+                    }
                     break;
                 case 'atom':
                     $this->_mimeType = 'atom';
-                    header('Content-Type: application/xml; charset=utf-8');
+                    if(!$suppressHeader) {
+                        header('Content-Type: application/xml; charset=utf-8');
+                    }
                     break;
                 case 'xml':
                     $this->_mimeType = 'xml';
-                    header('Content-Type: application/xml; charset=utf-8');
+                    if(!$suppressHeader) {
+                        header('Content-Type: application/xml; charset=utf-8');
+                    }
                     break;
                 case 'json':
                     $this->_mimeType = 'json';
-                    header('Content-Type: application/json');
+                    if(!$suppressHeader) {
+                        header('Content-Type: application/json');
+                    }
                     break;
                 case 'txt':
                     $this->_mimeType = 'txt';
-                    header('Content-Type:text/plain');
+                    if(!$suppressHeader) {
+                        header('Content-Type:text/plain');
+                    }
                     break;
                 default:
                     $this->_mimeType = 'html';
-                    header('Content-Type:text/html');
+                    if(!$suppressHeader) {
+                        header('Content-Type:text/html');
+                    }
             }
+            # Remove the extension from the filename parts
             array_pop($filenameParts);
         }
+        # Rejoin the filename without the extension, catering for any periods the name included before
         $reconstructedFilename = join('.', $filenameParts);
+        # Pop the entire filename from the original URL
         array_pop($parts);
+        # Re-add the filename, minus the extension
         array_push($parts, $reconstructedFilename);
+        # Return the joint URL
         return join('/', $parts);
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-$_routes = [
+$routes = [
     '/' => [
         'controller' => 'documentation',
         'method' => 'home'
@@ -20,5 +20,14 @@ $_routes = [
     '/foo' => [
         'controller' => 'test',
         'method' => 3
+    ],
+    '/bar' => [
+        'controller' => 'test',
+        'method' => 3,
+        'params' => [
+            'predefinedparam'
+        ]
     ]
 ];
+
+define('ROUTES', $routes);

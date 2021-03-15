@@ -13,3 +13,4 @@ require_once '../framework/Wayfinder.php';
 
 // Let's go!
 $wf = new Wayfinder();
+$wf->init();
