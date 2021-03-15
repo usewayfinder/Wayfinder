@@ -423,9 +423,10 @@ td {
 }
 
 #hero {
-    background: linear-gradient(to left, #FFF, rgba(#FFF, 0) 50%),
-                radial-gradient(rgba($primaryColor, 0.2), rgba($titleColor, 0) 75%) no-repeat;
+    background-image: linear-gradient(to left, #FFF, rgba(#FFF, 0) 50%),
+                radial-gradient(rgba($primaryColor, 0.2), rgba($titleColor, 0) 75%);
     background-position: top right, left 20vh bottom -40vh;
+    background-repeat: no-repeat;
     background-size: cover, 100% 50vh;
     min-height: 25vh;
     padding: 0 0 $base*5;
@@ -567,5 +568,9 @@ td {
         --asideBg: #622;
         --asideText: #FDD;
         --codeSpans: #DEF;
+    }
+
+    #hero {
+        background-image: none;
     }
 }
