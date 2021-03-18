@@ -1,6 +1,6 @@
 # Wayfinder ↗︎
 
-A simple routing framework for PHP ([v0.10](https://www.usewayfinder.com/changelog))
+A simple routing framework for PHP ([v0.11](https://www.usewayfinder.com/changelog))
 
 ## Documentation
 Read the [documentation for Wayfinder](https://www.usewayfinder.com/documentation) or take a look at the [examples](https://www.usewayfinder.com/examples). The documentation is built into the framework and a great illustration of how it works.

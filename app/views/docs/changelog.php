@@ -9,6 +9,14 @@
 
     <?php $format = 'jS M Y'; ?>
 
+    <h3><a href="https://github.com/usewayfinder/Wayfinder/releases/tag/0.11">v0.11</a> <small><?php echo date($format, strtotime('18th March 2021')); ?></small></h4>
+
+    <div class="inset">
+        <ul>
+            <li class="new">Introducing <a href="/documenation/routes#catchall">catch all routes</a> to Wayfinder</li>
+        </ul>
+    </div>
+
     <h3><a href="https://github.com/usewayfinder/Wayfinder/releases/tag/0.10">v0.10</a> <small><?php echo date($format, strtotime('15th March 2021')); ?></small></h4>
 
     <div class="inset">

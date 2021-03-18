@@ -31,6 +31,7 @@
                 <li><a href="#predefinedparams">Routes with predefined parameters</a></li>
                 <li><a href="#combiningparams">Combining parameters</a></li>
                 <li><a href="#numberedmethodsinroutes">Numbered methods in routes</a></li>
+                <li><a href="#catchall">Catch all in routes</a></li>
                 <li><a href="#aware">Things to be aware of</a></li>
                 <li><a href="#duplicates">Duplicate content</a></li>
                 <li><a href="#querystrings">Query strings</a></li>

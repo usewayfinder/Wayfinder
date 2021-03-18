@@ -283,6 +283,12 @@ $wf->home();</pre></code>
 
             <p>This is an extreme example of how you can make routes work for your app, but it becomes useful when you want a route to map to a Class and want to call it's methods without having to define a route for each of them.</p>
 
+            <h3 id="catchall"><a href="#catchall" aria-label="Link to catch all routes">¶</a> Catch all routes</h3>
+
+            <p>Wayfinder can optionally map the first param as a user generated path (think <code>/username</code>) when no route or controller matches. You need to change the <code>__CATCH_FIRST_PARAM</code> setting in the <code>conf.php</code> file to <code>true</code>.</p>
+
+            <p>If your path was <code>/username</code>, this can be interpreted as <code>/defaultRouteController/defaultRouteMethod/username</code>. As with all custom routes, you can predefine paramters in <code>routes.php</code> and you can pass additional parameters in the URL. If additional paramaters are not allowed or you wish to throw an error in certain scenarios (no matching record), then this must be handled by the application logic. Please read the documentation for on <a href="/documentation/errors">errors in Wayfinder</a>.</p>
+
         </section>
 
         <section>
@@ -297,17 +303,17 @@ $wf->home();</pre></code>
                 <p>This can cause situations where you think a route should return a 404 but it doesn't. As describe above, this is Wayfinder intentionally treating the additional characters as parameters.</p>
             </aside>
 
-            <h3><a href="#duplicates" aria-label="Duplicate content">¶</a> Duplicate content</h3>
+            <h3 id="duplicates"><a href="#duplicates" aria-label="Duplicate content">¶</a> Duplicate content</h3>
 
             <p>Adding more parameters to a URL can create duplicate content if not handled correctly.</p>
 
             <p>Either this can be dealt with in the controller's logic or your markup can use the <code>rel="canonical"</code> attribute to help search engines find the right content.</p>
 
-            <h3><a href="#querystrings" aria-label="Query Strings">¶</a> Query strings</h3>
+            <h3 id="querystrings"><a href="#querystrings" aria-label="Query Strings">¶</a> Query strings</h3>
 
             <p>Query strings can be used for things like cache breaking if required (for things like CDNs), but they are ignored by Wayfinder's internal routing.</p>
 
-            <h3><a href="#errors" aria-label="Error messages">¶</a> Error messages</h3>
+            <h3 id="errors"><a href="#errors" aria-label="Error messages">¶</a> Error messages</h3>
 
             <p>If a matching Class, method or route can't be found, a 404 page will be returned. These pages use the default layout and styling as the docs pages but you can change this in the <code>_displayError</code> method found in the <code>app/controllers/Error.php</code> file.</p>
 

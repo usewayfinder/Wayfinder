@@ -4,14 +4,15 @@
  * Wayfinder
  *----------------------------------------
  *
- * Version v0.10
+ * Version v0.11
  *
  */
 
 # Load required files
 $realPath = realpath(dirname(__FILE__));
-require($realPath.'/Errors.php');
+require($realPath.'/../app/conf/conf.php');
 require($realPath.'/../app/conf/routes.php');
+require($realPath.'/Errors.php');
 
 class Wayfinder {
 
@@ -155,7 +156,19 @@ class Wayfinder {
         # IF this is not a valid route
         if(!$this->_checkRoutes()) {
             # Take the URL and convert it to call the most apprioriate controller
-            $this->_urlToController();
+            if(!$this->_urlToController()) {
+                $this->_controller = $this->_routes['/']['controller'];
+                if(isset($this->_routes['/']['method'])) {
+                    $this->_method = $this->_routes['/']['method'];
+                }
+                $pathParams = explode('/', $this->_url);
+                $pathParams = $this->_tidyPathArray($pathParams);
+                $params = [];
+                if(isset($this->_routes['/']['params'])) {
+                    $params = $this->_routes['/']['params'];
+                }
+                $this->_params = array_merge($params, $pathParams);
+            }
         }
     }
 
@@ -301,13 +314,21 @@ class Wayfinder {
 
         # The first part of the URL is the controller
         $this->_controller = $urlParts[0];
-        # IF there's a second part
-        if(isset($urlParts[1])) {
-            # Use that as the method
-            $this->_method = $urlParts[1];
+
+        # IF the Catch All is disabled, then carry on
+        # OR
+        # IF the Catch all is enabled AND the controller specified exists, then carry on
+        if(!__CATCH_FIRST_PARAM || (__CATCH_FIRST_PARAM && file_exists($this->realFilePath().'../app/controllers/'.$this->_controller.'.php'))) {
+            # IF there's a second part
+            if(isset($urlParts[1])) {
+                # Use that as the method
+                $this->_method = $urlParts[1];
+            }
+            # The params are anything else that's left
+            $this->_params = array_splice($urlParts, 2);
+            return true;
         }
-        # The params are anything else that's left
-        $this->_params = array_splice($urlParts, 2);
+        return false;
     }
 
     # _routeFound()

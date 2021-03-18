@@ -3,7 +3,10 @@
 $routes = [
     '/' => [
         'controller' => 'documentation',
-        'method' => 'home'
+        'method' => 'home',
+        'params' => [
+            'test'
+        ]
     ],
     '/examples' => [
         'controller' => 'documentation',
