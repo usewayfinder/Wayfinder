@@ -27,17 +27,20 @@ class DB {
 
     public function query($sql) {
         $content = false;
-        $sql = $this->escape($sql);
+        $sql = $sql;
         $results = $this->conn->query($sql);
 
-        if($results->num_rows == 1) {
-            $content = [$results->fetch_assoc()];
-        } else if($results->num_rows > 1) {
-            while($row = $results->fetch_assoc()) {
-                $content[] = $row;
+        if(is_object($results)) {
+            if($results->num_rows == 1) {
+                $content = [$results->fetch_assoc()];
+            } else if($results->num_rows > 1) {
+                while($row = $results->fetch_assoc()) {
+                    $content[] = $row;
+                }
             }
+            return $content;
         }
-        return $content;
+        return $results;
     }
 
     public function select($sql) {

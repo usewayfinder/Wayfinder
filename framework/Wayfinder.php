@@ -348,7 +348,7 @@ class Wayfinder {
         }
 
         # IF the URL starts ends with a slash AND it matches a route
-        if(substr($this->_url, -1) == '/' && substr($this->url, 0, $uriLength-1) == $route) {
+        if(substr($this->_url, -1) == '/' && substr($this->_url, 0, $uriLength-1) == $route) {
             # route found!
             return true;
         }

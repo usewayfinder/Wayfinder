@@ -15,7 +15,11 @@ class Users extends Wayfinder {
     }
 
     public function getUser($id) {
-        return $this->_users[$id-1];
+        if($id > 0 && isset($this->_users[$id-1])) {
+            return $this->_users[$id-1];
+        } else {
+            return false;
+        }
     }
 
 }

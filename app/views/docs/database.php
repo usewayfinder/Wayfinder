@@ -34,7 +34,7 @@
 
             <h2 id="escape"><a href="#escape" aria-label="escape()">¶</a> escape()</h2>
 
-            <p>Every query is run through the <code>escape()</code> method, a wrapper for <code>mysqli_real_escape_string</code>. You can escape your own inputs if required by calling the method like so:</p>
+            <p><code>escape()</code> is a wrapper for PHP's own <code>mysqli_real_escape_string</code> method. You should escape your own inputs, especially when the content is user generated. You can call it when constructing your queries like so:</p>
 
             <code><pre>public function addItem($name) {
     $sql = "INSERT INTO myTable (column1, column2)

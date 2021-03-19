@@ -67,7 +67,7 @@ class Documentation extends Wayfinder {
         $this->_loadPage('controllers', $data);
     }
 
-    public function models($subSection = false) {
+    public function models($subSection = false, $id = 0) {
         if(!$subSection) {
             $data = [
                 'metaDescription' => 'Documentation on how models works in Wayfinder, allowing you to manage your data and protoype rapidly',
@@ -76,7 +76,7 @@ class Documentation extends Wayfinder {
 
             $this->_loadPage('models', $data);
         } else {
-            if($subSection[0] == 'demo-users') {
+            if($subSection == 'demo-users') {
                 $this->load('models', 'Users');
                 $page = 'demo-users';
                 $users = new Users;
@@ -85,15 +85,24 @@ class Documentation extends Wayfinder {
                     'title' => 'User model demo',
                     'users' => $users->getUsers()
                 ];
-            } else if($subSection[0] == 'demo-user') {
+            } else if($subSection == 'demo-user') {
                 $this->load('models', 'Users');
                 $page = 'demo-user';
-                $users = new Users;
-                $data = [
-                    'noIndex' => true,
-                    'user' => $users->getUser($subSection[1])
-                ];
-                $data['title'] = 'User model demo: '.$data['user']['name']['first'].' '.$data['user']['name']['last'];
+                if($id > 0 && $id <= 10) {
+                    $users = new Users;
+                    $user = $users->getUser($id);
+                    $data = [
+                        'noIndex' => true,
+                        'user' => $user
+                    ];
+                    $data['title'] = 'User model demo: '.$user['name']['first'].' '.$user['name']['last'];
+                } else {
+                    $data = [
+                        'noIndex' => true,
+                        'user' => false,
+                        'title' => 'This user does not exist'
+                    ];
+                }
             }
             $this->_loadPage($page, $data);
         }
