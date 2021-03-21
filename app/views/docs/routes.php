@@ -287,7 +287,11 @@ $wf->home();</pre></code>
 
             <p>Wayfinder can optionally map the first param as a user generated path (think <code>/username</code>) when no route or controller matches. You need to change the <code>__CATCH_FIRST_PARAM</code> setting in the <code>conf.php</code> file to <code>true</code>.</p>
 
-            <p>If your path was <code>/username</code>, this can be interpreted as <code>/defaultRouteController/defaultRouteMethod/username</code>. As with all custom routes, you can predefine paramters in <code>routes.php</code> and you can pass additional parameters in the URL. If additional paramaters are not allowed or you wish to throw an error in certain scenarios (no matching record), then this must be handled by the application logic. Please read the documentation for on <a href="/documentation/errors">errors in Wayfinder</a>.</p>
+            <p>If your path was <code>/username</code>, this can be interpreted as <code>/defaultRouteController/defaultRouteMethod/username</code>. As with all custom routes, you can predefine paramters in <code>routes.php</code> and you can pass additional parameters in the URL.</p>
+
+            <aside>
+                <p>If additional paramaters are not allowed or you wish to throw an error in certain scenarios (no matching record), then this must be handled by the application logic. Please read the documentation for on <a href="/documentation/errors">errors in Wayfinder</a>.</p>
+            </aside>
 
         </section>
 
