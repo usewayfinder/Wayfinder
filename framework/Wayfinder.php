@@ -29,8 +29,11 @@ class Wayfinder {
     function __construct() {
         # get the current mode (cli/browser?)
         $this->_mode = php_sapi_name();
-        # Command line?
-        if($this->_mode == 'cli') {
+        # IF not command line
+        if($this->_mode != 'cli') {
+            $this->_checkMaintenanceMode();
+        # else
+        } else {
             # Secondary check to ignore if phpunit
             if(strpos($_SERVER['argv'][0], 'phpunit') === FALSE) {
                 // IF the path was passed
@@ -135,6 +138,13 @@ class Wayfinder {
         $this->_setMimeType($this->_url);
         # Return MIME type
         return $this->_mimeType;
+    }
+
+    private function _checkMaintenanceMode() {
+        if(__MAINTENANCE_MODE) {
+            echo file_get_contents($this->realFilePath().'../www/maintenance.html');
+            exit;
+        }
     }
 
     # _direct()
