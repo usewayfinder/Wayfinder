@@ -49,6 +49,15 @@ class Documentation extends Wayfinder {
         $this->_loadPage('changelog', $data);
     }
 
+    public function config() {
+        $data = [
+            'metaDescription' => 'Documentation on how the config.php file works in Wayfinder',
+            'title' => 'Config file'
+        ];
+
+        $this->_loadPage('config', $data);
+    }
+
     public function routes() {
         $data = [
             'metaDescription' => 'Documentation on how routing works in Wayfinder, allowing you to protoype rapidly',

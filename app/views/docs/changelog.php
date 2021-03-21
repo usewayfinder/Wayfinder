@@ -9,6 +9,14 @@
 
     <?php $format = 'jS M Y'; ?>
 
+    <h3><a href="https://github.com/usewayfinder/Wayfinder/releases/tag/0.12">v0.12</a> <small><?php echo date($format, strtotime('21st March 2021')); ?></small></h4>
+
+    <div class="inset">
+        <ul>
+            <li class="new"><a href="/documenation/config">Config file</a> expanded to bring maintenance and production mode flags to Wayfinder</li>
+        </ul>
+    </div>
+
     <h3><a href="https://github.com/usewayfinder/Wayfinder/releases/tag/0.11">v0.11</a> <small><?php echo date($format, strtotime('18th March 2021')); ?></small></h4>
 
     <div class="inset">

@@ -13,6 +13,9 @@
             </ul>
             <?php } ?>
         </li>
+        <li <?php if($_SERVER['REQUEST_URI'] == '/documentation/config') {echo 'class="active"';} ?>>
+            <a href="/documentation/config">Config</a>
+        </li>
         <li <?php if($_SERVER['REQUEST_URI'] == '/documentation/routes') {echo 'class="active has-children"';} ?>>
             <a href="/documentation/routes">Routes</a>
             <?php if($_SERVER['REQUEST_URI'] == '/documentation/routes') { ?>

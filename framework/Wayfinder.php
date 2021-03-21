@@ -4,13 +4,13 @@
  * Wayfinder
  *----------------------------------------
  *
- * Version v0.11
+ * Version v0.12
  *
  */
 
 # Load required files
 $realPath = realpath(dirname(__FILE__));
-require($realPath.'/../app/conf/conf.php');
+require($realPath.'/../app/conf/config.php');
 require($realPath.'/../app/conf/routes.php');
 require($realPath.'/Errors.php');
 
