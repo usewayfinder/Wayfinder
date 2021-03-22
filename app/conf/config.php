@@ -6,6 +6,13 @@ define('__MAINTENANCE_MODE', false);
 # treat /xyz as user defined route
 define('__CATCH_FIRST_PARAM', false);
 
+# List of files to use as error templates
+define('__ERROR_TEMPLATES', [
+    'docs/global/header',
+    'errors',
+    'docs/global/footer'
+]);
+
 # Are we in production?
 function setMode($var) {
     $env = getenv($var);

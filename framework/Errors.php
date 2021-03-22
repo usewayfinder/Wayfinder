@@ -18,9 +18,9 @@ class Errors extends Wayfinder {
         }
 
         if($this->mode != 'cli') {
-            $this->load('views', 'docs/global/header', $data);
-            $this->load('views', 'errors', $data);
-            $this->load('views', 'docs/global/footer', $data);
+            foreach(__ERROR_TEMPLATES as $templates) {
+                $this->load('views', $templates, $data);
+            }
         } else {
             echo $data['title'].' ('.$error.'). '.strip_tags($data['content']);
         }
