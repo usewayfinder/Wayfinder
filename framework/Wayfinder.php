@@ -51,7 +51,7 @@ class Wayfinder {
     public function init($processUrl = true) {
 
         # Remove any query strings and make it lower case
-        $url = strtolower(explode('?', $_SERVER['REQUEST_URI'])[0]);
+        $url = explode('?', $_SERVER['REQUEST_URI'])[0];
 
         # Set the MIME type and return the URL
         $this->_url = $this->_setMimeType($url);
@@ -135,16 +135,10 @@ class Wayfinder {
             $this->init(false);
         }
         # Set the MiME type based on the URL
-        $this->_setMimeType($this->_url);
+        $url = strtolower($this->_url);
+        $this->_setMimeType($url);
         # Return MIME type
         return $this->_mimeType;
-    }
-
-    private function _checkMaintenanceMode() {
-        if(__MAINTENANCE_MODE) {
-            echo file_get_contents($this->realFilePath().'../www/maintenance.html');
-            exit;
-        }
     }
 
     # _direct()
@@ -275,7 +269,7 @@ class Wayfinder {
                 # IF the URL has enough parts
                 if(isset($urlParts[$methodIndex])) {
                     # Store the method name
-                    $this->_method = $urlParts[$methodIndex];
+                    $this->_method = strtolower($urlParts[$methodIndex]);
                     # Remove method from the URL parts
                     unset($urlParts[$methodIndex]);
 
@@ -323,7 +317,7 @@ class Wayfinder {
         $urlParts = $this->_tidyPathArray($urlParts);
 
         # The first part of the URL is the controller
-        $this->_controller = $urlParts[0];
+        $this->_controller = strtolower($urlParts[0]);
 
         # IF the Catch All is disabled, then carry on
         # OR
@@ -332,7 +326,7 @@ class Wayfinder {
             # IF there's a second part
             if(isset($urlParts[1])) {
                 # Use that as the method
-                $this->_method = $urlParts[1];
+                $this->_method = strtolower($urlParts[1]);
             }
             # The params are anything else that's left
             $this->_params = array_splice($urlParts, 2);
@@ -358,7 +352,7 @@ class Wayfinder {
         }
 
         # IF the URL starts ends with a slash AND it matches a route
-        if(substr($this->_url, -1) == '/' && substr($this->_url, 0, $uriLength-1) == $route) {
+        if(substr($this->_url, -1) == '/' && substr($this->url, 0, $uriLength-1) == $route) {
             # route found!
             return true;
         }
