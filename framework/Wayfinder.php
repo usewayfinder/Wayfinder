@@ -31,7 +31,7 @@ class Wayfinder {
         $this->_mode = php_sapi_name();
         # IF not command line
         if($this->_mode != 'cli') {
-            $this->_checkMaintenanceMode();
+            //$this->_checkMaintenanceMode();
         # else
         } else {
             # Secondary check to ignore if phpunit
