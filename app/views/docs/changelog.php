@@ -13,7 +13,7 @@
 
     <div class="inset">
         <ul>
-            <li class="new"><a href="/documenation/config">Config file</a> expanded to bring maintenance and production mode flags to Wayfinder</li>
+            <li class="new"><a href="/documentation/config">Config file</a> expanded to bring maintenance and production mode flags to Wayfinder</li>
         </ul>
     </div>
 
@@ -21,7 +21,7 @@
 
     <div class="inset">
         <ul>
-            <li class="new">Introducing <a href="/documenation/routes#catchall">catch all routes</a> to Wayfinder</li>
+            <li class="new">Introducing <a href="/documentation/routes#catchall">catch all routes</a> to Wayfinder</li>
         </ul>
     </div>
 
