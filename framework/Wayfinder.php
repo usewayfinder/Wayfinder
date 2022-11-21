@@ -413,6 +413,10 @@ class Wayfinder {
 
     # _setMimeType()
     private function _setMimeType($url) {
+        // if the mime type has been set already, stop here
+        if(!is_null($this->_mimeType)) {
+            return $url;
+        }
         # Break apart the URL
         $parts = explode('/', $url);
         # Break the last part of the URL to check for file extensions
