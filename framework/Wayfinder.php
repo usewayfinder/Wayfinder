@@ -473,8 +473,11 @@ class Wayfinder {
                         header('Content-Type:text/html');
                     }
             }
-            # Remove the extension from the filename parts
-            array_pop($filenameParts);
+            // if this wasn't the entire path
+            if(count($filenameParts) > 1) {
+                # Remove the extension from the filename parts
+                array_pop($filenameParts);
+            }
         }
         # Rejoin the filename without the extension, catering for any periods the name included before
         $reconstructedFilename = join('.', $filenameParts);
