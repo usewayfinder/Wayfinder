@@ -6,7 +6,7 @@ if ($_ENV['TEST_NAME'] === 'GitHubActions') {
     $unitTestPathPrefix = '/../../..';
 }
 
-require_once $unitTestPathPrefix.'/framework/Wayfinder.php';
+require_once $unitTestPathPrefix.'/../framework/Wayfinder.php';
 require_once $unitTestPathPrefix.'/controllers/documentation.php';
 
 final class DocumentationTest extends TestCase
