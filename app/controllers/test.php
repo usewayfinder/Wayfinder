@@ -37,16 +37,42 @@ class Test extends Wayfinder
     {
     }
 
+    /**
+     * The route for /test
+     * index()
+     *
+     * @return void
+     * @access public
+     */
     public function index()
     {
         echo 'test/index';
     }
 
+    /**
+     * The route for /test/second
+     * second()
+     *
+     * @return void
+     * @access public
+     */
     public function second()
     {
         echo 'test/second';
     }
 
+    /**
+     * The route for /test/third
+     * If this is a JSON request, then the output is json_encoded and echoes to screen
+     * third()
+     *
+     * @param array  $param an example param
+     * @param string $p     an example param (not used)
+     * @param string $b     an example param (not used)
+     *
+     * @return void
+     * @access public
+     */
     public function third($param, $p, $b)
     {
         $output = [
@@ -60,6 +86,16 @@ class Test extends Wayfinder
         echo json_encode($output);
     }
 
+    /**
+     * The route for /test/fourth
+     * If this is a JSON request, then the output is json_encoded and echoes to screen
+     * fourth()
+     *
+     * @param string $p1 The first parameter
+     *
+     * @return void
+     * @access public
+     */
     public function fourth($p1)
     {
         $output = ['p1' => $p1];
@@ -70,6 +106,15 @@ class Test extends Wayfinder
         echo json_encode($output);
     }
 
+    /**
+     * The route for /test/fifth
+     * index()
+     *
+     * @param string $page The filename for the page to render
+     *
+     * @return void
+     * @access public
+     */
     public function fifth($p1)
     {
         // does nothing, but enforces a param to be passed

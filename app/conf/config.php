@@ -22,11 +22,11 @@ define('__CATCH_FIRST_PARAM', false);
 // List of files to use as error templates
 define(
     '__ERROR_TEMPLATES',
-   [
-    'docs/global/header',
-    'errors',
-    'docs/global/footer',
-   ]
+    [
+     'docs/global/header',
+     'errors',
+     'docs/global/footer',
+    ]
 );
 
 /**

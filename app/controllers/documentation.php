@@ -36,6 +36,13 @@ class Documentation extends Wayfinder
     {
     }
 
+    /**
+     * The route for / (app/conf/routes.php enforce this as the default homepage, instead of index)
+     * home()
+     *
+     * @return void
+     * @access public
+     */
     public function home()
     {
         $text = 'A framework for <strong>custom routing</strong> and <strong>rapid protoyping</strong> in PHP';
@@ -49,11 +56,25 @@ class Documentation extends Wayfinder
         $this->_loadPage('index', $data);
     }
 
+    /**
+     * Redirects to /documentation
+     * readdocs()
+     *
+     * @return void
+     * @access public
+     */
     public function readdocs()
     {
         $this->redirect('/documentation');
     }
 
+    /**
+     * The route for /documentation
+     * index()
+     *
+     * @return void
+     * @access public
+     */
     public function index()
     {
         $data = [
@@ -64,6 +85,13 @@ class Documentation extends Wayfinder
         $this->_loadPage('docs', $data);
     }
 
+    /**
+     * The route for /documentation/examples
+     * examples()
+     *
+     * @return void
+     * @access public
+     */
     public function examples()
     {
         $data = [
@@ -75,6 +103,13 @@ class Documentation extends Wayfinder
         $this->_loadPage('examples', $data);
     }
 
+    /**
+     * The route for /documentation/changelog
+     * changelog()
+     *
+     * @return void
+     * @access public
+     */
     public function changelog()
     {
         $data = [
@@ -85,6 +120,13 @@ class Documentation extends Wayfinder
         $this->_loadPage('changelog', $data);
     }
 
+    /**
+     * The route for /documentation/config
+     * config()
+     *
+     * @return void
+     * @access public
+     */
     public function config()
     {
         $data = [
@@ -95,6 +137,13 @@ class Documentation extends Wayfinder
         $this->_loadPage('config', $data);
     }
 
+    /**
+     * The route for /documentation/routes
+     * routes()
+     *
+     * @return void
+     * @access public
+     */
     public function routes()
     {
         $data = [
@@ -105,6 +154,13 @@ class Documentation extends Wayfinder
         $this->_loadPage('routes', $data);
     }
 
+    /**
+     * The route for /documentation
+     * index()
+     *
+     * @return void
+     * @access public
+     */
     public function controllers()
     {
         $data = [
@@ -115,6 +171,13 @@ class Documentation extends Wayfinder
         $this->_loadPage('controllers', $data);
     }
 
+    /**
+     * The route for /documentation
+     * index()
+     *
+     * @return void
+     * @access public
+     */
     public function models($subSection = false, $id = 0)
     {
         if (!$subSection) {
@@ -142,7 +205,7 @@ class Documentation extends Wayfinder
                     $user = $users->getUser($id);
                     $data = [
                              'noIndex' => true,
-                             'user'    => $user
+                             'user'    => $user,
                             ];
                     $data['title'] = 'User model demo: '.$user['name']['first'].' '.$user['name']['last'];
                 } else {
@@ -157,6 +220,13 @@ class Documentation extends Wayfinder
         }
     }
 
+    /**
+     * The route for /documentation
+     * index()
+     *
+     * @return void
+     * @access public
+     */
     public function views()
     {
         $data = [
@@ -167,6 +237,13 @@ class Documentation extends Wayfinder
         $this->_loadPage('views', $data);
     }
 
+    /**
+     * The route for /documentation
+     * index()
+     *
+     * @return void
+     * @access public
+     */
     public function database()
     {
         $data = [
@@ -177,6 +254,13 @@ class Documentation extends Wayfinder
         $this->_loadPage('database', $data);
     }
 
+    /**
+     * The route for /documentation
+     * index()
+     *
+     * @return void
+     * @access public
+     */
     public function libraries()
     {
         $data = [
@@ -187,6 +271,13 @@ class Documentation extends Wayfinder
         $this->_loadPage('libraries', $data);
     }
 
+    /**
+     * The route for /documentation/cli
+     * cli()
+     *
+     * @return void
+     * @access public
+     */
     public function cli()
     {
         $data = [
@@ -197,6 +288,13 @@ class Documentation extends Wayfinder
         $this->_loadPage('cli', $data);
     }
 
+    /**
+     * The route for /documentation/errors
+     * errors()
+     *
+     * @return void
+     * @access public
+     */
     public function errors()
     {
         $data = [
@@ -207,6 +305,16 @@ class Documentation extends Wayfinder
         $this->_loadPage('errors', $data);
     }
 
+    /**
+     * Internal function that combines multiple calls to loading view content. If txt format is requested, then just the raw page is captured, tags are stripped and returned to the view.
+     * _loadPage()
+     *
+     * @param string $page The filename for the page to render
+     * @param array  $data The data that should be passed to the view
+     *
+     * @return void
+     * @access public
+     */
     private function _loadPage($page, $data = [])
     {
         if ($this->getMimeType() !== 'txt') {
@@ -216,7 +324,7 @@ class Documentation extends Wayfinder
         } else {
             ob_start();
             $this->load('views', 'docs/'.$page, $data);
-    		$output = strip_tags(ob_get_clean());
+            $output = strip_tags(ob_get_clean());
             $output = str_replace("\n\n", "", $output);
             echo $output;
         }
