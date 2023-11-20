@@ -1,9 +1,7 @@
 <?php declare(strict_types=1);
 use PHPUnit\Framework\TestCase;
 
-echo getcwd().' - '.PHPUNIT.
-
-';
+echo getcwd().' - '.PHPUNIT;
 
 $unitTestPathPrefix = '/..';
 if (PHPUNIT !== null || PHPUNIT === false) {
@@ -11,7 +9,7 @@ if (PHPUNIT !== null || PHPUNIT === false) {
 }
 
 require_once(getcwd().$unitTestPathPrefix.'/framework/Wayfinder.php');
-require_once(getcwd().$unitTestPathPrefix.'/app/controllers/documentation.php');
+require_once(getcwd().$unitTestPathPrefix.'/../app/controllers/documentation.php');
 
 final class DocumentationTest extends TestCase
 {
