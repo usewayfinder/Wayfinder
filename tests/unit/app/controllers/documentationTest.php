@@ -1,6 +1,10 @@
 <?php declare(strict_types=1);
 use PHPUnit\Framework\TestCase;
 
+echo getcwd().'
+
+';
+
 $unitTestPathPrefix = '';
 if (PHPUNIT !== null || PHPUNIT === false) {
     $unitTestPathPrefix = '/../../..';
