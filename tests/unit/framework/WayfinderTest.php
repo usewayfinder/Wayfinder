@@ -2,11 +2,11 @@
 use PHPUnit\Framework\TestCase;
 
 $unitTestPathPrefix = '';
-if (PHPUNIT !== null || PHPUNIT === false) {
-    $unitTestPathPrefix = '/../../..';
+if ($_ENV['TEST_NAME'] === 'GitHubActions') {
+    $unitTestPathPrefix = '';
 }
 
-require_once(getcwd().$unitTestPathPrefix.'/framework/Wayfinder.php');
+require_once($unitTestPathPrefix.'framework/Wayfinder.php');
 
 final class WayfinderTest extends TestCase
 {
