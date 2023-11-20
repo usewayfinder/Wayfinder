@@ -110,7 +110,7 @@ class Test extends Wayfinder
      * The route for /test/fifth
      * index()
      *
-     * @param string $page The filename for the page to render
+     * @param string $p1 The first parameter
      *
      * @return void
      * @access public

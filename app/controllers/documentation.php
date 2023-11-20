@@ -175,6 +175,9 @@ class Documentation extends Wayfinder
      * The route for /documentation
      * index()
      *
+     * @param string $subSection The name of the subsection
+     * @param string $id         User ID to fetch
+     *
      * @return void
      * @access public
      */

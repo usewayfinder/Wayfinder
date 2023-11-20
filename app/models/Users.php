@@ -37,15 +37,30 @@ class Users extends Wayfinder
      */
     function __construct()
     {
-        $users = json_decode(file_get_contents('https://randomuser.me/api/?results=10&seed='.$this->_seed), true);
-        $this->_users = $users['results'];
+        $this->_fetchUsers();
     }
 
+    /**
+     * Function that will get a list of users
+     * getUsers()
+     *
+     * @return array
+     * @access public
+     */
     public function getUsers()
     {
         return $this->_users;
     }
 
+    /**
+     * Function that will get a specific user
+     * getUser()
+     *
+     * @param int $id The ID of the user to fetch
+     *
+     * @return void
+     * @access public
+     */
     public function getUser($id)
     {
         if ($id > 0 && isset($this->_users[$id-1])) {
@@ -53,6 +68,19 @@ class Users extends Wayfinder
         } else {
             return false;
         }
+    }
+
+    /**
+     * Function that will fetch a list of users from randomuser.com
+     * _fetchUsers()
+     *
+     * @return array
+     * @access private
+     */
+    private function _fetchUsers()
+    {
+        $users = json_decode(file_get_contents('https://randomuser.me/api/?results=10&seed='.$this->_seed), true);
+        $this->_users = $users['results'];
     }
 
 }
