@@ -1,9 +1,32 @@
 <?php
 
+/**
+ * ----------------------------------------
+ * Wayfinder
+ * ----------------------------------------
+ *
+ * @category Model_File
+ * @package  Wayfinder
+ * @author   Charanjit Chana <hello@charanj.it>
+ * @license  https://spdx.org/licenses/MIT.html MIT License
+ * @version  0.12
+ * @link     http://www.usewayfinder.com
+ **/
+
+ /**
+  * DB is the base database class for handling MySQL connections
+  *
+  * @category Model_Class
+  * @package  Wayfinder
+  * @author   Charanjit Chana <hello@charanj.it>
+  * @license  https://spdx.org/licenses/MIT.html MIT License
+  * @version  0.12
+  * @link     http://www.usewayfinder.com
+  */
 class Users extends Wayfinder {
 
-    private $_users,
-            $_seed = 'Wayfinder';
+    private $_users;
+    private $_seed = 'Wayfinder';
 
     function __construct() {
         $users = json_decode(file_get_contents('https://randomuser.me/api/?results=10&seed='.$this->_seed), true);
@@ -15,7 +38,7 @@ class Users extends Wayfinder {
     }
 
     public function getUser($id) {
-        if($id > 0 && isset($this->_users[$id-1])) {
+        if ($id > 0 && isset($this->_users[$id-1])) {
             return $this->_users[$id-1];
         } else {
             return false;
