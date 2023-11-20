@@ -18,7 +18,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-          TEST_NAME: Actions
+      - name: PHPUnit
+        env:
+          TEST_NAME: GitHubActions
         with:
           version: 9.6
           configuration: tests/phpunit.xml
