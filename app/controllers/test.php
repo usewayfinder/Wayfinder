@@ -27,6 +27,12 @@
 class Test extends Wayfinder
 {
 
+    /**
+     * __construct()
+     *
+     * @return void
+     * @access public
+     */
     function __construct()
     {
     }
@@ -45,7 +51,7 @@ class Test extends Wayfinder
     {
         $output = [
                    'controllerMethod' => 'test/third',
-                   'params' => func_get_args(),
+                   'params'           => func_get_args(),
                   ];
         if ($this->getMimeType() != 'json') {
             var_dump($output['params']);
@@ -56,9 +62,7 @@ class Test extends Wayfinder
 
     public function fourth($p1)
     {
-        $output = [
-                   'p1' => $p1,
-                  ];
+        $output = ['p1' => $p1];
         if ($this->getMimeType() != 'json') {
             var_dump($output);
             return $output;

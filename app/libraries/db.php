@@ -37,6 +37,7 @@ class DB
     /**
      * __construct() function that runs when the class is instantiated
      *
+     * @return void
      * @access private
      */
     function __construct()

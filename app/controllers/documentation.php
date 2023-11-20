@@ -26,6 +26,12 @@
 class Documentation extends Wayfinder
 {
 
+    /**
+     * __construct()
+     *
+     * @return void
+     * @access public
+     */
     function __construct()
     {
     }
@@ -126,24 +132,24 @@ class Documentation extends Wayfinder
                 $data = [
                          'metaDescription' => 'A demo of how models work in Wayfinder, allowing you manage your data',
                          'title'           => 'User model demo',
-                         'users'           => $users->getUsers()
+                         'users'           => $users->getUsers(),
                         ];
             } else if ($subSection == 'demo-user') {
                 $this->load('models', 'Users');
                 $page = 'demo-user';
-                if($id > 0 && $id <= 10) {
+                if ($id > 0 && $id <= 10) {
                     $users = new Users;
                     $user = $users->getUser($id);
                     $data = [
                              'noIndex' => true,
-                             'user' => $user
+                             'user'    => $user
                             ];
                     $data['title'] = 'User model demo: '.$user['name']['first'].' '.$user['name']['last'];
                 } else {
                     $data = [
                              'noIndex' => true,
-                             'user' => false,
-                             'title' => 'This user does not exist',
+                             'user'    => false,
+                             'title'   => 'This user does not exist',
                             ];
                 }
             }

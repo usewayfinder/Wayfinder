@@ -29,6 +29,12 @@ class Users extends Wayfinder
     private $_users;
     private $_seed = 'Wayfinder';
 
+    /**
+     * __construct()
+     *
+     * @return void
+     * @access public
+     */
     function __construct()
     {
         $users = json_decode(file_get_contents('https://randomuser.me/api/?results=10&seed='.$this->_seed), true);
