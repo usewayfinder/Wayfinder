@@ -1,9 +1,9 @@
 <nav aria-label="secondary">
     <h3>In this section</h3>
     <ul>
-        <li <?php if($_SERVER['REQUEST_URI'] == '/documentation') {echo 'class="active has-children"';} ?>>
+        <li <?php if(REQUEST_URI == '/documentation') {echo 'class="active has-children"';} ?>>
             <a href="/documentation">Introduction</a>
-            <?php if($_SERVER['REQUEST_URI'] == '/documentation') { ?>
+            <?php if(REQUEST_URI == '/documentation') { ?>
             <ul>
                 <li><a href="#what">Why Wayfinder?</a></li>
                 <li><a href="#helpers">Helper methods in Wayfinder</a></li>
@@ -13,12 +13,12 @@
             </ul>
             <?php } ?>
         </li>
-        <li <?php if($_SERVER['REQUEST_URI'] == '/documentation/config') {echo 'class="active"';} ?>>
+        <li <?php if(REQUEST_URI == '/documentation/config') {echo 'class="active"';} ?>>
             <a href="/documentation/config">Config</a>
         </li>
-        <li <?php if($_SERVER['REQUEST_URI'] == '/documentation/routes') {echo 'class="active has-children"';} ?>>
+        <li <?php if(REQUEST_URI == '/documentation/routes') {echo 'class="active has-children"';} ?>>
             <a href="/documentation/routes">Routes</a>
-            <?php if($_SERVER['REQUEST_URI'] == '/documentation/routes') { ?>
+            <?php if(REQUEST_URI == '/documentation/routes') { ?>
             <ul>
                 <li><a href="#how">How Wayfinder interprets URLs</a></li>
                 <li><a href="#defaultroute">The default route</a></li>
@@ -42,9 +42,9 @@
             </ul>
             <?php } ?>
         </li>
-        <li <?php if($_SERVER['REQUEST_URI'] == '/documentation/models') {echo 'class="active has-children"';} ?>>
+        <li <?php if(REQUEST_URI == '/documentation/models') {echo 'class="active has-children"';} ?>>
             <a href="/documentation/models">Models</a>
-            <?php if($_SERVER['REQUEST_URI'] == '/documentation/models') { ?>
+            <?php if(REQUEST_URI == '/documentation/models') { ?>
             <ul>
                 <li><a href="#anatomy">Anatomy of a model</a></li>
                 <li><a href="#construct">__construct()</a></li>
@@ -52,12 +52,12 @@
             </ul>
         <?php } ?>
         </li>
-        <li <?php if($_SERVER['REQUEST_URI'] == '/documentation/views') {echo 'class="active"';} ?>>
+        <li <?php if(REQUEST_URI == '/documentation/views') {echo 'class="active"';} ?>>
             <a href="/documentation/views">Views</a>
         </li>
-        <li <?php if($_SERVER['REQUEST_URI'] == '/documentation/controllers') {echo 'class="active has-children"';} ?>>
+        <li <?php if(REQUEST_URI == '/documentation/controllers') {echo 'class="active has-children"';} ?>>
             <a href="/documentation/controllers">Controllers</a>
-            <?php if($_SERVER['REQUEST_URI'] == '/documentation/controllers') { ?>
+            <?php if(REQUEST_URI == '/documentation/controllers') { ?>
             <ul>
             <ul>
                 <li><a href="#anatomy">Anatomy of a controller</a></li>
@@ -68,9 +68,9 @@
             </ul>
             <?php } ?>
         </li>
-        <li <?php if($_SERVER['REQUEST_URI'] == '/documentation/database') {echo 'class="active has-children"';} ?>>
+        <li <?php if(REQUEST_URI == '/documentation/database') {echo 'class="active has-children"';} ?>>
             <a href="/documentation/database">Database</a>
-            <?php if($_SERVER['REQUEST_URI'] == '/documentation/database') { ?>
+            <?php if(REQUEST_URI == '/documentation/database') { ?>
             <ul>
                 <li><a href="#query" aria-label="query()">query()</a></li>
                 <li><a href="#escape" aria-label="escape()">escape()</a></li>
@@ -79,21 +79,21 @@
             </ul>
             <?php } ?>
         </li>
-        <li <?php if($_SERVER['REQUEST_URI'] == '/documentation/libraries') {echo 'class="active"';} ?>>
+        <li <?php if(REQUEST_URI == '/documentation/libraries') {echo 'class="active"';} ?>>
             <a href="/documentation/libraries">Libraries</a>
         </li>
-        <li <?php if($_SERVER['REQUEST_URI'] == '/documentation/cli') {echo 'class="active"';} ?>>
+        <li <?php if(REQUEST_URI == '/documentation/cli') {echo 'class="active"';} ?>>
             <a href="/documentation/cli" title="Command Line Interface">CLI</a>
         </li>
-        <li <?php if($_SERVER['REQUEST_URI'] == '/documentation/errors') {echo 'class="active has-children"';} ?>>
+        <li <?php if(REQUEST_URI == '/documentation/errors') {echo 'class="active has-children"';} ?>>
             <a href="/documentation/errors">Error handling</a>
-            <?php if($_SERVER['REQUEST_URI'] == '/documentation/errors') { ?>
+            <?php if(REQUEST_URI == '/documentation/errors') { ?>
             <ul>
                 <li><a href="#supported">Supported Error Codes</a></li>
             </ul>
             <?php } ?>
         </li>
-        <li <?php if($_SERVER['REQUEST_URI'] == '/documentation/tests') {echo 'class="active"';} ?>>
+        <li <?php if(REQUEST_URI == '/documentation/tests') {echo 'class="active"';} ?>>
             <a href="/documentation/tests">Tests</a>
         </li>
     </ul>

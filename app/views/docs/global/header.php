@@ -26,7 +26,7 @@ $v = 2021.20;
 <?php } ?>
     <meta name="twitter:image" content="https://www.usewayfinder.com/images/social-square.png?cache=<?php echo $v; ?>" />
     <meta property="og:site_name" content="Wayfinder"/>
-    <meta property="og:url" content="https://www.usewayfinder.com<?php echo $_SERVER['REQUEST_URI']; ?>" />
+    <meta property="og:url" content="https://www.usewayfinder.com<?php echo REQUEST_URI; ?>" />
     <meta property="og:title" content="<?php echo strip_tags($title); ?>" />
 <?php if(isset($subtitle)) { ?>
     <meta property="og:description" content="<?php echo $subtitle; ?>" />
@@ -51,10 +51,10 @@ if(isset($pageId)) {
 
         <nav>
             <ul>
-                <li <?php if($_SERVER['REQUEST_URI'] == '/') {echo 'class="active"';} ?>><a href="/">Wayfinder</a></li>
-                <li <?php if(strpos($_SERVER['REQUEST_URI'], '/documentation') === 0) {echo 'class="active"';} ?>><a href="/documentation">Docs</a></li>
-                <li <?php if($_SERVER['REQUEST_URI'] == '/examples') {echo 'class="active"';} ?>><a href="/examples">Examples</a></li>
-                <li <?php if($_SERVER['REQUEST_URI'] == '/changelog') {echo 'class="active"';} ?>><a href="/changelog">Change log</a></li>
+                <li <?php if(REQUEST_URI == '/') {echo 'class="active"';} ?>><a href="/">Wayfinder</a></li>
+                <li <?php if(strpos(REQUEST_URI, '/documentation') === 0) {echo 'class="active"';} ?>><a href="/documentation">Docs</a></li>
+                <li <?php if(REQUEST_URI == '/examples') {echo 'class="active"';} ?>><a href="/examples">Examples</a></li>
+                <li <?php if(REQUEST_URI == '/changelog') {echo 'class="active"';} ?>><a href="/changelog">Change log</a></li>
                 <li><a href="https://github.com/usewayfinder/Wayfinder" target="_blank">GitHub</a></li>
             </ul>
         </nav>

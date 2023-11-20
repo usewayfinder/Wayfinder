@@ -16,6 +16,10 @@
 // Fetch the Wayfinder framework
 require_once '../framework/Wayfinder.php';
 
+// Global variable for holding the REQUEST_URI, this will fail as part of unit tests
+@define('REQUEST_URI', $_SERVER['REQUEST_URI']);
+//@define('ARGV', $_SERVER['argv']);
+
 // Let's go!
 $wf = new Wayfinder();
 $wf->init();
