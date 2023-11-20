@@ -58,6 +58,7 @@ class Test extends Wayfinder
      */
     public function second()
     {
+        echo 'x';
         echo 'test/second';
     }
 
@@ -80,7 +81,6 @@ class Test extends Wayfinder
                    'params'           => func_get_args(),
                   ];
         if ($this->getMimeType() != 'json') {
-            var_dump($output['params']);
             return $output;
         }
         echo json_encode($output);

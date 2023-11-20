@@ -41,8 +41,6 @@ class Wayfinder
     private $_mimeType;
     private $_mode;
 
-    public $requestUri;
-
     /**
      * __construct() function that runs when the class is instantiated
      *
@@ -60,14 +58,10 @@ class Wayfinder
             if (strpos($_SERVER['argv'][0], 'phpunit') === false) {
                 // IF the path was passed
                 if (isset($_SERVER['argv'][1])) {
-                    if (REQUEST_URI !== null) {
-                        $this->requestUri = $_SERVER['argv'][1];
-                    }
+                    $_SERVER['REQUEST_URI'] = $_SERVER['argv'][1];
                 } else {
                     // ELSE resort to the default route
-                    if (REQUEST_URI !== null) {
-                        $this->requestUri = '/';
-                    }
+                    $_SERVER['REQUEST_URI'] = '/';
                 }
             }
         }
@@ -84,8 +78,9 @@ class Wayfinder
      */
     public function init($processUrl = true)
     {
+
         // Remove any query strings and make it lower case
-        $url = explode('?', $this->requestUri)[0];
+        $url = explode('?', $_SERVER['REQUEST_URI'])[0];
 
         // Set the MIME type and return the URL
         $this->_url = $this->_setMimeType($url);
@@ -219,20 +214,6 @@ class Wayfinder
         $this->_setMimeType($url);
         // Return MIME type
         return $this->_mimeType;
-    }
-
-    /**
-     * Set the URI to a globally accessible variable
-     * setRequestUri()
-     *
-     * @param string $uri the URI to set
-     *
-     * @return void
-     * @access public
-     */
-    public function setRequestUri($uri)
-    {
-        $this->requestUri = $uri;
     }
 
     /**
