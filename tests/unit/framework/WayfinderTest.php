@@ -2,7 +2,7 @@
 use PHPUnit\Framework\TestCase;
 
 $unitTestPathPrefix = '';
-if (!isset(PHPUNIT) || PHPUNIT === false) {
+if (PHPUNIT !== null || PHPUNIT === false) {
     $unitTestPathPrefix = '/../../..';
 }
 

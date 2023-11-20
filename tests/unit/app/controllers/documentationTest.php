@@ -2,11 +2,11 @@
 use PHPUnit\Framework\TestCase;
 
 $unitTestPathPrefix = '';
-if (PHPUNIT === null || PHPUNIT === false) {
+if (PHPUNIT !== null || PHPUNIT === false) {
     $unitTestPathPrefix = '/../../..';
 }
 
-require_once(getcwd().$unitTestPathPrefix.'framework/Wayfinder.php');
+require_once(getcwd().$unitTestPathPrefix.'/framework/Wayfinder.php');
 require_once(getcwd().$unitTestPathPrefix.'/app/controllers/documentation.php');
 
 final class DocumentationTest extends TestCase
