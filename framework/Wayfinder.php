@@ -80,7 +80,7 @@ class Wayfinder
     {
 
         // Remove any query strings and make it lower case
-        $url = explode('?', $_SERVER['REQUEST_URI'])[0];
+        $url = explode('?', REQUEST_URI)[0];
 
         // Set the MIME type and return the URL
         $this->_url = $this->_setMimeType($url);
