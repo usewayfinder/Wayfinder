@@ -55,14 +55,17 @@ class Wayfinder
             //$this->_checkMaintenanceMode();
         } else {
             // Secondary check to ignore if phpunit
-            var_dump($_SERVER);
             if (strpos($_SERVER['argv'][0], 'phpunit') === false) {
                 // IF the path was passed
                 if (isset($_SERVER['argv'][1])) {
-                    define('INTERNAL_REQUEST_URI', $_SERVER['argv'][1]);
+                    if (REQUEST_URI !== null) {
+                        define('REQUEST_URI', $_SERVER['argv'][1]);
+                    }
                 } else {
                     // ELSE resort to the default route
-                    define('INTERNAL_REQUEST_URI', '/');
+                    if (REQUEST_URI !== null) {
+                        define('REQUEST_URI', '/');
+                    }
                 }
             }
         }
@@ -79,9 +82,8 @@ class Wayfinder
      */
     public function init($processUrl = true)
     {
-
         // Remove any query strings and make it lower case
-        $url = explode('?', INTERNAL_REQUEST_URI)[0];
+        $url = explode('?', REQUEST_URI)[0];
 
         // Set the MIME type and return the URL
         $this->_url = $this->_setMimeType($url);
@@ -481,7 +483,7 @@ class Wayfinder
         }
 
         // IF the URL starts ends with a slash AND it matches a route
-        if (substr($this->_url, -1) == '/' && substr($this->url, 0, $uriLength-1) == $route) {
+        if (substr($this->_url, -1) == '/' && substr($this->_url, 0, $uriLength-1) == $route) {
             // route found!
             return true;
         }

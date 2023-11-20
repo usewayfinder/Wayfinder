@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 use PHPUnit\Framework\TestCase;
 
-$unitTestPathPrefix = '';
+$unitTestPathPrefix = '../../';
 if ($_ENV['TEST_NAME'] === 'GitHubActions') {
     $unitTestPathPrefix = '';
 }
@@ -20,6 +20,7 @@ final class DocumentationTest extends TestCase
 
     public function testDocumentationHomepageIsCreated(): void
     {
+        define('REQUEST_URI', '/');
         ob_start();
         $this->w->home();
 		$output = ob_get_clean();
