@@ -2,8 +2,8 @@
 use PHPUnit\Framework\TestCase;
 
 $unitTestPathPrefix = '/..';
-if (PHPUNIT === null || PHPUNIT === false) {
-    $unitTestPathPrefix = '/../../..';
+if ($_ENV['TEST_NAME] === 'Actions') {
+    $unitTestPathPrefix = '/../../../..';
 }
 
 require_once(getcwd().$unitTestPathPrefix.'/framework/Wayfinder.php');
