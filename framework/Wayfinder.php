@@ -55,6 +55,7 @@ class Wayfinder
             //$this->_checkMaintenanceMode();
         } else {
             // Secondary check to ignore if phpunit
+            var_dump($_SERVER);
             if (strpos($_SERVER['argv'][0], 'phpunit') === false) {
                 // IF the path was passed
                 if (isset($_SERVER['argv'][1])) {
