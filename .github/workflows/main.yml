@@ -1,0 +1,16 @@
+name: CI
+
+on: [push]
+
+jobs:
+  code-sniff:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: PHP Code Sniffer
+        uses: php-actions/phpcs@v1
+        with:
+          php_version: 7.4.3
+          standard: phpcs.xml
