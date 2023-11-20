@@ -58,10 +58,10 @@ class Wayfinder
             if (strpos($_SERVER['argv'][0], 'phpunit') === false) {
                 // IF the path was passed
                 if (isset($_SERVER['argv'][1])) {
-                    $_SERVER['REQUEST_URI'] = $_SERVER['argv'][1];
+                    define('INTERNAL_REQUEST_URI', $_SERVER['argv'][1]);
                 } else {
                     // ELSE resort to the default route
-                    $_SERVER['REQUEST_URI'] = '/';
+                    define('INTERNAL_REQUEST_URI', '/');
                 }
             }
         }
@@ -80,7 +80,7 @@ class Wayfinder
     {
 
         // Remove any query strings and make it lower case
-        $url = explode('?', REQUEST_URI)[0];
+        $url = explode('?', INTERNAL_REQUEST_URI)[0];
 
         // Set the MIME type and return the URL
         $this->_url = $this->_setMimeType($url);
