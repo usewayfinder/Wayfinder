@@ -2,7 +2,7 @@
 use PHPUnit\Framework\TestCase;
 
 $unitTestPathPrefix = '/..';
-if ($_ENV['TEST_NAME'] === 'Actions') {
+if ($_ENV['TEST_NAME'] !== 'GitHubActions') {
     $unitTestPathPrefix = '/../../../..';
 }
 
