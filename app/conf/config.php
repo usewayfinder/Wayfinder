@@ -20,15 +20,18 @@ define('__MAINTENANCE_MODE', false);
 define('__CATCH_FIRST_PARAM', false);
 
 // List of files to use as error templates
-define('__ERROR_TEMPLATES', [
-                             'docs/global/header',
-                             'errors',
-                             'docs/global/footer',
-                            ]
+define(
+       '__ERROR_TEMPLATES',
+       [
+        'docs/global/header',
+        'errors',
+        'docs/global/footer',
+       ]
 );
 
 // Are we in production?
-function setMode($var) {
+function setMode($var)
+{
     $env = getenv($var);
     if ($env == 'production') {
         return true;
@@ -40,7 +43,8 @@ function setMode($var) {
 define('__PRODUCTION', setMode('environment'));
 
 // IF this is NOT production
-if (!__PRODUCTION) {
+if (!__PRODUCTION)
+{
     // DISPLAY ALL THE ERRORS
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);

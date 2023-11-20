@@ -39,7 +39,7 @@ $routes = [
                             'controller' => 'test',
                             'method'     => 3,
                             'params'     => ['predefinedparam'],
-                           ]
-];
+                           ],
+          ];
 
 define('ROUTES', $routes);

@@ -23,12 +23,15 @@
   * @version  0.12
   * @link     http://www.usewayfinder.com
   */
-class Documentation extends Wayfinder {
+class Documentation extends Wayfinder
+{
 
-    function __construct() {
+    function __construct()
+    {
     }
 
-    public function home() {
+    public function home()
+    {
         $text = 'A framework for <strong>custom routing</strong> and <strong>rapid protoyping</strong> in PHP';
         $data = [
                  'metaDescription' => $text,
@@ -40,11 +43,13 @@ class Documentation extends Wayfinder {
         $this->_loadPage('index', $data);
     }
 
-    public function readdocs() {
+    public function readdocs()
+    {
         $this->redirect('/documentation');
     }
 
-    public function index() {
+    public function index()
+    {
         $data = [
                  'metaDescription' => 'Documentation for Wayfinder, a simple routing framework for PHP',
                  'title'           => 'Wayfinder documentation',
@@ -53,7 +58,8 @@ class Documentation extends Wayfinder {
         $this->_loadPage('docs', $data);
     }
 
-    public function examples() {
+    public function examples()
+    {
         $data = [
                  'metaDescription' => 'Examples of how to use Wayfinder for simple routing and rapid prototyping',
                  'title'           => 'Wayfinder examples',
@@ -63,7 +69,8 @@ class Documentation extends Wayfinder {
         $this->_loadPage('examples', $data);
     }
 
-    public function changelog() {
+    public function changelog()
+    {
         $data = [
                  'metaDescription' => 'Change log and release notes for Wayfinder',
                  'title'           => 'Change log',
@@ -72,7 +79,8 @@ class Documentation extends Wayfinder {
         $this->_loadPage('changelog', $data);
     }
 
-    public function config() {
+    public function config()
+    {
         $data = [
                  'metaDescription' => 'Documentation on how the config.php file works in Wayfinder',
                  'title'           => 'Config file',
@@ -81,7 +89,8 @@ class Documentation extends Wayfinder {
         $this->_loadPage('config', $data);
     }
 
-    public function routes() {
+    public function routes()
+    {
         $data = [
                  'metaDescription' => 'Documentation on how routing works in Wayfinder, allowing you to protoype rapidly',
                  'title'           => 'Routes in Wayfinder',
@@ -90,7 +99,8 @@ class Documentation extends Wayfinder {
         $this->_loadPage('routes', $data);
     }
 
-    public function controllers() {
+    public function controllers()
+    {
         $data = [
                  'metaDescription' => 'Documentation on how controllers works in Wayfinder, allowing you to protoype rapidly',
                  'title'           => 'Controllers in Wayfinder',
@@ -99,7 +109,8 @@ class Documentation extends Wayfinder {
         $this->_loadPage('controllers', $data);
     }
 
-    public function models($subSection = false, $id = 0) {
+    public function models($subSection = false, $id = 0)
+    {
         if (!$subSection) {
             $data = [
                      'metaDescription' => 'Documentation on how models works in Wayfinder, allowing you to manage your data and protoype rapidly',
@@ -140,7 +151,8 @@ class Documentation extends Wayfinder {
         }
     }
 
-    public function views() {
+    public function views()
+    {
         $data = [
                  'metaDescription' => 'Documentation on how views works in Wayfinder, allowing you to protoype rapidly',
                  'title'           => 'Views in Wayfinder',
@@ -149,7 +161,8 @@ class Documentation extends Wayfinder {
         $this->_loadPage('views', $data);
     }
 
-    public function database() {
+    public function database()
+    {
         $data = [
                  'metaDescription' => 'Documentation on how to connect to a MySQL database in Wayfinder',
                  'title'           => 'Databases in Wayfinder',
@@ -158,7 +171,8 @@ class Documentation extends Wayfinder {
         $this->_loadPage('database', $data);
     }
 
-    public function libraries() {
+    public function libraries()
+    {
         $data = [
                  'metaDescription' => 'Documentation on how libraries works in Wayfinder, allowing you to bring your own code and plug it directly into your project',
                  'title'           => 'Libraries in Wayfinder',
@@ -167,7 +181,8 @@ class Documentation extends Wayfinder {
         $this->_loadPage('libraries', $data);
     }
 
-    public function cli() {
+    public function cli()
+    {
         $data = [
                  'metaDescription' => 'Documentation on how to use Wayfinder on the command line',
                  'title'           => 'The Wayfinder <abbr title="Command Line Interface">CLI</abbr>',
@@ -176,7 +191,8 @@ class Documentation extends Wayfinder {
         $this->_loadPage('cli', $data);
     }
 
-    public function errors() {
+    public function errors()
+    {
         $data = [
                  'metaDescription' => 'Documentation on how error handling works in Wayfinder',
                  'title'           => 'Errors in Wayfinder',
@@ -185,7 +201,8 @@ class Documentation extends Wayfinder {
         $this->_loadPage('errors', $data);
     }
 
-    private function _loadPage($page, $data = []) {
+    private function _loadPage($page, $data = [])
+    {
         if ($this->getMimeType() !== 'txt') {
             $this->load('views', 'docs/global/header', $data);
             $this->load('views', 'docs/'.$page, $data);

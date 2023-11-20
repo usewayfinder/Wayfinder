@@ -24,20 +24,25 @@
   * @version  0.12
   * @link     http://www.usewayfinder.com
   */
-class Test extends Wayfinder {
+class Test extends Wayfinder
+{
 
-    function __construct() {
+    function __construct()
+    {
     }
 
-    public function index() {
+    public function index()
+    {
         echo 'test/index';
     }
 
-    public function second() {
+    public function second()
+    {
         echo 'test/second';
     }
 
-    public function third($param, $p, $b) {
+    public function third($param, $p, $b)
+    {
         $output = [
                    'controllerMethod' => 'test/third',
                    'params' => func_get_args(),
@@ -49,7 +54,8 @@ class Test extends Wayfinder {
         echo json_encode($output);
     }
 
-    public function fourth($p1) {
+    public function fourth($p1)
+    {
         $output = [
                    'p1' => $p1,
                   ];
@@ -60,7 +66,8 @@ class Test extends Wayfinder {
         echo json_encode($output);
     }
 
-    public function fifth($p1) {
+    public function fifth($p1)
+    {
         // does nothing, but enforces a param to be passed
     }
 
