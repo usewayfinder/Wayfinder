@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 use PHPUnit\Framework\TestCase;
 
-$unitTestPathPrefix = '/../../../..';
+$unitTestPathPrefix = '';
 if ($_ENV['TEST_NAME'] === 'GitHubActions') {
-    $unitTestPathPrefix = '/../../..';
+    $unitTestPathPrefix = '/../../../..';
 }
 
 require_once $unitTestPathPrefix.'/../framework/Wayfinder.php';
