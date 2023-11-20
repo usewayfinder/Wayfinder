@@ -1,7 +1,12 @@
 <?php declare(strict_types=1);
 use PHPUnit\Framework\TestCase;
 
-require_once(getcwd().'/../../framework/Wayfinder.php');
+$pathPrefix = '';
+if (isset(PHPUNIT) && PHPUNIT === true) {
+    $pathPrefix = '../../../';
+}
+
+require_once(getcwd().$pathPrefix.'/framework/Wayfinder.php');
 
 final class WayfinderTest extends TestCase
 {
