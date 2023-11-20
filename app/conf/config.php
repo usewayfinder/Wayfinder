@@ -1,19 +1,32 @@
 <?php
 
-# Toggle for maintenance mode
+/**
+ * ----------------------------------------
+ * Wayfinder
+ * ----------------------------------------
+ *
+ * @category Config_File
+ * @package  Wayfinder
+ * @author   Charanjit Chana <hello@charanj.it>
+ * @license  https://spdx.org/licenses/MIT.html MIT License
+ * @version  0.12
+ * @link     http://www.usewayfinder.com
+ **/
+
+// Toggle for maintenance mode
 define('__MAINTENANCE_MODE', false);
 
-# treat /xyz as user defined route
+// treat /xyz as user defined route
 define('__CATCH_FIRST_PARAM', false);
 
-# List of files to use as error templates
+// List of files to use as error templates
 define('__ERROR_TEMPLATES', [
     'docs/global/header',
     'errors',
     'docs/global/footer'
 ]);
 
-# Are we in production?
+// Are we in production?
 function setMode($var) {
     $env = getenv($var);
     if($env == 'production') {
@@ -22,12 +35,12 @@ function setMode($var) {
     return false;
 }
 
-# Toggle for production
+// Toggle for production
 define('__PRODUCTION', setMode('environment'));
 
-# IF this is NOT production
+// IF this is NOT production
 if(!__PRODUCTION) {
-    # DISPLAY ALL THE ERRORS
+    // DISPLAY ALL THE ERRORS
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
