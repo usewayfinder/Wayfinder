@@ -5,8 +5,10 @@ on: [push]
 jobs:
   code-sniff:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
+
       - name: PHP Code Sniffer
         uses: php-actions/phpcs@v1
         with:
@@ -18,9 +20,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: PHPUnit
+      - name: PHPUnit Tests
+        uses: php-actions/phpunit@master
         env:
-          TEST_NAME: GitHubActions
+          TEST_NAME: Actions
         with:
           php_version: 7.4.3
           version: 9.6
