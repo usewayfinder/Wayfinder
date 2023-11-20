@@ -1,6 +1,8 @@
 <?php declare(strict_types=1);
 use PHPUnit\Framework\TestCase;
 
+var_dump($_ENV);
+
 $unitTestPathPrefix = '/..';
 if (PHPUNIT === null || PHPUNIT === false) {
     $unitTestPathPrefix = '/../../../..';
