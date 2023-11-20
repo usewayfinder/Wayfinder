@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 use PHPUnit\Framework\TestCase;
 
-$pathPrefix = '';
+$unitTestPathPrefix = '';
 if (!isset(PHPUNIT) || PHPUNIT === false) {
-    $pathPrefix = '../../../';
+    $unitTestPathPrefix = '/../../..';
 }
 
-require_once(getcwd().$pathPrefix.'/framework/Wayfinder.php');
+require_once(getcwd().$unitTestPathPrefix.'/framework/Wayfinder.php');
 
 final class WayfinderTest extends TestCase
 {
