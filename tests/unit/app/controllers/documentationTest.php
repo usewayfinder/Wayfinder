@@ -20,7 +20,7 @@ final class DocumentationTest extends TestCase
 
     public function testDocumentationHomepageIsCreated(): void
     {
-        define('REQUEST_URI', '/');
+        $this->w->setRequestUri = '/';
         ob_start();
         $this->w->home();
 		$output = ob_get_clean();

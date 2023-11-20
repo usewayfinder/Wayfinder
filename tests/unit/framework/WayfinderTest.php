@@ -33,11 +33,7 @@ final class WayfinderTest extends TestCase
 
     public function testWayfinderLoadsTheDefaultRoute(): void
     {
-        if (isset($_ENV['TEST_NAME']) && $_ENV['TEST_NAME'] === 'GitHubActions') {
-            define('REQUEST_URI', '/');
-        } else {
-            $_SERVER['REQUEST_URI'] = '/';
-        }
+        $this->w->setRequestUri = '/';
         ob_start();
         self::$W[self::$i]->init();
 		$output = ob_get_clean();
@@ -46,11 +42,7 @@ final class WayfinderTest extends TestCase
 
     public function testWayfinderCanUseBasicCustomRoutesForExamples(): void
     {
-        if (isset($_ENV['TEST_NAME']) && $_ENV['TEST_NAME'] === 'GitHubActions') {
-            define('REQUEST_URI', '/examples');
-        } else {
-            $_SERVER['REQUEST_URI'] = '/examples';
-        }
+        $this->w->setRequestUri = '/examples';
         ob_start();
         self::$W[self::$i]->init();
 		$output = ob_get_clean();
@@ -59,11 +51,7 @@ final class WayfinderTest extends TestCase
 
     public function testWayfinderCanUseControllerAndMethodFromUriEvenWhenRouteIsDefined(): void
     {
-        if (isset($_ENV['TEST_NAME']) && $_ENV['TEST_NAME'] === 'GitHubActions') {
-            define('REQUEST_URI', '/documentation/examples');
-        } else {
-            $_SERVER['REQUEST_URI'] = '/documentation/examples';
-        }
+        $this->w->setRequestUri = '/documentation/examples';
         ob_start();
         self::$W[self::$i]->init();
 		$output = ob_get_clean();
@@ -72,11 +60,7 @@ final class WayfinderTest extends TestCase
 
     public function testWayfinderCanReturnJsonOutput():void
     {
-        if (isset($_ENV['TEST_NAME']) && $_ENV['TEST_NAME'] === 'GitHubActions') {
-            define('REQUEST_URI', '/foo/first/second/third/fourth.json');
-        } else {
-            $_SERVER['REQUEST_URI'] = '/foo/first/second/third/fourth.json';
-        }
+        $this->w->setRequestUri = '/foo/first/second/third/fourth.json';
         ob_start();
         self::$W[self::$i]->init();
 		$output = json_decode(ob_get_clean(), true);
@@ -85,11 +69,7 @@ final class WayfinderTest extends TestCase
 
     public function testWayfinderWithOnlyTheControllerSpecified(): void
     {
-        if (isset($_ENV['TEST_NAME']) && $_ENV['TEST_NAME'] === 'GitHubActions') {
-            define('REQUEST_URI', '/documentation');
-        } else {
-            $_SERVER['REQUEST_URI'] = '/documentation';
-        }
+        $this->w->setRequestUri = '/documentation';
         ob_start();
         self::$W[self::$i]->init();
 		$output = ob_get_clean();
@@ -98,11 +78,7 @@ final class WayfinderTest extends TestCase
 
     public function testWayfinderWithBothTheControllerAndMethodSpecified(): void
     {
-        if (isset($_ENV['TEST_NAME']) && $_ENV['TEST_NAME'] === 'GitHubActions') {
-            define('REQUEST_URI', '/documentation/routes');
-        } else {
-            $_SERVER['REQUEST_URI'] = '/documentation/routes';
-        }
+        $this->w->setRequestUri = '/documentation/routes';
         ob_start();
         self::$W[self::$i]->init();
 		$output = ob_get_clean();
@@ -111,11 +87,7 @@ final class WayfinderTest extends TestCase
 
     public function testWayfinderCanUnderstandNumericMethodsInRoutes():void
     {
-        if (isset($_ENV['TEST_NAME']) && $_ENV['TEST_NAME'] === 'GitHubActions') {
-            define('REQUEST_URI', '/foo/first/second/third/fourth.json');
-        } else {
-            $_SERVER['REQUEST_URI'] = '/foo/first/second/third/fourth.json';
-        }
+        $this->w->setRequestUri = '/foo/first/second/third/fourth.json';
         ob_start();
         self::$W[self::$i]->init();
 		$output = json_decode(ob_get_clean(), true);
@@ -126,11 +98,7 @@ final class WayfinderTest extends TestCase
 
     public function testWayfinderPassesPredefinedParamsFirst():void
     {
-        if (isset($_ENV['TEST_NAME']) && $_ENV['TEST_NAME'] === 'GitHubActions') {
-            define('REQUEST_URI', '/bar/first/second/third/fourth/.json');
-        } else {
-            $_SERVER['REQUEST_URI'] = '/bar/first/second/third/fourth/.json';
-        }
+        $this->w->setRequestUri = '/bar/first/second/third/fourth/.json';
         ob_start();
         self::$W[self::$i]->init();
 		$output = json_decode(ob_get_clean(), true);
@@ -142,11 +110,7 @@ final class WayfinderTest extends TestCase
 
     public function testWayfinderPassesPredefinedParamsFirstExtended():void
     {
-        if (isset($_ENV['TEST_NAME']) && $_ENV['TEST_NAME'] === 'GitHubActions') {
-            define('REQUEST_URI', '/bar/first/second/third/fourth/fifth.json');
-        } else {
-            $_SERVER['REQUEST_URI'] = '/bar/first/second/third/fourth/fifth.json';
-        }
+        $this->w->setRequestUri = '/bar/first/second/third/fourth/fifth.json';
         ob_start();
         self::$W[self::$i]->init();
 		$output = json_decode(ob_get_clean(), true);
@@ -160,11 +124,7 @@ final class WayfinderTest extends TestCase
     public function testWayfinderCanUnderstandControllerMethodParamsRoute():void
     {
         $string = 'foobar';
-        if (isset($_ENV['TEST_NAME']) && $_ENV['TEST_NAME'] === 'GitHubActions') {
-            define('REQUEST_URI', '/test/fourth/'.$string.'.json');
-        } else {
-            $_SERVER['REQUEST_URI'] = '/test/fourth/'.$string.'.json';
-        }
+        $this->w->setRequestUri = '/test/fourth/'.$string.'.json';
         ob_start();
         self::$W[self::$i]->init();
 		$output = json_decode(ob_get_clean(), true);
@@ -174,11 +134,7 @@ final class WayfinderTest extends TestCase
     public function testWayfinderInterpretsJsonFileType():void
     {
         $string = 'foobar';
-        if (isset($_ENV['TEST_NAME']) && $_ENV['TEST_NAME'] === 'GitHubActions') {
-            define('REQUEST_URI', '/test/fifth/'.$string.'.json');
-        } else {
-            $_SERVER['REQUEST_URI'] = '/test/fifth/'.$string.'.json';
-        }
+        $this->w->setRequestUri = '/test/fifth/'.$string.'.json';
         self::$W[self::$i]->init();
         $mimeType = self::$W[self::$i]->getMimeType();
         $this->assertEquals($mimeType, 'json');
@@ -187,11 +143,7 @@ final class WayfinderTest extends TestCase
     public function testWayfinderInterpretsTxtFileType():void
     {
         $string = 'foobar';
-        if (isset($_ENV['TEST_NAME']) && $_ENV['TEST_NAME'] === 'GitHubActions') {
-            define('REQUEST_URI', '/test/fifth/'.$string.'.txt');
-        } else {
-            $_SERVER['REQUEST_URI'] = '/test/fifth/'.$string.'.txt';
-        }
+        $this->w->setRequestUri = '/test/fifth/'.$string.'.txt';
         self::$W[self::$i]->init();
         $mimeType = self::$W[self::$i]->getMimeType();
         $this->assertEquals($mimeType, 'txt');
@@ -200,11 +152,7 @@ final class WayfinderTest extends TestCase
     public function testWayfinderInterpretsXmlFileType():void
     {
         $string = 'foobar';
-        if (isset($_ENV['TEST_NAME']) && $_ENV['TEST_NAME'] === 'GitHubActions') {
-            define('REQUEST_URI', '/test/fifth/'.$string.'.xml');
-        } else {
-            $_SERVER['REQUEST_URI'] = '/test/fifth/'.$string.'.xml';
-        }
+        $this->w->setRequestUri = '/test/fifth/'.$string.'.xml';
         self::$W[self::$i]->init();
         $mimeType = self::$W[self::$i]->getMimeType();
         $this->assertEquals($mimeType, 'xml');
@@ -213,11 +161,7 @@ final class WayfinderTest extends TestCase
     public function testWayfinderInterpretsHtmlFileType():void
     {
         $string = 'foobar';
-        if (isset($_ENV['TEST_NAME']) && $_ENV['TEST_NAME'] === 'GitHubActions') {
-            define('REQUEST_URI', '/test/fifth/'.$string.'.html');
-        } else {
-            $_SERVER['REQUEST_URI'] = '/test/fifth/'.$string.'.html';
-        }
+        $this->w->setRequestUri = '/test/fifth/'.$string.'.html';
         self::$W[self::$i]->init();
         $mimeType = self::$W[self::$i]->getMimeType();
         $this->assertEquals($mimeType, 'html');
@@ -226,11 +170,7 @@ final class WayfinderTest extends TestCase
     public function testWayfinderInterpretsRssFileType():void
     {
         $string = 'foobar';
-        if (isset($_ENV['TEST_NAME']) && $_ENV['TEST_NAME'] === 'GitHubActions') {
-            define('REQUEST_URI', '/test/fifth/'.$string.'.rss');
-        } else {
-            $_SERVER['REQUEST_URI'] = '/test/fifth/'.$string.'.rss';
-        }
+        $this->w->setRequestUri = '/test/fifth/'.$string.'.rss';
         self::$W[self::$i]->init();
         $mimeType = self::$W[self::$i]->getMimeType();
         $this->assertEquals($mimeType, 'rss');
@@ -239,11 +179,7 @@ final class WayfinderTest extends TestCase
     public function testWayfinderInterpretsAtomFileType():void
     {
         $string = 'foobar';
-        if (isset($_ENV['TEST_NAME']) && $_ENV['TEST_NAME'] === 'GitHubActions') {
-            define('REQUEST_URI', '/test/fifth/'.$string.'.atom');
-        } else {
-            $_SERVER['REQUEST_URI'] = '/test/fifth/'.$string.'.atom';
-        }
+        $this->w->setRequestUri = '/test/fifth/'.$string.'.atom';
         self::$W[self::$i]->init();
         $mimeType = self::$W[self::$i]->getMimeType();
         $this->assertEquals($mimeType, 'atom');
