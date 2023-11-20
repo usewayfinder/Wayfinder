@@ -3,11 +3,13 @@ use PHPUnit\Framework\TestCase;
 
 $unitTestPathPrefix = '/..';
 if (PHPUNIT === null || PHPUNIT === false) {
-    $unitTestPathPrefix = '/../../..';
+    $unitTestPathPrefix = '/../../../..';
 }
 
-require_once(getcwd().$unitTestPathPrefix.'/framework/Wayfinder.php');
-require_once(getcwd().$unitTestPathPrefix.'/../app/controllers/documentation.php');
+echo getcwd().$unitTestPathPrefix.'/framework/Wayfinder.php';
+
+require_once getcwd().$unitTestPathPrefix.'/framework/Wayfinder.php';
+require_once getcwd().$unitTestPathPrefix.'/app/controllers/documentation.php';
 
 final class DocumentationTest extends TestCase
 {
