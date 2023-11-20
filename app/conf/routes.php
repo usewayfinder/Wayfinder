@@ -16,29 +16,29 @@
 $routes = [
            '/'          => [
                             'controller' => 'documentation',
-                            'method' => 'home',
-                            'params' => ['test'],
+                            'method'     => 'home',
+                            'params'     => ['test'],
                            ],
            '/examples'  => [
                             'controller' => 'documentation',
-                            'method' => 'examples',
+                            'method'     => 'examples',
                            ],
            '/changelog' => [
                             'controller' => 'documentation',
-                            'method' => 'changelog',
+                            'method'     => 'changelog',
                            ],
            '/readdocs'  => [
                             'controller' => 'documentation',
-                            'method' => 'readdocs',
+                            'method'     => 'readdocs',
                            ],
            '/foo'       => [
                             'controller' => 'test',
-                            'method' => 3,
+                            'method'     => 3,
                            ],
            '/bar'       => [
                             'controller' => 'test',
-                            'method' => 3,
-                            'params' => ['predefinedparam'],
+                            'method'     => 3,
+                            'params'     => ['predefinedparam'],
                            ]
 ];
 

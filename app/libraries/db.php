@@ -1,12 +1,46 @@
 <?php
 
-require_once(realpath(dirname(__FILE__)).'/../conf/db.php');
+/**
+ * ----------------------------------------
+ * Wayfinder
+ * ----------------------------------------
+ *
+ * @category Library
+ * @package  Wayfinder
+ * @author   Charanjit Chana <hello@charanj.it>
+ * @license  https://spdx.org/licenses/MIT.html MIT License
+ * @version  0.12
+ * @link     http://www.usewayfinder.com
+ **/
 
-class DB {
+require_once realpath(dirname(__FILE__)).'/../conf/db.php';
 
-    private $servername, $username, $password, $db, $conn;
+/**
+ * DB is the base database class for handling MySQL connections
+ *
+ * @category Library_Class
+ * @package  Wayfinder
+ * @author   Charanjit Chana <hello@charanj.it>
+ * @license  https://spdx.org/licenses/MIT.html MIT License
+ * @version  0.12
+ * @link     http://www.usewayfinder.com
+ */
+class DB
+{
 
-    function __construct() {
+    private $servername;
+    private $username;
+    private $password;
+    private $db;
+    private $conn;
+
+    /**
+     * __construct() function that runs when the class is instantiated
+     *
+     * @access private
+     */
+    function __construct()
+    {
         $this->servername = SERVER_ADDRESS;
         $this->username = USER_NAME;
         $this->password = PASSWORD;
@@ -25,16 +59,26 @@ class DB {
 
     }
 
-    public function query($sql) {
+    /**
+     * Execute any MySQL query, it is your own responsibility to sanatise the data
+     * query()
+     *
+     * @param string $sql the SQL statement
+     *
+     * @return array return the results
+     * @access public
+     */
+    public function query($sql)
+    {
         $content = false;
         $sql = $sql;
         $results = $this->conn->query($sql);
 
-        if(is_object($results)) {
-            if($results->num_rows == 1) {
+        if (is_object($results)) {
+            if ($results->num_rows == 1) {
                 $content = [$results->fetch_assoc()];
-            } else if($results->num_rows > 1) {
-                while($row = $results->fetch_assoc()) {
+            } else if ($results->num_rows > 1) {
+                while ($row = $results->fetch_assoc()) {
                     $content[] = $row;
                 }
             }
@@ -43,28 +87,80 @@ class DB {
         return $results;
     }
 
-    public function select($sql) {
+    /**
+     * A wrapper for select statements
+     * select()
+     *
+     * @param string $sql the SQL statement
+     *
+     * @return array return the results
+     * @access public
+     */
+    public function select($sql)
+    {
         $this->query($sql);
         return $content;
     }
 
-    public function lastInsertId() {
+    /**
+     * Gets the last insert ID from MySQL
+     * lastInsertId()
+     *
+     * @return array return the last insert ID
+     * @access public
+     */
+    public function lastInsertId()
+    {
         return $this->conn->insert_id;
     }
 
-    public function escape($string) {
+    /**
+     * A wrapper function for mysqli_real_escape_string
+     * escape()
+     *
+     * @param string $string the string that needs sanatising
+     *
+     * @return array return the sanatised value
+     * @access public
+     */
+    public function escape($string)
+    {
         return mysqli_real_escape_string($this->conn, $string);
     }
 
-    public function error() {
+    /**
+     * Return the last error, wrapper for mysqli_info
+     * error()
+     *
+     * @return array return the last error
+     * @access public
+     */
+    public function error()
+    {
         return mysqli_error($this->conn);
     }
 
-    public function info() {
+    /**
+     * Wrapper for mysqli_info
+     * info()
+     *
+     * @return array return the results
+     * @access public
+     */
+    public function info()
+    {
         return mysqli_info($this->conn);
     }
 
-    public function connection() {
+    /**
+     * Get the database connection
+     * connection()
+     *
+     * @return object return the connection
+     * @access public
+     */
+    public function connection()
+    {
         return $this->conn;
     }
 
