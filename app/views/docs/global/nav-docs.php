@@ -93,5 +93,8 @@
             </ul>
             <?php } ?>
         </li>
+        <li <?php if($_SERVER['REQUEST_URI'] == '/documentation/tests') {echo 'class="active"';} ?>>
+            <a href="/documentation/tests">Tests</a>
+        </li>
     </ul>
 </nav>

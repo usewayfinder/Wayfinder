@@ -309,6 +309,23 @@ class Documentation extends Wayfinder
     }
 
     /**
+     * The route for /documentation/tests
+     * tests()
+     *
+     * @return void
+     * @access public
+     */
+    public function tests()
+    {
+        $data = [
+                 'metaDescription' => 'Documentation on how unit testing is handled in Wayfinder',
+                 'title'           => 'Testing Wayfinder',
+                ];
+
+        $this->_loadPage('tests', $data);
+    }
+
+    /**
      * Internal function that combines multiple calls to loading view content. If txt format is requested, then just the raw page is captured, tags are stripped and returned to the view.
      * _loadPage()
      *
