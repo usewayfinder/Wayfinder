@@ -1,15 +1,13 @@
 <?php declare(strict_types=1);
 use PHPUnit\Framework\TestCase;
 
-$unitTestPathPrefix = '/..';
-if ($_ENV['TEST_NAME'] !== 'GitHubActions') {
-    $unitTestPathPrefix = '/../../../..';
+$unitTestPathPrefix = '/../../../..';
+if ($_ENV['TEST_NAME'] === 'GitHubActions') {
+    $unitTestPathPrefix = '';
 }
 
-echo getcwd().$unitTestPathPrefix.'/framework/Wayfinder.php';
-
-require_once getcwd().$unitTestPathPrefix.'/framework/Wayfinder.php';
-require_once getcwd().$unitTestPathPrefix.'/app/controllers/documentation.php';
+require_once $unitTestPathPrefix.'/framework/Wayfinder.php';
+require_once $unitTestPathPrefix.'/app/controllers/documentation.php';
 
 final class DocumentationTest extends TestCase
 {
