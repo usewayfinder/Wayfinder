@@ -9,6 +9,14 @@
 
     <?php $format = 'jS M Y'; ?>
 
+    <h3><a href="https://github.com/usewayfinder/Wayfinder/releases/tag/0.13">v0.13</a> <small><?php echo date($format, strtotime('2nd May 2024')); ?></small></h4>
+
+    <div class="inset">
+        <ul>
+            <li class="new">PHP 8 updates for the <a href="/documentation/database">database library</a></li>
+        </ul>
+    </div>
+
     <h3><a href="https://github.com/usewayfinder/Wayfinder/releases/tag/0.12">v0.12</a> <small><?php echo date($format, strtotime('21st March 2021')); ?></small></h4>
 
     <div class="inset">

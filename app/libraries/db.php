@@ -9,7 +9,7 @@
  * @package  Wayfinder
  * @author   Charanjit Chana <hello@charanj.it>
  * @license  https://spdx.org/licenses/MIT.html MIT License
- * @version  0.12
+ * @version  0.13
  * @link     http://www.usewayfinder.com
  **/
 
@@ -37,7 +37,6 @@ class DB
     /**
      * __construct() function that runs when the class is instantiated
      *
-     * @return void
      * @access private
      */
     function __construct()
@@ -71,7 +70,7 @@ class DB
      */
     public function query($sql)
     {
-        $content = false;
+        $content = [];
         $sql = $sql;
         $results = $this->conn->query($sql);
 
@@ -82,6 +81,9 @@ class DB
                 while ($row = $results->fetch_assoc()) {
                     $content[] = $row;
                 }
+            }
+            if(empty($content)) {
+                return false;
             }
             return $content;
         }
