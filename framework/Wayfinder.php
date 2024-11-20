@@ -342,7 +342,9 @@ class Wayfinder
                     // Break out of the foreach loop
                     break;
 
-                }
+                } else if (file_exists('.'.$this->_url)) {
+					$this->_error->index(403);
+				}
             }
 
         }
